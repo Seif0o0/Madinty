@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <!-- language-screen -->
+    <color name="language_screen_main_text_color">#FFF</color>
+    <color name="language_screen_main_buttons_color">#20509A</color>
+
+    <!-- intro-screen -->
+    <color name="intro_screen_main_text_color">#272643</color>
+    <color name="intro_screen_main_buttons_color">#20509A</color>
+    <color name="intro_screen_sub_buttons_color">#fff</color>
+    <color name="intro_screen_main_buttons_text_color">#fff</color>
+    <color name="intro_screen_sub_buttons_text_color">#20509A</color>
+    <color name="intro_screen_borders_color">#535353</color>
+    <color name="intro_screen_dots_colors">#708BB6</color>
+    <color name="active_attachment_dots_colors">#ffffff</color>
+    <color name="inactive_attachment_dots_colors">#80ffffff</color>
+
+    <!-- Auth -->
+    <color name="auth_screens_background">#fff</color>
+    <color name="auth_screens_main_color">#20509A</color>
+    <color name="auth_screens_black_color">#000</color>
+    <color name="auth_screens_main_darker_color">#2e4e85</color>
+    <color name="auth_screens_title_color">#2a2a2a</color>
+    <color name="auth_screens_main_text_color">#fff</color>
+    <color name="auth_screens_sub_text_color">#8d8d8d</color>
+    <color name="auth_screens_sub_darker_text_color">#050d1d</color>
+    <color name="auth_screens_google_background_color">#d54834</color>
+    <color name="auth_screens_google_darker_background_color">#c84633</color>
+    <color name="auth_screens_grey_color">#738195</color>
+    <color name="auth_screens_phone_call_floating_color">#c58f67</color>
+    <color name="auth_screens_whats_app_floating_color">#67c760</color>
+    <color name="places_title_text_color">#434343</color>
+    <color name="places_details_text_color">#70434343</color>
+    <color name="places_location_text_color">#868992</color>
+    <color name="places_yellow_color">#ffd800</color>
+    <color name="places_dashed_line_color">#707070</color>
+    <color name="black_with_58_p_opacity">#50000000</color>
+    <color name="grey_line">#f2f2f2</color>
+    <color name="help_center_description">#bfbfbf</color>
+    <color name="cursor_color">#20509A</color>
+    <color name="privacy_policy_text_color">#575757</color>
+    <color name="cancel_text_color">#ff5555</color>
+    <color name="darker_text_color">#000</color>
+    <color name="edit_text_background_color">#F7F7F7</color>
+    <color name="rate_stroke_color">#e3e3e3</color>
+    <color name="rate_count_color">#c1c1c1</color>
+    <color name="error_layout_background_color">#21252E</color>
+    <color name="error_dialog_message_color">#FF0000</color>
+    <color name="error_dialog_dismiss_text_color">#FFF</color>
+    <color name="error_dialog_dismiss_text_background_color">#FF0000</color>
+    <color name="black_with_30_opacity">#CC000000</color>
+    <color name="empty_list_text_color">#747474</color>
+    <color name="error_layout_retry_text_color">#747474</color>
+    <color name="small_title_bar_background_color_with_opacity">#38ccb19e</color>
+    <color name="small_title_bar_background_color">#ccb19e</color>
+    <color name="department_child_title_color">#0c0c0c</color>
+
+
+    <color name="bottom_nav_active_icon_color">#20509A</color>
+    <color name="bottom_nav_inactive_icon_color">#8d8d8d</color>
+    <color name="terms_conditions_title_color">#1c1e1c</color>
+
+</resources>

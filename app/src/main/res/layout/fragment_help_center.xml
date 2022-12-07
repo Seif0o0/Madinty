@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/auth_screens_background"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:src="@drawable/ic_back_arrow_icon"
+                app:layout_constraintBottom_toBottomOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header" />
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/help_center_header"
+                android:textColor="@color/places_title_text_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/back_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/help_center_description"
+                android:textColor="@color/help_center_description"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/header" />
+
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/message_subject"
+                android:textColor="@color/auth_screens_black_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <EditText
+                android:id="@+id/subject_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/selector_edit_text_background"
+                android:fontFamily="@font/tajwal_regular"
+                android:gravity="start"
+                android:hint="@string/message_subject_hint"
+                android:inputType="text"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_9sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_9sdp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/auth_screens_title_color"
+                android:textColorHint="@color/help_center_description"
+                android:textCursorDrawable="@drawable/cursor_shape"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/subject"
+                app:layout_constraintTop_toBottomOf="@id/subject" />
+
+
+            <TextView
+                android:id="@+id/message_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/message_body"
+                android:textColor="@color/auth_screens_black_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/subject_edittext" />
+
+            <EditText
+                android:id="@+id/message_body_edittext"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/selector_edit_text_background"
+                android:fontFamily="@font/tajwal_regular"
+                android:gravity="start"
+                android:hint="@string/message_body_hint"
+                android:inputType="text"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_9sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_9sdp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/auth_screens_title_color"
+                android:textColorHint="@color/help_center_description"
+                android:textCursorDrawable="@drawable/cursor_shape"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/message_body"
+                app:layout_constraintTop_toBottomOf="@id/message_body" />
+
+            <View
+                android:id="@+id/upload_image_background"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/grey_rounded_corner_rectangle"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/message_body_edittext" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:gravity="center"
+                android:text="@string/attach_photo"
+                android:textColor="@color/help_center_description"
+                android:textSize="@dimen/_10ssp"
+                app:drawableStartCompat="@drawable/ic_add_photo_icon"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@id/upload_image_background"
+                app:layout_constraintEnd_toEndOf="@id/upload_image_background"
+                app:layout_constraintStart_toStartOf="@id/upload_image_background"
+                app:layout_constraintTop_toTopOf="@id/upload_image_background" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_37sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/send"
+                android:textAllCaps="false"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_11ssp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/language_screen_main_buttons_color"
+                app:cornerRadius="@dimen/_4sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/upload_image_background"
+                app:layout_constraintVertical_bias="1"
+                app:strokeColor="@android:color/transparent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

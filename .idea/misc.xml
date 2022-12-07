@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable-v24/edit_text_background.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable-v24/focused_edit_text_background.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable-v24/ic_place_location_icon.xml" value="0.2025" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable-v24/selector_drop_down_menu.xml" value="0.2025" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable-v24/selector_edit_text_background.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/bottom_nav_icon_color.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/cursor_shape.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/custom_rating_bar.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/dashed_line.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/edit_text_background_drawable.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/empty_rating.xml" value="0.1065" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/facebook_rounded_corner_rectangle.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/full_rating.xml" value="0.1065" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/google_rounded_corner_rectangle.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/grey_edit_text_background.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/grey_rounded_corner_rectangle.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_add_location_icon.xml" value="0.1525" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_add_place_location.xml" value="0.1525" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_back_arrow_icon.xml" value="0.155" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_delete_icon.xml" value="0.1625" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_down_arrow.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_empty_star_icon.xml" value="0.235" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_end_arrow_direction.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_facebook_icon.xml" value="0.1645" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_favorite_no_rating_star_svgrepo_com.xml" value="0.168" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_fill_star_icon.xml" value="0.235" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_google_icon.xml" value="0.124" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_help_icon.xml" value="0.1625" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_home_nav_icon.xml" value="0.1055" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_location_icon.xml" value="0.1525" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_logout_icon.xml" value="0.1625" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_phone_icon.xml" value="0.124" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_start_arrow_direction.xml" value="0.2595" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_up_arrow.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/ic_up_icon.xml" value="0.2025" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/main_color_rounded_corner_rectangle.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/rating_bar.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/rating_empty.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/rating_fill.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/selector_drop_down_menu.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/selector_drop_down_menu_2.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/spinner_background.xml" value="0.1795" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/vertical_dashed_line.xml" value="0.112" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/drawable/yellow_rounded_corner_rectangle.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/activity_intro.xml" value="0.11302083333333333" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/delete_favourites_dialog_layout.xml" value="0.18803088803088802" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/favourites_item.xml" value="0.6" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_about_app.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_access_location_permission.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_add_place_details.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_favourites.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_help_center.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_intro.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_introduction.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_introduction_container.xml" value="0.35238784370477566" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_language.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_login.xml" value="0.26124197002141325" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_more.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_offers.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_phone_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_phone_verification.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_pick_city.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_pick_country.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_place_details.xml" value="0.31791530944625407" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_privacy_policy.xml" value="0.136" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_splash.xml" value="0.190625" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/fragment_splash_final.xml" value="0.1" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/login_success_dialog_layout.xml" value="0.25364583333333335" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/logout_dialog_layout.xml" value="0.48961937716262977" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/logout_login_success_dialog_layout.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/place_item.xml" value="0.264" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/layout/sections_item.xml" value="0.4" />
+        <entry key="..\:/work projects/madinaty/app/src/main/res/menu/bottom_nav_items.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

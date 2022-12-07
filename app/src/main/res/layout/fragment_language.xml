@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/splash_screen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_19sdp"
+                android:layout_marginTop="@dimen/_37sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/pick_language_header"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/splash_logo"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/splash_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_38sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/pick_language_title"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/splash_logo" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/arabic_btn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="@dimen/_161sdp"
+                android:text="@string/arabic_label"
+                android:textAllCaps="false"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_11ssp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/language_screen_main_buttons_color"
+                app:cornerRadius="@dimen/_4sdp"
+                app:icon="@drawable/ic_right_mark"
+                app:iconTint="@color/language_screen_main_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:strokeColor="@android:color/transparent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/english_btn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="@dimen/_161sdp"
+                android:text="@string/english_label"
+                android:textAllCaps="false"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_11ssp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@android:color/transparent"
+                app:cornerRadius="@dimen/_4sdp"
+                app:icon="@null"
+                app:iconTint="@color/language_screen_main_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/arabic_btn"
+                app:strokeColor="@color/language_screen_main_text_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/start_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_19sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_19sdp"
+                android:layout_marginBottom="@dimen/_37sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/start_usage"
+                android:textAllCaps="false"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_11ssp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/language_screen_main_buttons_color"
+                app:cornerRadius="@dimen/_4sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/english_btn"
+                app:layout_constraintVertical_bias="1"
+                app:strokeColor="@android:color/transparent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

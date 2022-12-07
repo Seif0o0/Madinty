@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.PinOffersViewModel" />
+
+        <variable
+            name="loadingState"
+            type="Boolean" />
+
+        <variable
+            name="errorState"
+            type="Boolean" />
+
+        <variable
+            name="errorMessage"
+            type="String" />
+
+        <variable
+            name="retryListener"
+            type="com.madinaty.app.presentation.adapter.RetryClickListener" />
+
+        <variable
+            name="offersRetryListener"
+            type="com.madinaty.app.presentation.adapter.RetryClickListener" />
+
+        <variable
+            name="regionValue"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/region_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/region"
+            android:textColor="@color/places_title_text_color"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/region"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/tajwal_bold"
+            android:maxLines="1"
+            android:text="@{regionValue}"
+            android:textColor="@color/darker_text_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@id/change_text"
+            app:layout_constraintStart_toStartOf="@id/region_label"
+            app:layout_constraintTop_toBottomOf="@id/region_label"
+            tools:text="Borg E-arab ada fajs fajf" />
+
+        <TextView
+            android:id="@+id/change_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/change"
+            android:textColor="@color/auth_screens_main_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBaseline_toBaselineOf="@id/region"
+            app:layout_constraintEnd_toStartOf="@id/notifications_icon"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/region" />
+
+        <ImageView
+            android:id="@+id/notifications_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:src="@drawable/ic_notifications_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.emptyState}"
+            app:constraint_referenced_ids="view_pager,view_pager_indicator" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@id/notifications_icon"
+            app:layout_constraintStart_toStartOf="@id/region_label"
+            app:layout_constraintTop_toBottomOf="@id/region" />
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/view_pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:dotsColor="@color/auth_screens_main_color"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="@dimen/_10sdp"
+            app:dotsSpacing="@dimen/_2sdp"
+            app:dotsWidthFactor="2.5"
+            app:layout_constraintEnd_toEndOf="@id/view_pager"
+            app:layout_constraintStart_toStartOf="@id/view_pager"
+            app:layout_constraintTop_toBottomOf="@id/view_pager"
+            app:selectedDotColor="@color/intro_screen_dots_colors" />
+
+        <include
+            layout="@layout/small_error_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:errorMessage="@{viewModel.errorState}"
+            app:errorState="@{!viewModel.errorState.isEmpty()}"
+            app:layout_constraintBottom_toBottomOf="@id/view_pager_indicator"
+            app:layout_constraintEnd_toEndOf="@id/view_pager"
+            app:layout_constraintStart_toStartOf="@id/view_pager"
+            app:layout_constraintTop_toTopOf="@id/view_pager"
+            app:retryListener="@{offersRetryListener}" />
+
+        <include
+            layout="@layout/small_loading_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/view_pager_indicator"
+            app:layout_constraintEnd_toEndOf="@id/view_pager"
+            app:layout_constraintStart_toStartOf="@id/view_pager"
+            app:layout_constraintTop_toTopOf="@id/view_pager"
+            app:loadingStatus="@{viewModel.loadingState}" />
+
+
+        <TextView
+            android:id="@+id/sections_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/sections_label"
+            android:textColor="@color/darker_text_color"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@id/region_label"
+            app:layout_constraintTop_toBottomOf="@id/view_pager_indicator" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/notifications_icon"
+            app:layout_constraintStart_toStartOf="@id/sections_label"
+            app:layout_constraintTop_toBottomOf="@id/sections_label"
+            tools:itemCount="100" />
+
+        <TextView
+            android:id="@+id/empty_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/empty_list_text"
+            android:textColor="@color/empty_list_text_color"
+            android:textSize="@dimen/_10ssp"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sections_label" />
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/error_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:errorMessage="@{errorMessage}"
+            app:errorState="@{errorState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sections_label"
+            app:retryListener="@{retryListener}" />
+
+        <include
+            layout="@layout/loading_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sections_label"
+            app:loadingStatus="@{loadingState}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

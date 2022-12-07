@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.CommonInfoViewModel" />
+
+        <variable
+            name="retryListener"
+            type="com.madinaty.app.presentation.adapter.RetryClickListener" />
+
+        <variable
+            name="aboutUs"
+            type="String" />
+    </data>
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="@color/auth_screens_background"-->
+    <!--        android:fillViewport="true">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/ic_back_arrow_icon"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/about_app_header"
+            android:textColor="@color/places_title_text_color"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/back_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/ic_about_app_header"
+            app:layout_constraintEnd_toEndOf="@id/header"
+            app:layout_constraintStart_toStartOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image">
+
+            <TextView
+                android:id="@+id/about_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tajwal_medium"
+                android:gravity="center_horizontal"
+                android:text="@{aboutUs}"
+                android:textAlignment="center"
+                android:textColor="@color/privacy_policy_text_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintVertical_bias="0"
+                tools:text="asjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsjasjfas fjasfk jal;f jaslkf jasklf jalsf jalskfj aslfk jalf jal;sjf alfkjaflkajflkajdaklsj\nseif" />
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/empty_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/empty_list_text"
+            android:textColor="@color/empty_list_text_color"
+            android:textSize="@dimen/_10ssp"
+            android:visibility="@{viewModel.emptyState}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            tools:visibility="gone" />
+
+        <include
+            layout="@layout/error_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:errorMessage="@{viewModel.errorState}"
+            app:errorState="@{!viewModel.errorState.isEmpty()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:retryListener="@{retryListener}" />
+
+        <include
+            layout="@layout/loading_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:loadingStatus="@{viewModel.loadingState}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    </ScrollView>-->
+</layout>

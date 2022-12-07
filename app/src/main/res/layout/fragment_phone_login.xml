@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.PhoneLoginViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/auth_screens_background"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/main_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_45sdp"
+                    android:fontFamily="@font/tajwal_bold"
+                    android:text="@string/lets_start"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintEnd_toEndOf="@id/logo"
+                    app:layout_constraintStart_toStartOf="@id/logo"
+                    app:layout_constraintTop_toBottomOf="@id/logo" />
+
+
+                <TextView
+                    android:id="@+id/second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/phone_login_title"
+                    android:textColor="@color/auth_screens_sub_darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <TextView
+                    android:id="@+id/phone_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/second_title" />
+
+                <EditText
+                    android:id="@+id/phone_number_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/phone_number_hint"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.phoneNumberState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.phoneNumberErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_label"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
+
+                <TextView
+                    android:id="@+id/password_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/password_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_edittext" />
+
+                <EditText
+                    android:id="@+id/password_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.passwordState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.passwordErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/password_label"
+                    app:layout_constraintTop_toBottomOf="@id/password_label" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/next_step"
+                    android:textAllCaps="false"
+                    android:textColor="@color/language_screen_main_text_color"
+                    android:textSize="@dimen/_12ssp"
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:backgroundTint="@color/language_screen_main_buttons_color"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintEnd_toEndOf="@id/password_edittext"
+                    app:layout_constraintStart_toStartOf="@id/password_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/password_edittext"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_goneMarginTop="@dimen/_20sdp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/phone_login_back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/places_title_text_color"
+                    android:textSize="@dimen/_12ssp"
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:backgroundTint="@color/language_screen_main_text_color"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/phone_number_edittext"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/next_btn"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_goneMarginTop="@dimen/_20sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadingStatus="@{viewModel.loadingState}" />
+
+    </FrameLayout>
+
+
+</layout>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/auth_screens_background"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@mipmap/main_logo"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/tajwal_bold"
+                android:text="@string/auth_title"
+                android:textColor="@color/auth_screens_title_color"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo" />
+
+            <View
+                android:id="@+id/facebook_background"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_20ssp"
+                android:background="@drawable/main_color_rounded_corner_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <View
+                android:id="@+id/facebook_second_background"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="0dp"
+                android:background="@drawable/facebook_rounded_corner_rectangle"
+                app:layout_constraintBottom_toBottomOf="@id/facebook_background"
+                app:layout_constraintStart_toStartOf="@id/facebook_background"
+                app:layout_constraintTop_toTopOf="@id/facebook_background" />
+
+            <ImageView
+                android:id="@+id/facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_facebook_icon"
+                app:layout_constraintBottom_toBottomOf="@id/facebook_second_background"
+                app:layout_constraintEnd_toEndOf="@id/facebook_second_background"
+                app:layout_constraintStart_toStartOf="@id/facebook_second_background"
+                app:layout_constraintTop_toTopOf="@id/facebook_second_background" />
+
+            <TextView
+                android:id="@+id/facebook_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_regular"
+                android:text="@string/login_via_facebook"
+                android:textColor="@color/auth_screens_main_text_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/facebook_background"
+                app:layout_constraintEnd_toEndOf="@id/facebook_background"
+                app:layout_constraintStart_toEndOf="@id/facebook_second_background"
+                app:layout_constraintTop_toTopOf="@id/facebook_background" />
+
+            <View
+                android:id="@+id/google_background"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_20ssp"
+                android:background="@drawable/google_rounded_corner_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/facebook_background" />
+
+            <View
+                android:id="@+id/google_second_background"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="0dp"
+                android:background="@drawable/darker_google_rounded_corner_rectangle"
+                app:layout_constraintBottom_toBottomOf="@id/google_background"
+                app:layout_constraintStart_toStartOf="@id/google_background"
+                app:layout_constraintTop_toTopOf="@id/google_background" />
+
+            <ImageView
+                android:id="@+id/google"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_google_icon"
+                app:layout_constraintBottom_toBottomOf="@id/google_second_background"
+                app:layout_constraintEnd_toEndOf="@id/google_second_background"
+                app:layout_constraintStart_toStartOf="@id/google_second_background"
+                app:layout_constraintTop_toTopOf="@id/google_second_background" />
+
+            <TextView
+                android:id="@+id/google_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_regular"
+                android:text="@string/login_via_google"
+                android:textColor="@color/auth_screens_main_text_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/google_background"
+                app:layout_constraintEnd_toEndOf="@id/google_background"
+                app:layout_constraintStart_toEndOf="@id/google_second_background"
+                app:layout_constraintTop_toTopOf="@id/google_background" />
+
+            <TextView
+                android:id="@+id/or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/or"
+                android:textColor="@color/auth_screens_sub_text_color"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="@id/google_background"
+                app:layout_constraintStart_toStartOf="@id/google_background"
+                app:layout_constraintTop_toBottomOf="@id/google_background" />
+
+            <View
+                android:id="@+id/phone_background"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:layout_marginEnd="@dimen/_20ssp"
+                android:background="@drawable/main_color_rounded_corner_rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/or" />
+
+            <View
+                android:id="@+id/phone_second_background"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="0dp"
+                android:background="@drawable/facebook_rounded_corner_rectangle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/phone_background"
+                app:layout_constraintStart_toStartOf="@id/phone_background"
+                app:layout_constraintTop_toTopOf="@id/phone_background" />
+
+            <ImageView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_phone_icon"
+                app:layout_constraintBottom_toBottomOf="@id/phone_second_background"
+                app:layout_constraintEnd_toEndOf="@id/phone_second_background"
+                app:layout_constraintStart_toStartOf="@id/phone_second_background"
+                app:layout_constraintTop_toTopOf="@id/phone_second_background" />
+
+            <TextView
+                android:id="@+id/phone_login"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/tajwal_regular"
+                android:text="@string/login_via_phone"
+                android:textColor="@color/auth_screens_main_text_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/phone_background"
+                app:layout_constraintEnd_toEndOf="@id/phone_background"
+                app:layout_constraintStart_toEndOf="@id/phone_second_background"
+                app:layout_constraintTop_toTopOf="@id/phone_background" />
+
+
+            <TextView
+                android:id="@+id/login_as_guest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/login_as_guest"
+                android:textColor="@color/auth_screens_sub_text_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="@id/google_background"
+                app:layout_constraintStart_toStartOf="@id/google_background"
+                app:layout_constraintTop_toBottomOf="@id/phone_background" />
+
+
+            <TextView
+                android:id="@+id/terms_conditions_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:gravity="center"
+                android:text="@string/terms_conditions_title"
+                android:textColor="@color/auth_screens_title_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="@id/phone_background"
+                app:layout_constraintStart_toStartOf="@id/phone_background"
+                app:layout_constraintTop_toBottomOf="@id/login_as_guest" />
+
+            <TextView
+                android:id="@+id/terms_conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:gravity="center"
+                android:text="@string/underline_terms_conditions"
+                android:textColor="@color/auth_screens_main_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constrainedHeight="true"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="@id/phone_background"
+                app:layout_constraintStart_toStartOf="@id/phone_background"
+                app:layout_constraintTop_toBottomOf="@id/terms_conditions_title" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/hidden_floating_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="close_menu,call_floating_button,call_card,whats_floating_button,whats_card" />
+
+            <ImageView
+                android:id="@+id/close_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:src="@drawable/ic_x_icon"
+                app:layout_constraintEnd_toEndOf="@id/call_floating_button"
+                app:layout_constraintStart_toStartOf="@id/call_floating_button"
+                app:layout_constraintTop_toBottomOf="@id/terms_conditions" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/call_floating_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:backgroundTint="@color/auth_screens_phone_call_floating_color"
+                android:src="@drawable/ic_phone_call_icon"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:layout_constraintStart_toStartOf="@id/phone_background"
+                app:layout_constraintTop_toBottomOf="@id/close_menu"
+                app:tint="@color/auth_screens_background" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/call_card"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/call_floating_button"
+                app:layout_constraintStart_toEndOf="@id/call_floating_button"
+                app:layout_constraintTop_toTopOf="@id/call_floating_button">
+
+                <TextView
+                    android:id="@+id/phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="+201234568790"
+                    android:textColor="@color/auth_screens_black_color"
+                    android:textSize="@dimen/_10ssp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/whats_floating_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:backgroundTint="@color/auth_screens_whats_app_floating_color"
+                android:src="@drawable/ic_whatsapp_icon"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/call_floating_button"
+                app:layout_constraintTop_toBottomOf="@id/call_floating_button"
+                app:layout_constraintVertical_bias="0"
+                app:tint="@color/auth_screens_background" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/whats_card"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/whats_floating_button"
+                app:layout_constraintStart_toEndOf="@id/whats_floating_button"
+                app:layout_constraintTop_toTopOf="@id/whats_floating_button">
+
+                <TextView
+                    android:id="@+id/whats_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="+201234568790"
+                    android:textColor="@color/auth_screens_black_color"
+                    android:textSize="@dimen/_10ssp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:backgroundTint="@color/auth_screens_background"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/contact_us"
+                android:textColor="@color/auth_screens_grey_color"
+                android:textSize="@dimen/_10ssp"
+                android:visibility="visible"
+                app:icon="@drawable/ic_contact_us"
+                app:iconGravity="start"
+                app:iconTint="@color/auth_screens_grey_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/phone_background"
+                app:layout_constraintTop_toBottomOf="@id/terms_conditions"
+                app:layout_constraintVertical_bias="0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

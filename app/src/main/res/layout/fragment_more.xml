@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/auth_screens_background"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/more_title"
+                android:textColor="@color/places_title_text_color"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/profile"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_profile_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/header" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/add_place"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile" />
+
+            <TextView
+                android:id="@+id/add_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/add_new_place"
+                android:textColor="@color/auth_screens_main_color"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_add_location_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/profile" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/my_place"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_place" />
+
+            <TextView
+                android:id="@+id/my_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/my_place"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_help_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/add_place" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/help_center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/my_place" />
+
+            <TextView
+                android:id="@+id/help_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/help_center"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_help_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/my_place" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/privacy_policy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/help_center" />
+
+            <TextView
+                android:id="@+id/privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_privacy_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/help_center" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/about_app"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/privacy_policy" />
+
+            <TextView
+                android:id="@+id/about_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/about_app"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_about_us_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/privacy_policy" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/app_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_app" />
+
+            <TextView
+                android:id="@+id/app_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/app_language"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_change_language_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/about_app" />
+
+            <TextView
+                android:id="@+id/app_language_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/english_label"
+                android:textColor="@color/auth_screens_main_color"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBaseline_toBaselineOf="@id/app_language"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/app_language" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/grey_line"
+                app:layout_constraintBottom_toTopOf="@id/logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_language" />
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/tajwal_medium"
+                android:text="@string/logout"
+                android:textColor="@color/black_with_58_p_opacity"
+                android:textSize="@dimen/_13ssp"
+                app:drawableStartCompat="@drawable/ic_logout_icon"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toBottomOf="@id/app_language" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/grey_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

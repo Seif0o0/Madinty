@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/auth_screens_background">
+
+        <TextView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/back"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:drawableStartCompat="@drawable/ic_back_arrow_icon"
+            app:drawableTint="@color/auth_screens_title_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:gravity="center"
+            android:text="@string/add_place_details_title"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBaseline_toBaselineOf="@id/back_btn"
+            app:layout_constraintEnd_toStartOf="@id/next_btn"
+            app:layout_constraintStart_toEndOf="@id/back_btn" />
+
+        <TextView
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/next"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="invisible"
+            app:drawableEndCompat="@drawable/ic_flipped_back_arrow_icon"
+            app:drawableTint="@color/auth_screens_title_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/second_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:gravity="center"
+            android:text="@string/add_place_department_child_title"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/auth_screens_main_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/second_title"
+            app:layout_constraintWidth_percent="0.33" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_line"
+            tools:listitem="@layout/add_place_department_child_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

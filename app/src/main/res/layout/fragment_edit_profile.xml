@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.EditProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/ic_back_arrow_icon"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/personal_info_header"
+            android:textColor="@color/places_title_text_color"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/back_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/first_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/first_name_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/first_name_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/grey_line"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/first_name_hint"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.firstNameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.firstNameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/first_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/first_name_label" />
+
+                <TextView
+                    android:id="@+id/last_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/last_name_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/first_name_edittext" />
+
+                <EditText
+                    android:id="@+id/last_name_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/grey_line"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/last_name_hint"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.lastNameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.lastNameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/last_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/last_name_label" />
+
+                <TextView
+                    android:id="@+id/email_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/email_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/last_name_edittext" />
+
+                <EditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/grey_line"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/profile_email_hint"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.emailState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.emailErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/email_label"
+                    app:layout_constraintTop_toBottomOf="@id/email_label" />
+
+                <TextView
+                    android:id="@+id/phone_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/phone_number_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/email_edittext" />
+
+                <EditText
+                    android:id="@+id/phone_number_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/grey_line"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/profile_phone_number_hint"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_50sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.phoneNumberState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.phoneNumberErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_label"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
+
+                <TextView
+                    android:id="@+id/confirm_phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/underline_confirm"
+                    android:textColor="#b9bbba"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/phone_number_edittext"
+                    app:layout_constraintEnd_toEndOf="@id/phone_number_edittext"
+                    app:layout_constraintTop_toTopOf="@id/phone_number_edittext" />
+
+                <TextView
+                    android:id="@+id/birthadte_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/birthdate_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_edittext" />
+
+                <EditText
+                    android:id="@+id/birthadte_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/grey_line"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/birthdate_hint"
+                    android:inputType="text"
+                    android:longClickable="false"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:birth_date="@{viewModel.dobState}"
+                    app:error_message="@{viewModel.dobErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/birthadte_label"
+                    app:layout_constraintTop_toBottomOf="@id/birthadte_label" />
+
+                <TextView
+                    android:id="@+id/gender_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/gender_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/birthadte_edittext" />
+
+                <RadioButton
+                    android:id="@+id/male_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={viewModel.genderState}"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="center_vertical"
+                    android:padding="0dp"
+                    android:text="@string/male"
+                    android:textSize="@dimen/_11ssp"
+                    android:theme="@style/RadioButtonTheme"
+                    app:layout_constraintEnd_toStartOf="@id/female_radio"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/gender_label"
+                    app:layout_constraintTop_toBottomOf="@id/gender_label" />
+
+                <RadioButton
+                    android:id="@+id/female_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:checked="@={!viewModel.genderState}"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/female"
+                    android:textSize="@dimen/_11ssp"
+                    android:theme="@style/RadioButtonTheme"
+                    app:layout_constraintBaseline_toBaselineOf="@id/male_radio"
+                    app:layout_constraintStart_toEndOf="@id/male_radio" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/save_changes"
+                    android:textAllCaps="false"
+                    android:textColor="@color/language_screen_main_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:backgroundTint="@color/language_screen_main_buttons_color"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/first_name_edittext"
+                    app:layout_constraintStart_toStartOf="@id/first_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/male_radio" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

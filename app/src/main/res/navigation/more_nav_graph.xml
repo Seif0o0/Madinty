@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_nav_more"
+    app:startDestination="@id/moreFragment">
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.madinaty.app.presentation.fragment.MoreFragment"
+        android:label="MoreFragment" >
+        <action
+            android:id="@+id/action_moreFragment_to_helpCenterFragment"
+            app:destination="@id/helpCenterFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_aboutAppFragment"
+            app:destination="@id/aboutAppFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_addPlaceDepartmentFragment"
+            app:destination="@id/addPlaceDepartmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpCenterFragment"
+        android:name="com.madinaty.app.presentation.fragment.HelpCenterFragment"
+        android:label="HelpCenterFragment" />
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.madinaty.app.presentation.fragment.PrivacyPolicyFragment"
+        android:label="PrivacyPolicyFragment" />
+    <fragment
+        android:id="@+id/aboutAppFragment"
+        android:name="com.madinaty.app.presentation.fragment.AboutAppFragment"
+        android:label="AboutAppFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.madinaty.app.presentation.fragment.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.madinaty.app.presentation.fragment.EditProfileFragment"
+        android:label="EditProfileFragment" >
+        <argument
+            android:name="userInfo"
+            app:argType="com.madinaty.app.domain.model.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlaceDetailsFragment"
+        android:name="com.madinaty.app.presentation.fragment.AddPlaceDetailsFragment"
+        android:label="AddPlaceDetailsFragment" >
+        <argument
+            android:name="departmentId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addPlaceDetailsFragment_to_addPlacePhotosFragment"
+            app:destination="@id/addPlacePhotosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlaceDepartmentFragment"
+        android:name="com.madinaty.app.presentation.fragment.AddPlaceDepartmentFragment"
+        android:label="AddPlaceDepartmentFragment" >
+        <action
+            android:id="@+id/action_addPlaceDepartmentFragment_to_addPlaceDepartmentChildFragment"
+            app:destination="@id/addPlaceDepartmentChildFragment" />
+        <action
+            android:id="@+id/action_addPlaceDepartmentFragment_to_addPlaceDetailsFragment"
+            app:destination="@id/addPlaceDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlaceDepartmentChildFragment"
+        android:name="com.madinaty.app.presentation.fragment.AddPlaceDepartmentChildFragment"
+        android:label="AddPlaceDepartmentChildFragment" >
+        <action
+            android:id="@+id/action_addPlaceDepartmentChildFragment_self"
+            app:destination="@id/addPlaceDepartmentChildFragment" />
+        <action
+            android:id="@+id/action_addPlaceDepartmentChildFragment_to_addPlaceDetailsFragment"
+            app:destination="@id/addPlaceDetailsFragment" />
+        <argument
+            android:name="department"
+            app:argType="com.madinaty.app.domain.model.Department" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlacePhotosFragment"
+        android:name="com.madinaty.app.presentation.fragment.AddPlacePhotosFragment"
+        android:label="AddPlacePhotosFragment" >
+        <argument
+            android:name="departmentId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addPlacePhotosFragment_to_moreFragment"
+            app:destination="@id/moreFragment"
+            app:popUpTo="@id/moreFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

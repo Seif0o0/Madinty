@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="place"
+            type="com.madinaty.app.domain.model.Place" />
+
+        <variable
+            name="clickListener"
+            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;com.madinaty.app.domain.model.Place>" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/auth_screens_background"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/splash_screen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:place_first_photo="@{place.attachments}"
+                app:riv_corner_radius="@dimen/_5sdp" />
+
+            <ImageView
+                android:id="@+id/favourite_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:src="@drawable/ic_full_heart_icon"
+                app:layout_constraintStart_toStartOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/tajwal_medium"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="@{place.name}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/places_title_text_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toTopOf="@id/location"
+                app:layout_constraintEnd_toStartOf="@id/paid"
+                app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintTop_toTopOf="@id/image"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="Place name" />
+
+            <TextView
+                android:id="@+id/paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:background="@drawable/yellow_rounded_corner_rectangle"
+                android:fontFamily="@font/tajwal_regular"
+                android:paddingStart="@dimen/_6sdp"
+                android:paddingEnd="@dimen/_6sdp"
+                android:text="@string/paid"
+                android:textColor="@color/places_title_text_color"
+                android:textSize="@dimen/_8ssp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/name" />
+
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_place_location_icon"
+                app:layout_constraintBottom_toBottomOf="@id/location"
+                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toTopOf="@id/location" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="@{place.address}"
+                android:textAlignment="viewStart"
+                android:textColor="@color/places_location_text_color"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toTopOf="@id/more_details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/location_icon"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                tools:text="place-location address" />
+
+            <TextView
+                android:id="@+id/more_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tajwal_medium"
+                android:onClick="@{()-> clickListener.onItemClickListener(place)}"
+                android:text="@string/more_details"
+                android:textColor="@color/auth_screens_main_color"
+                android:textSize="@dimen/_9ssp"
+                app:drawableEndCompat="@drawable/ic_flipped_back_arrow_icon"
+                app:layout_constraintBottom_toBottomOf="@id/image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/name"
+                app:layout_constraintTop_toBottomOf="@id/location" />
+
+
+            <ImageView
+                android:id="@+id/dashed_line"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layerType="software"
+                android:src="@drawable/dashed_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image" />
+
+            <TextView
+                android:id="@+id/times_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:fontFamily="@font/tajwal_regular"
+                android:text="@string/times"
+                android:textColor="@color/auth_screens_phone_call_floating_color"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/image"
+                app:layout_constraintTop_toBottomOf="@id/dashed_line" />
+
+            <TextView
+                android:id="@+id/times"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/md_action_button_frame_padding"
+                android:fontFamily="@font/tajwal_regular"
+                android:gravity="start"
+                android:textAlignment="viewStart"
+                android:textColor="@color/places_location_text_color"
+                android:textSize="@dimen/_9ssp"
+                app:end_time="@{place.endTime}"
+                app:layout_constraintBaseline_toBaselineOf="@id/times_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/times_label"
+                app:start_time="@{place.startTime}"
+                tools:text="09:00 AM - 09:00 PM" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

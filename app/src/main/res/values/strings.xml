@@ -1,0 +1,179 @@
+<resources>
+    <string name="app_name">Madinty</string>
+    <string name="pick_language_header">Pick language</string>
+    <string name="pick_language_title">Please pick application language</string>
+    <string name="arabic_label">Arabic</string>
+    <string name="english_label">English</string>
+    <string name="start_usage">Start</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="login">Login</string>
+    <string name="join_as_guest">Guest</string>
+    <string name="intro_title_1">Coverage for all city districts</string>
+    <string name="intro_title_2">A guid for all wanted services</string>
+    <string name="intro_title_3">You can add your place</string>
+    <string name="auth_title">Login</string>
+    <string name="login_via_facebook">Login via facebook</string>
+    <string name="login_via_google">Login via google</string>
+    <string name="or">OR</string>
+    <string name="login_via_phone">Login via phone</string>
+    <string name="login_as_guest"><u>Login as a guest</u></string>
+    <string name="terms_conditions_title"><u>Using the app means that you agree with</u></string>
+    <string name="underline_terms_conditions"><u><![CDATA[Terms & Conditions]]></u></string>
+    <string name="contact_us">Contact us</string>
+    <string name="access_location_title">Allow access your location</string>
+    <string name="access_location_description">We need your location information to show you the nearest services, and give you the best experience</string>
+    <string name="allow_permission">Allow permission</string>
+    <string name="manually_locate">Manually locate</string>
+    <string name="pick_city_description">You can choose between the following cities and regions to view their services</string>
+    <string name="pick_city_title">Pick wanted city</string>
+    <string name="city">City</string>
+    <string name="pick_city_hint">Pick city</string>
+    <string name="paid">Paid</string>
+    <string name="more_details">More details</string>
+    <string name="times">Times</string>
+    <string name="home_nav_title">Home</string>
+    <string name="favourites_nav_title">Favourites</string>
+    <string name="offers_nav_title">Offers</string>
+    <string name="search_nav_title">Search</string>
+    <string name="more_nav_title">More</string>
+    <string name="more_title">More</string>
+    <string name="profile">Profile</string>
+    <string name="add_new_place">Add new place</string>
+    <string name="my_place">My place</string>
+    <string name="help_center">Help center</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="about_app">About application</string>
+    <string name="app_language">Application language</string>
+    <string name="logout">Logout</string>
+    <string name="help_center_header">Help center</string>
+    <string name="help_center_description">Write here what you want or facing and we will communicate with you as soon as possible</string>
+    <string name="message_subject">Subject</string>
+    <string name="message_subject_hint">Enter subject here</string>
+    <string name="message_body">Message</string>
+    <string name="message_body_hint">Enter message here</string>
+    <string name="attach_photo">Attach photo</string>
+    <string name="send">Send</string>
+    <string name="privacy_policy_header">Privacy policy</string>
+    <string name="about_app_header">About application</string>
+    <string name="favourites_header">Favourites</string>
+    <string name="remove_favourites_warning_message">Are you sure you want to remove all favourites?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout_warning_message">Are you sure you want to logout?</string>
+    <string name="back">Back</string>
+    <string name="add_place_details_title">Add place</string>
+    <string name="add_place_details">Add place details</string>
+    <string name="place_name">Place name</string>
+    <string name="place_name_hint">Enter place name</string>
+    <string name="pick_place_city_hint">Pick city</string>
+    <string name="place_address">Place address</string>
+    <string name="place_address_hint">Enter place address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_hint">Enter phone number</string>
+    <string name="whats_app">WhatsApp</string>
+    <string name="whats_app_hint">Enter whatsApp</string>
+    <string name="email">Email</string>
+    <string name="email_hint">Enter email</string>
+    <string name="facebook_account">Facebook account</string>
+    <string name="facebook_account_hint">Enter facebook account</string>
+    <string name="working_hours">Working hours</string>
+    <string name="working_hours_hint">Pick working hours</string>
+    <string name="place_location">Place location</string>
+    <string name="place_location_hint">Pick place location</string>
+    <string name="description">Description and details</string>
+    <string name="description_hint">Enter the description which makes your place a unique one</string>
+    <string name="region">Region</string>
+    <string name="change">Change</string>
+    <string name="sections_label">Sections</string>
+    <string name="communication_accounts">Communication accounts</string>
+    <string name="rate_label">Users rates</string>
+    <string name="place_working_hours">Working hours</string>
+    <string name="lets_start">Lets start!</string>
+    <string name="phone_login_title">Use your phone number to signin or signup</string>
+    <string name="next_step">Next step</string>
+    <string name="phone_login_back">Back</string>
+    <string name="verification_title">Login using verification code</string>
+    <string name="verification_subtitle">Enter the code we sent to</string>
+    <string name="resend_code">Resend code</string>
+    <string name="confirm">Confirm</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="login_success_message">Your phone number cofirmed successfully</string>
+    <string name="going_to_home">Navigate to home page</string>
+    <string name="thanks">Thanks</string>
+    <string name="english_value" translatable="false">en</string>
+    <string name="arabic_value" translatable="false">er</string>
+    <string name="profile_header">Profile</string>
+    <string name="personal_info">Personal information</string>
+    <string name="logged_in">Logged in</string>
+    <string name="password_settings">Password</string>
+    <string name="personal_info_header">Personal information</string>
+    <string name="name_label">Name</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="email_label">Email</string>
+    <string name="profile_email_hint">Enter your email</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="profile_phone_number_hint">Enter your phone number</string>
+    <string name="birthdate_hint">Pick your date of birth</string>
+    <string name="birthdate_label">Date of birth</string>
+    <string name="gender_label">Gender</string>
+    <string name="gender_hint">Pick your gender</string>
+    <string name="underline_confirm"><u>Confirm</u></string>
+    <string name="save_changes">Save changes</string>
+    <string name="confirm_phone_header">Confirm phone number</string>
+    <string name="confirm_phone_message">Enter 5 digits code that was sent to your phone number which ends with 560</string>
+    <string name="code_hint">"     "</string>
+    <string name="resend_code_label">Didn\'t receive it?</string>
+    <string name="underline_resend_code">Resend</string>
+    <string name="ok">OK</string>
+    <string name="empty_field_error_message">Please fill this field</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="something_went_wrong_try_again_later">Something went wrong, try again later</string>
+    <string name="password_label">Password</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="dismiss">dismiss</string>
+    <string name="server_error_message">Oops something went wrong, We\'re looking to see what happened.</string>
+    <string name="user_not_found">User not found</string>
+    <string name="retry">Retry</string>
+    <string name="empty_list_text">No data found</string>
+    <string name="tap_to_retry">Tap to Retry</string>
+    <string name="offers_title">Offers</string>
+    <string name="pick_email_client">Choose an email client:</string>
+    <string name="not_email_app_installed">No email app installed</string>
+    <string name="no_selected_region">Didn\'t select region yet.</string>
+    <string name="select">Select</string>
+    <string name="terms_conditions">Terms and Conditions</string>
+    <string name="email_validation_error_message">Email is not valid</string>
+    <string name="add_place_department_title">Select the main category</string>
+    <string name="add_place_department_child_title">Select the subcategory</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="done">Done</string>
+    <string name="add_place_photos">Add place photos</string>
+    <string name="no_photos_error_message">Please select at least one photo</string>
+    <string name="add_picture_title">Add picture</string>
+    <string name="photos_count_limit">Note: The maximum number of photos is 12 only</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="no_changes_detected_to_be_updated">No changes detected to be updated</string>
+    <string name="edit_profile_successful_message">Your profile has been updated successfully</string>
+    <string name="first_name_label">First name</string>
+    <string name="first_name_hint">First name</string>
+    <string name="last_name_hint">Enter your last name</string>
+    <string name="last_name_label">Last name</string>
+
+    <string-array name="short_months" translatable="false">
+        <item>jan</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>apr</item>
+        <item>may</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>aug</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dec</item>
+    </string-array>
+</resources>
