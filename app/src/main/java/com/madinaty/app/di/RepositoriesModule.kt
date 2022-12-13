@@ -47,4 +47,16 @@ abstract class RepositoriesModule {
     @ViewModelScoped
     abstract fun provideAddPlaceRepository(repoImpl: AddPlaceRepositoryImpl): AddPlaceRepository
 
+    @Binds
+    @ViewModelScoped
+    abstract fun provideAddRemoveFavouritesRepository(repoImpl: AddRemoveFavouriteRepositoryImpl): AddRemoveFavouriteRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideFavouritesRepository(repoImpl: AddRemoveFavouriteRepositoryImpl): FavouritesRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideDataStoreRepository(repoImpl: DataStoreRepositoryImpl): DataStoreRepository
+
 }

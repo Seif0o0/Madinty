@@ -12,6 +12,10 @@
         <variable
             name="clickListener"
             type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;com.madinaty.app.domain.model.Place>" />
+
+        <variable
+            name="favClickListener"
+            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;String>" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -44,7 +48,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:src="@drawable/ic_full_heart_icon"
+                android:onClick="@{()-> favClickListener.onItemClickListener(place.id)}"
+                app:is_favourite="@{place.isFavourite}"
+                tools:src="@drawable/ic_full_heart_icon"
                 app:layout_constraintStart_toStartOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image" />
 

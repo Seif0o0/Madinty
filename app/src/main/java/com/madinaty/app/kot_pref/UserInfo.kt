@@ -3,9 +3,7 @@ package com.madinaty.app.kot_pref
 import com.chibatching.kotpref.KotprefModel
 import com.madinaty.app.R
 
-
-object UserInfo : KotprefModel() {
-
+object  UserInfo : KotprefModel() {
     var userId by stringPref("")
     var token by stringPref("")
     var username by stringPref("")

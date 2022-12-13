@@ -3,6 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="favourite"
+            type="com.madinaty.app.domain.model.Favourite" />
+
+        <variable
+            name="clickListener"
+            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;String>" />
+
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_2sdp"
+                android:onClick="@{()-> clickListener.onItemClickListener(favourite.id)}"
                 android:src="@drawable/ic_full_heart_icon"
                 app:layout_constraintStart_toStartOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image" />
@@ -46,7 +59,7 @@
                 android:fontFamily="@font/tajwal_medium"
                 android:gravity="start"
                 android:maxLines="2"
-                android:text="Place name"
+                android:text="@{favourite.name}"
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_title_text_color"
                 android:textSize="@dimen/_11ssp"
@@ -69,6 +82,7 @@
                 android:text="@string/paid"
                 android:textColor="@color/places_title_text_color"
                 android:textSize="@dimen/_8ssp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/name" />
@@ -91,7 +105,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="2"
-                android:text="place-location address"
+                android:text="@{favourite.address}"
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_location_text_color"
                 android:textSize="@dimen/_9ssp"
@@ -153,13 +167,14 @@
                 android:layout_marginEnd="@dimen/md_action_button_frame_padding"
                 android:fontFamily="@font/tajwal_regular"
                 android:gravity="start"
-                android:text="09:00 AM - 09:00 PM"
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_location_text_color"
                 android:textSize="@dimen/_9ssp"
+                app:end_time="@{favourite.endTime}"
                 app:layout_constraintBaseline_toBaselineOf="@id/times_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/times_label"
+                app:start_time="@{favourite.startTime}"
                 tools:text="09:00 AM - 09:00 PM" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

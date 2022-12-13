@@ -3,13 +3,13 @@ package com.madinaty.app.data.response
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class AddPlaceResponse(
-    val data: AddPlaceDataResponse?,
+class AddRemoveFavouriteResponse(
+    val data: AddRemoveFavouriteDataResponse?,
     val message: String?
 )
 
 @JsonClass(generateAdapter = true)
-data class AddPlaceDataResponse(
+data class AddRemoveFavouriteDataResponse(
     val message: String
 )
 

@@ -1,13 +1,10 @@
 package com.madinaty.app.presentation.viewmodel
 
-import android.util.Log
-import androidx.datastore.dataStore
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.madinaty.app.domain.model.User
-import com.madinaty.app.domain.repository.DataStoreRepository
-import com.madinaty.app.domain.repository.ProfileRepository
-import com.madinaty.app.utils.Constants
+import com.madinaty.app.domain.model.Favourite
+import com.madinaty.app.domain.repository.FavouritesRepository
 import com.madinaty.app.utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,9 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
-    private val repo: ProfileRepository,
-    private val dataStoreRepo: DataStoreRepository,
+class FavouritesViewModel @Inject constructor(
+    private val repo: FavouritesRepository,
 ) : ViewModel() {
     private val _loadingState = MutableStateFlow(false)
     val loadingState: StateFlow<Boolean> get() = _loadingState
@@ -27,31 +23,42 @@ class ProfileViewModel @Inject constructor(
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> get() = _errorState
 
-    private val _userInfo = MutableStateFlow<User?>(null)
-    val userInfo: StateFlow<User?> get() = _userInfo
+    private val _favourites = MutableStateFlow<List<Favourite>>(emptyList())
+    val favourites: StateFlow<List<Favourite>> get() = _favourites
+
+    private val _emptyState = MutableStateFlow(View.GONE)
+    val emptyState: StateFlow<Int> get() = _emptyState
 
     init {
-        getUserInfo()
+        getFavourites()
     }
 
-    fun getUserInfo() {
+    fun getFavourites() {
         viewModelScope.launch {
-            repo.fetchProfileInfo().collectLatest { result ->
+            repo.fetchFavourites().collectLatest { result ->
                 when (result) {
                     is DataState.Success -> {
                         _loadingState.emit(false)
                         _errorState.emit("")
-                        _userInfo.emit(result.data)
+                        val data = result.data!!.toMutableList()
+                        if (data.isEmpty()) {
+                            _emptyState.emit(View.VISIBLE)
+                        } else {
+                            _emptyState.emit(View.GONE)
+                            _favourites.emit(data)
+                        }
                     }
                     is DataState.Error -> {
                         _loadingState.emit(false)
                         _errorState.emit(result.message!!)
-                        _userInfo.emit(null)
+                        _emptyState.emit(View.GONE)
+                        _favourites.emit(emptyList())
                     }
                     is DataState.Loading -> {
                         _loadingState.emit(true)
                         _errorState.emit("")
-                        _userInfo.emit(null)
+                        _emptyState.emit(View.GONE)
+                        _favourites.emit(emptyList())
                     }
                 }
             }

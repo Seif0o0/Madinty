@@ -106,8 +106,4 @@ class AddPlaceDepartmentFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-//        requireActivity().viewModelStore../
-    }
 }

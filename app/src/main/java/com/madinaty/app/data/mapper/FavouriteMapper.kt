@@ -1,9 +1,9 @@
 package com.madinaty.app.data.mapper
 
-import com.madinaty.app.data.model.PlaceDto
-import com.madinaty.app.domain.model.Place
+import com.madinaty.app.data.model.FavouriteDto
+import com.madinaty.app.domain.model.Favourite
 
-fun PlaceDto.toPlace() = Place(
+fun FavouriteDto.toFavourite() = Favourite(
     id = id,
     name = name,
     email = email,
@@ -18,11 +18,7 @@ fun PlaceDto.toPlace() = Place(
     userId = userId,
     regionId = regionId,
     departmentId = departmentId,
-    attachments = attachments.map { it.toAttachment() },
     viewsCount = viewsCount ?: 0,
     rating = rating,
     isApproved = isApproved == 1,
-    department = department.toDepartment(),
-    region = region.toRegion(),
-    //TODO don't forget to add favourite flag here
 )

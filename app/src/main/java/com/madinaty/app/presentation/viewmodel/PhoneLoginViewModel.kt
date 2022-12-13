@@ -109,6 +109,14 @@ class PhoneLoginViewModel @Inject constructor(
         UserInfo.isApproved = user.isApproved
         UserInfo.isVerified = user.isVerified
 
-        loginState(true)
+        viewModelScope.launch {
+            val result = repo.saveUserInfo(userInfo = user, token = token)
+            if (result) {
+                loginState(true)
+            } else {
+                _errorState.value =
+                    application.getString(R.string.something_went_wrong_try_again_later)
+            }
+        }
     }
 }

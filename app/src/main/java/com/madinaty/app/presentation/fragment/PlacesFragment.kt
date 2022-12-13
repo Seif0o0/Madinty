@@ -1,6 +1,7 @@
 package com.madinaty.app.presentation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +15,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.madinaty.app.databinding.FragmentPlacesBinding
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.*
+import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.presentation.viewmodel.PinOffersViewModel
 import com.madinaty.app.presentation.viewmodel.PlacesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class PlacesFragment : Fragment() {
     private val viewModel: PlacesViewModel by viewModels()
     private val pinOffersViewModel: PinOffersViewModel by viewModels()
+    private val addRemoveFavouriteViewModel: AddRemoveFavouriteViewModel by viewModels()
     private lateinit var binding: FragmentPlacesBinding
 
     lateinit var placesAdapter: PlacesAdapter
@@ -52,11 +56,36 @@ class PlacesFragment : Fragment() {
                     it
                 )
             )
+        }, favClickListener = ListItemClickListener {
+            addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
         })
+
+        lifecycleScope.launchWhenStarted {
+            addRemoveFavouriteViewModel.addRemoveFavouriteState.collectLatest {
+                if (it) {
+                    addRemoveFavouriteViewModel.placeId?.let { placeId ->
+                        placesAdapter.updatePlace(
+                            placeId
+                        )
+                    }
+                    addRemoveFavouriteViewModel.startAddRemoveFavouriteState(false)
+                    addRemoveFavouriteViewModel.addRemoveFavouriteState(false)
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            addRemoveFavouriteViewModel.startAddRemoveFavouriteState.collectLatest {
+                if (it) {
+                    addRemoveFavouriteViewModel.addRemoveFavourite()
+                }
+            }
+        }
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+
 
         placesAdapter.addLoadStateListener { combinedLoadStates ->
             if (combinedLoadStates.refresh is LoadState.NotLoading) {
@@ -109,6 +138,7 @@ class PlacesFragment : Fragment() {
                 binding.viewPagerIndicator.setViewPager2(binding.viewPager)
             }
         }
+
 
 
         return binding.root

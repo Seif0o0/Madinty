@@ -59,6 +59,10 @@ fun EditText.setErrorMessage(errorMessage: String) {
     if (errorMessage.isNotEmpty()) error = errorMessage
 }
 
+@BindingAdapter("is_favourite")
+fun ImageView.setFavIcon(isFavourite: Boolean) {
+    setImageResource(if (isFavourite) R.drawable.ic_full_heart_icon else R.drawable.ic_heart_icon)
+}
 
 @BindingAdapter("birth_date")
 fun EditText.setDateOfBirth(dateOfBirth: String) {

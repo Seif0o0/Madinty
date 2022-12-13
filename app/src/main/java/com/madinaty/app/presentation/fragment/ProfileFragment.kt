@@ -48,7 +48,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         binding.logout.setOnClickListener {
-            CustomDialog.showLogoutDialog(context = requireContext(), onYesBtnClicked = ::logout)
+            CustomDialog.showLogoutDialog(context = requireContext()) {
+                logUserOut()
+                startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                requireActivity().finish()
+            }
         }
 
         lifecycleScope.launchWhenStarted {
@@ -56,11 +60,5 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 binding.userInfo = it
             }
         }
-    }
-
-    private fun logout(view: View?) {
-        logUserOut()
-        startActivity(Intent(requireActivity(), AuthActivity::class.java))
-        requireActivity().finish()
     }
 }

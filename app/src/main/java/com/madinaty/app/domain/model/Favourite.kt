@@ -1,10 +1,9 @@
 package com.madinaty.app.domain.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.squareup.moshi.Json
 
-@Parcelize
-data class Place(
+
+data class Favourite(
     val id: String,
     val name: String,
     val email: String?,
@@ -19,11 +18,7 @@ data class Place(
     val userId: String,
     val regionId: String,
     val departmentId: String,
-    val attachments: List<Attachment>,
     val viewsCount: Int,
     val rating: Float,
-    val isApproved: Boolean,
-    val department: Department,
-    val region: Region,
-    var isFavourite:Boolean = false
-):Parcelable
+    val isApproved: Boolean
+)

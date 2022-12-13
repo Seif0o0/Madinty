@@ -49,7 +49,7 @@ class PinOffersViewModel @Inject constructor(
                             _emptyState.emit(View.GONE)
                         else {
                             _emptyState.emit(View.VISIBLE)
-                            _pinOffers.emit(result.data.toMutableList())
+                            _pinOffers.emit(data)
                         }
                     }
                     is DataState.Error -> {

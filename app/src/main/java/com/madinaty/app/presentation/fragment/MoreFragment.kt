@@ -2,7 +2,9 @@ package com.madinaty.app.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -71,14 +73,11 @@ class MoreFragment : Fragment() {
         }
 
         binding.logout.setOnClickListener {
-            CustomDialog.showLogoutDialog(context = requireContext(), onYesBtnClicked = ::logout)
+            CustomDialog.showLogoutDialog(context = requireContext()) {
+                logUserOut()
+                startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                requireActivity().finish()
+            }
         }
-    }
-
-    private fun logout(view: View?) {
-
-        logUserOut()
-        startActivity(Intent(requireActivity(), AuthActivity::class.java))
-        requireActivity().finish()
     }
 }

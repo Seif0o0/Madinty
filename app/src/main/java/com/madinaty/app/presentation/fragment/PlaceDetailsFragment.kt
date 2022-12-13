@@ -9,15 +9,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentPlaceDetailsBinding
 import com.madinaty.app.presentation.adapter.AttachmentsAdapter
 import com.madinaty.app.presentation.adapter.ListItemClickListener
+import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.utils.CustomDialog
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
+@AndroidEntryPoint
 class PlaceDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPlaceDetailsBinding
+    private val viewModel: AddRemoveFavouriteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +44,30 @@ class PlaceDetailsFragment : Fragment() {
             val mapIntent = Intent(Intent.ACTION_VIEW, latlngUri)
             mapIntent.setPackage("com.google.android.apps.maps")
             startActivity(mapIntent)
+        }
+
+        binding.favouriteIcon.setOnClickListener {
+            viewModel.startAddRemoveFavouriteState(true, placeId = placeDetails.id)
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.addRemoveFavouriteState.collectLatest {
+                if (it) {
+                    placeDetails.isFavourite = !placeDetails.isFavourite
+                    binding.place = placeDetails
+
+                    viewModel.startAddRemoveFavouriteState(false)
+                    viewModel.addRemoveFavouriteState(false)
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.startAddRemoveFavouriteState.collectLatest {
+                if(it){
+                    viewModel.addRemoveFavourite()
+                }
+            }
         }
 
         binding.call.setOnClickListener {

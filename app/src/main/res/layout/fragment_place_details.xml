@@ -84,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:src="@drawable/ic_full_heart_icon"
+                app:is_favourite="@{place.isFavourite}"
+                tools:src="@drawable/ic_full_heart_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 

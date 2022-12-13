@@ -53,18 +53,17 @@ class AddPlacePhotosFragment : Fragment() {
             }
             values.remove(uri)
             viewModel.images.value = values
-        },
-            addImageClickListener = ListItemClickListener {
-                if (viewModel.images.value.size < 12) {
-                    viewModel.setErrorStateValue("")
-                    ImagePicker.with(requireActivity()).crop(2f, 1f).cropSquare()
-                        .setMultipleAllowed(true)
-                        .maxResultSize(1080, 1080, true).provider(ImageProvider.BOTH)
-                        .createIntentFromDialog { photoLauncher.launch(it) }
-                } else {
-                    viewModel.setErrorStateValue(getString(R.string.photos_count_limit))
-                }
-            })
+        }, addImageClickListener = ListItemClickListener {
+            if (viewModel.images.value.size < 12) {
+                viewModel.setErrorStateValue("")
+                ImagePicker.with(requireActivity()).crop(2f, 1f).cropSquare()
+                    .setMultipleAllowed(true).maxResultSize(1080, 1080, true)
+                    .provider(ImageProvider.BOTH)
+                    .createIntentFromDialog { photoLauncher.launch(it) }
+            } else {
+                viewModel.setErrorStateValue(getString(R.string.photos_count_limit))
+            }
+        })
 
         binding.list.apply {
             layoutManager =
@@ -99,20 +98,20 @@ class AddPlacePhotosFragment : Fragment() {
                 if (it) {
                     CustomDialog.showAddPlaceSuccessDialog(
                         context = requireContext(),
-                        navController = findNavController(),
-                        navDirection = AddPlacePhotosFragmentDirections.actionAddPlacePhotosFragmentToMoreFragment(),
-                    )
+                    ) {
+                        findNavController().navigate(
+                            AddPlacePhotosFragmentDirections.actionAddPlacePhotosFragmentToMoreFragment()
+                        )
+                    }
                 }
             }
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.errorState.collectLatest {
-                if (it.isNotEmpty())
-                    CustomDialog.showErrorDialog(
-                        context = requireContext(),
-                        errorMessage = it
-                    )
+                if (it.isNotEmpty()) CustomDialog.showErrorDialog(
+                    context = requireContext(), errorMessage = it
+                )
             }
         }
 

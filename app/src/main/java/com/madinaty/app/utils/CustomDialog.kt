@@ -84,7 +84,7 @@ object CustomDialog {
     fun showLogoutDialog(
         dialogBehavior: DialogBehavior = ModalDialog,
         context: Context,
-        onYesBtnClicked: (View) -> Unit
+        onYesBtnClicked: () -> Unit
     ) {
         val dialog = MaterialDialog(context, dialogBehavior).show {
             cornerRadius(res = com.intuit.sdp.R.dimen._8sdp)
@@ -99,9 +99,10 @@ object CustomDialog {
 
         val dialogBinding = LogoutDialogLayoutBinding.bind(dialog.getCustomView())
 
-        dialogBinding.yesBtn.setOnClickListener(
-            onYesBtnClicked
-        )
+        dialogBinding.yesBtn.setOnClickListener {
+            dialog.dismiss()
+            onYesBtnClicked()
+        }
 
 
 
@@ -114,8 +115,7 @@ object CustomDialog {
     fun showAddPlaceSuccessDialog(
         dialogBehavior: DialogBehavior = ModalDialog,
         context: Context,
-        navController: NavController,
-        navDirection: NavDirections,
+        onOkBtnClicked: () -> Unit
     ) {
         val dialog = MaterialDialog(context, dialogBehavior).show {
             cornerRadius(res = com.intuit.sdp.R.dimen._8sdp)
@@ -133,7 +133,7 @@ object CustomDialog {
 
         binding.okBtn.setOnClickListener {
             dialog.dismiss()
-            navController.navigate(navDirection)
+            onOkBtnClicked()
         }
     }
 }
