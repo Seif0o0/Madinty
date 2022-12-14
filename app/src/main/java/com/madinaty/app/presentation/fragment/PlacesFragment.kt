@@ -1,7 +1,6 @@
 package com.madinaty.app.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.madinaty.app.databinding.FragmentPlacesBinding
 import com.madinaty.app.presentation.activity.MainActivity
@@ -19,7 +17,6 @@ import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.presentation.viewmodel.PinOffersViewModel
 import com.madinaty.app.presentation.viewmodel.PlacesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint

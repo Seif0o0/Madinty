@@ -30,7 +30,7 @@ class AddRemoveFavouriteViewModel @Inject constructor(
     val startAddRemoveFavouriteState: StateFlow<Boolean> get() = _startAddRemoveFavouriteState
 
     var placeId: String? = null
-    fun startAddRemoveFavouriteState(value: Boolean, placeId: String?=null) {
+    fun startAddRemoveFavouriteState(value: Boolean, placeId: String? = null) {
         this.placeId = placeId
         _startAddRemoveFavouriteState.value = value
 
@@ -39,7 +39,9 @@ class AddRemoveFavouriteViewModel @Inject constructor(
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> get() = _errorState
 
+    var madeFavouriteChanges = false
     fun addRemoveFavourite() {
+        madeFavouriteChanges = true
         viewModelScope.launch {
             repo.addRemoveFavourite(placeId = placeId!!).collectLatest { result ->
                 when (result) {

@@ -1,6 +1,10 @@
 package com.madinaty.app.domain.model
 
-data class Favourite(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class MyPlace(
     val id: String,
     val name: String,
     val email: String?,
@@ -21,4 +25,4 @@ data class Favourite(
     val isApproved: Boolean,
     val department: Department,
     val region: Region
-)
+):Parcelable

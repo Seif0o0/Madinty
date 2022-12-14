@@ -21,5 +21,8 @@ data class FavouriteDto(
     @Json(name = "department_id") val departmentId: String,
     @Json(name = "views_number") val viewsCount: Int?,
     val rating: Float,
-    @Json(name = "is_approved") val isApproved: Int/* 1 == true */
+    @Json(name = "is_approved") val isApproved: Int/* 1 == true */,
+    val attachments: List<AttachmentDto>,
+    val department: DepartmentDto,
+    val region: RegionDto
 )

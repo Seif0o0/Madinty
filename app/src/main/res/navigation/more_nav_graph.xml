@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_moreFragment_to_addPlaceDepartmentFragment"
             app:destination="@id/addPlaceDepartmentFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_myPlacesFragment"
+            app:destination="@id/myPlacesFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpCenterFragment"
@@ -100,5 +103,21 @@
             app:destination="@id/moreFragment"
             app:popUpTo="@id/moreFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPlacesFragment"
+        android:name="com.madinaty.app.presentation.fragment.MyPlacesFragment"
+        android:label="MyPlacesFragment" >
+        <action
+            android:id="@+id/action_myPlacesFragment_to_myPlaceDetailsFragment"
+            app:destination="@id/myPlaceDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPlaceDetailsFragment"
+        android:name="com.madinaty.app.presentation.fragment.MyPlaceDetailsFragment"
+        android:label="MyPlaceDetailsFragment" >
+        <argument
+            android:name="myPlace"
+            app:argType="com.madinaty.app.domain.model.MyPlace" />
     </fragment>
 </navigation>

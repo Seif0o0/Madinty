@@ -45,6 +45,9 @@ class MoreFragment : Fragment() {
             findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToAddPlaceDepartmentFragment())
         }
 
+        binding.myPlace.setOnClickListener {
+            findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToMyPlacesFragment())
+        }
         binding.appLanguageValue.text =
             if (UserInfo.appLanguage == getString(R.string.arabic_value)) getString(R.string.arabic_label) else getString(
                 R.string.english_label

@@ -57,6 +57,10 @@ abstract class RepositoriesModule {
 
     @Binds
     @ViewModelScoped
+    abstract fun provideMyPlacesRepository(repoImpl: MyPlacesRepositoryImpl): MyPlacesRepository
+
+    @Binds
+    @ViewModelScoped
     abstract fun provideDataStoreRepository(repoImpl: DataStoreRepositoryImpl): DataStoreRepository
 
 }

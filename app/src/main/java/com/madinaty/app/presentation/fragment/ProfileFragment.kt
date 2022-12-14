@@ -2,14 +2,17 @@ package com.madinaty.app.presentation.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentProfileBinding
 import com.madinaty.app.domain.model.User
+import com.madinaty.app.kot_pref.UserInfo
 import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.RetryClickListener
@@ -42,6 +45,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         binding.editInfo.setOnClickListener {
+            addFragmentResultListener()
             findNavController().navigate(
                 ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(viewModel.userInfo.value!!)
             )
@@ -58,6 +62,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         lifecycleScope.launchWhenStarted {
             viewModel.userInfo.collectLatest {
                 binding.userInfo = it
+            }
+        }
+    }
+
+    private fun addFragmentResultListener() {
+        setFragmentResultListener(
+            "EditProfileReqKey"
+        ) { _, bundle ->
+            if (bundle.getBoolean("updated")) {
+                val user = User(
+                    id = UserInfo.userId,
+                    username = UserInfo.username,
+                    firstName = UserInfo.firstName,
+                    lastName = UserInfo.lastName,
+                    email = UserInfo.email,
+                    phoneNumber = UserInfo.phoneNumber,
+                    gender = UserInfo.gender,
+                    dateOfBirth = UserInfo.dateOfBirth,
+                    city = UserInfo.city,
+                    isApproved = UserInfo.isApproved,
+                    isVerified = UserInfo.isVerified
+                )
+                viewModel.updateUserInfo(user)
             }
         }
     }

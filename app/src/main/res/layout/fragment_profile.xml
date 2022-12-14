@@ -70,6 +70,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/intro_1"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -80,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_upload_photo_icon"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="@id/profile_pic"
                     app:layout_constraintTop_toTopOf="@id/profile_pic" />
 
@@ -322,10 +324,70 @@
                             android:layout_marginStart="@dimen/_4sdp"
                             android:layout_marginEnd="@dimen/_4sdp"
                             android:background="@color/grey_line"
-                            app:layout_constraintBottom_toTopOf="@id/email"
+                            app:layout_constraintBottom_toTopOf="@id/first_name"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/username" />
+
+                        <TextView
+                            android:id="@+id/first_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:drawablePadding="@dimen/_12sdp"
+                            android:fontFamily="@font/tajwal_regular"
+                            android:gravity="center_vertical"
+                            android:text="@{userInfo.firstName}"
+                            android:textColor="@color/darker_text_color"
+                            android:textSize="@dimen/_11ssp"
+                            app:drawableStartCompat="@drawable/ic_profile_icon"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/username"
+                            tools:text="first name" />
+
+                        <View
+                            android:id="@+id/first_name_line"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_4sdp"
+                            android:background="@color/grey_line"
+                            app:layout_constraintBottom_toTopOf="@id/last_name"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/first_name" />
+
+                        <TextView
+                            android:id="@+id/last_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:drawablePadding="@dimen/_12sdp"
+                            android:fontFamily="@font/tajwal_regular"
+                            android:gravity="center_vertical"
+                            android:text="@{userInfo.lastName}"
+                            android:textColor="@color/darker_text_color"
+                            android:textSize="@dimen/_11ssp"
+                            app:drawableStartCompat="@drawable/ic_profile_icon"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/first_name"
+                            tools:text="last name" />
+
+                        <View
+                            android:id="@+id/last_name_line"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_4sdp"
+                            android:background="@color/grey_line"
+                            app:layout_constraintBottom_toTopOf="@id/email"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/last_name" />
 
                         <TextView
                             android:id="@+id/email"
@@ -342,7 +404,7 @@
                             app:drawableStartCompat="@drawable/ic_email_icon"
                             app:layout_constrainedWidth="true"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/username"
+                            app:layout_constraintTop_toBottomOf="@id/last_name"
                             tools:text="email" />
 
                         <View

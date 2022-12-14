@@ -17,6 +17,9 @@ import com.madinaty.app.databinding.FragmentEditProfileBinding
 import com.madinaty.app.presentation.viewmodel.EditProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.widget.DatePicker;
+import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import com.madinaty.app.utils.CustomDialog
 import kotlinx.coroutines.flow.collectLatest
@@ -37,11 +40,15 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile),
 
 
         binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
+            navigateBack()
         }
-        binding.confirmPhoneNumber.setOnClickListener {
-            showConfirmationDialog()
-        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    navigateBack()
+                }
+            })
 
         binding.birthadteEdittext.setOnClickListener {
             showDatePicker(binding.birthadteEdittext.text.toString())
@@ -82,29 +89,9 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile),
         }
     }
 
-    private fun showConfirmationDialog() {
-        val dialog = MaterialDialog(requireContext(), ModalDialog).show {
-            cornerRadius(res = com.intuit.sdp.R.dimen._8sdp)
-            cancelOnTouchOutside(true)
-            cancelable(false)
-            customView(
-                R.layout.confirm_phone_dialog_layout,
-                noVerticalPadding = true,
-                dialogWrapContent = true
-            )
-        }
-
-        val dialogBinding = ConfirmPhoneDialogLayoutBinding.bind(dialog.getCustomView())
-
-        dialogBinding.confirmBtn.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialogBinding.backBtn.setOnClickListener {
-            dialog.dismiss()
-        }
-
-
+    private fun navigateBack() {
+        setFragmentResult("EditProfileReqKey", bundleOf("updated" to true))
+        findNavController().popBackStack()
     }
 
     private val calendar = Calendar.getInstance()
@@ -112,12 +99,12 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile),
         val day: Int
         val month: Int
         val year: Int
-
         if (dateOfBirth.isEmpty()) {
             year = calendar.get(Calendar.YEAR)
             month = calendar.get(Calendar.MONTH)
             day = calendar.get(Calendar.DAY_OF_MONTH)
         } else {
+
             val splitDate = dateOfBirth.split("-")
             year = splitDate[0].toInt()
             month = splitDate[1].toInt() - 1
@@ -139,7 +126,8 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile),
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val date = "$year-${viewModel.convertToShortMonth(month)}-$dayOfMonth"
+        val date =
+            "$year-${viewModel.convertToShortMonth(month)}-${if (dayOfMonth < 10) "0$dayOfMonth" else dayOfMonth}"
         viewModel.dobState.value = date
     }
 }

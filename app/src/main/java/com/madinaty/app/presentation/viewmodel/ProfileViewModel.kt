@@ -30,6 +30,10 @@ class ProfileViewModel @Inject constructor(
     private val _userInfo = MutableStateFlow<User?>(null)
     val userInfo: StateFlow<User?> get() = _userInfo
 
+    fun updateUserInfo(user: User){
+        _userInfo.value = user
+    }
+
     init {
         getUserInfo()
     }

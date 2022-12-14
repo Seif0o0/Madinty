@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.madinaty.app.domain.model.Favourite
 import com.madinaty.app.databinding.FavouritesItemBinding
 
-class FavouritesAdapter(private val clickListener: ListItemClickListener<String>) :
+class FavouritesAdapter(
+    private val clickListener: ListItemClickListener<Favourite>,
+    private val favClickListener: ListItemClickListener<String>
+) :
     ListAdapter<Favourite, FavouritesAdapter.ViewHolder>(FavouritesComparator) {
 
     fun removeItem(favouriteId: String) {
@@ -27,14 +30,19 @@ class FavouritesAdapter(private val clickListener: ListItemClickListener<String>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), clickListener)
+        holder.bind(getItem(position), clickListener, favClickListener)
     }
 
     class ViewHolder private constructor(private val binding: FavouritesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(favourite: Favourite, clickListener: ListItemClickListener<String>) {
+        fun bind(
+            favourite: Favourite,
+            clickListener: ListItemClickListener<Favourite>,
+            favClickListener: ListItemClickListener<String>
+        ) {
             binding.favourite = favourite
             binding.clickListener = clickListener
+            binding.favClickListener = favClickListener
         }
 
         companion object {

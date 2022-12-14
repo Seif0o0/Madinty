@@ -10,18 +10,22 @@ object Constants {
     const val LOGIN = "login"
     const val PROFILE = "getAuthenticatedUser"
     const val FAVOURITES = "favorite-places"
+    const val EDIT_PROFILE = "update-profile"
+    const val MY_PLACES = "my-places"
 
     const val ADMIN_ROOT = "admin/"
     const val DEPARTMENTS = "departments" /* for department details {url}/{department_id} */
     const val REGIONS = "regions"
-    const val OFFERS = "paid-advertisementsa"//TODO remove last a
+    const val OFFERS = "paid-advertisements"
     const val PLACES = "incoming-advertisement-requests"
     const val ADD_PLACE = "incoming-advertisement-requests"
 
     const val COMMON_INFO = "common-data"
 
     const val MALE_VALUE = "ذكر"
+    const val EDIT_MALE_VALUE = "male"
     const val FEMALE_VALUE = "أنثى"
+    const val EDIT_FEMALE_VALUE = "female"
 
     const val USER_ID_PREF_KEY_NAME = "userId"
     const val TOKEN_PREF_KEY_NAME = "token"

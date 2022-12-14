@@ -1,23 +1,24 @@
 package com.madinaty.app.presentation.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.ModalDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.madinaty.app.R
+import com.madinaty.app.data.mapper.toPlace
 import com.madinaty.app.databinding.DeleteFavouritesDialogLayoutBinding
 import com.madinaty.app.databinding.FragmentFavouritesBinding
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.FavouritesAdapter
 import com.madinaty.app.presentation.adapter.ListItemClickListener
-import com.madinaty.app.presentation.adapter.ListsLoadStateAdapter
 import com.madinaty.app.presentation.adapter.RetryClickListener
 import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.presentation.viewmodel.FavouritesViewModel
@@ -40,8 +41,19 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         }
         binding.lifecycleOwner = requireActivity()
 
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(false)
 
         favouritesAdapter = FavouritesAdapter(clickListener = ListItemClickListener {
+            setFragmentResultListener("changeFavourite") { _, bundle ->
+                if (bundle.getBoolean("updated")) {
+                    viewModel.getFavourites()
+                }
+            }
+            findNavController().navigate(
+                FavouritesFragmentDirections.actionFavouritesFragmentToPlaceDetailsFragment2(it.toPlace())
+            )
+        }, favClickListener = ListItemClickListener {
             addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
         })
 

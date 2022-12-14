@@ -49,12 +49,6 @@ class EditProfileViewModel @Inject constructor(
     val lastNameState = MutableLiveData(userInfo.lastName)
     val lastNameErrorState = MutableLiveData("")
 
-    val emailState = MutableLiveData(userInfo.email)
-    val emailErrorState = MutableLiveData("")
-
-    val phoneNumberState = MutableLiveData(userInfo.phoneNumber)
-    val phoneNumberErrorState = MutableLiveData("")
-
     val dobState = MutableLiveData(userInfo.dateOfBirth)
     val dobErrorState = MutableLiveData("")
 
@@ -79,16 +73,7 @@ class EditProfileViewModel @Inject constructor(
             lastNameErrorState.value = application.getString(R.string.empty_field_error_message)
             pass = false
         }
-        val email = emailState.value!!
-        if (email.isEmpty()) {
-            emailErrorState.value = application.getString(R.string.empty_field_error_message)
-            pass = false
-        }
-        val phoneNumber = phoneNumberState.value!!
-        if (phoneNumber.isEmpty()) {
-            phoneNumberErrorState.value = application.getString(R.string.empty_field_error_message)
-            pass = false
-        }
+
         val dob = dobState.value!!
         if (dob.isEmpty()) {
             dobErrorState.value = application.getString(R.string.empty_field_error_message)
@@ -102,8 +87,8 @@ class EditProfileViewModel @Inject constructor(
                 username = userInfo.username,
                 firstName = firstName,
                 lastName = lastName,
-                email = email,
-                phoneNumber = phoneNumber,
+                email = userInfo.email,
+                phoneNumber = userInfo.phoneNumber,
                 gender = if (genderState.value!!) Constants.MALE_VALUE else Constants.FEMALE_VALUE,
                 dateOfBirth = dob,
                 city = userInfo.city,
@@ -127,14 +112,37 @@ class EditProfileViewModel @Inject constructor(
 
     fun updateUserInfo() {
         viewModelScope.launch {
-            //TODO update it with required params
-            repo.updateProfileInfo().collectLatest { result ->
+
+            val map = mutableMapOf<String, String>()
+            val firstName = firstNameState.value!!
+            if (firstName != userInfo.firstName)
+                map["first_name"] = firstName
+            val lastName = lastNameState.value!!
+            if (lastName != userInfo.lastName)
+                map["last_name"] = lastName
+            val gender = if (genderState.value!!) Constants.MALE_VALUE else Constants.FEMALE_VALUE
+            if (gender != userInfo.gender)
+                map["gender"] =
+                    if (gender == Constants.MALE_VALUE) Constants.EDIT_MALE_VALUE else Constants.EDIT_FEMALE_VALUE
+            val dob = dobState.value!!
+            if (dob != userInfo.dateOfBirth) {
+                val splitDob = dob.split("-")
+
+                map["dob"] =
+                    "${splitDob[0]}-${
+                        application.resources.getStringArray(R.array.short_months)
+                            .indexOf(splitDob[1].lowercase()) + 1
+                    }-${splitDob[2]}"
+            }
+
+
+            repo.updateProfileInfo(map).collectLatest { result ->
                 startUpdate(false)
                 when (result) {
                     is DataState.Success -> {
                         _loadingState.emit(false)
                         _errorState.emit("")
-                        saveUser(userInfo)//TODO dont forget to update it to the user retrieved from api
+                        saveUser(result.data!!)
 
                     }
                     is DataState.Error -> {
@@ -142,7 +150,7 @@ class EditProfileViewModel @Inject constructor(
                         _errorState.emit(result.message!!)
                     }
                     is DataState.Loading -> {
-                        _loadingState.emit(false)
+                        _loadingState.emit(true)
                         _errorState.emit("")
                     }
                 }
@@ -153,17 +161,11 @@ class EditProfileViewModel @Inject constructor(
 
     private fun saveUser(user: User) {
         userInfo = user.copy()
-        UserInfo.userId = user.id
-        UserInfo.username = user.username
         UserInfo.firstName = user.firstName
         UserInfo.lastName = user.lastName
-        UserInfo.email = user.email
         UserInfo.city = user.city ?: ""
-        UserInfo.phoneNumber = user.phoneNumber
         UserInfo.gender = user.gender
         UserInfo.dateOfBirth = user.dateOfBirth
-        UserInfo.isApproved = user.isApproved
-        UserInfo.isVerified = user.isVerified
         updateInfoState(true)
     }
 

@@ -1,59 +1,35 @@
 package com.madinaty.app.presentation.fragment
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.R
-import com.madinaty.app.databinding.FragmentPlaceDetailsBinding
-import com.madinaty.app.presentation.activity.MainActivity
+import com.madinaty.app.databinding.FragmentMyPlaceDetailsBinding
 import com.madinaty.app.presentation.adapter.AttachmentsAdapter
 import com.madinaty.app.presentation.adapter.ListItemClickListener
-import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.utils.CustomDialog
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 
-@AndroidEntryPoint
-class PlaceDetailsFragment : Fragment() {
-    private lateinit var binding: FragmentPlaceDetailsBinding
-    private val viewModel: AddRemoveFavouriteViewModel by viewModels()
+class MyPlaceDetailsFragment : Fragment() {
+    private lateinit var binding: FragmentMyPlaceDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPlaceDetailsBinding.inflate(inflater, container, false)
-        val placeDetails = PlaceDetailsFragmentArgs.fromBundle(requireArguments()).place
+        binding = FragmentMyPlaceDetailsBinding.inflate(inflater, container, false)
+        val placeDetails = MyPlaceDetailsFragmentArgs.fromBundle(requireArguments()).myPlace
         binding.place = placeDetails
-
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
+        binding.lifecycleOwner = requireActivity()
 
         binding.backBtn.setOnClickListener {
-            navigateBack()
+            findNavController().popBackStack()
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    navigateBack()
-                }
-            })
-
 
         binding.address.setOnClickListener {
             val latlngUri = Uri.parse("geo:${placeDetails.latitude},${placeDetails.longitude}?z=15")
@@ -62,29 +38,6 @@ class PlaceDetailsFragment : Fragment() {
             startActivity(mapIntent)
         }
 
-        binding.favouriteIcon.setOnClickListener {
-            viewModel.startAddRemoveFavouriteState(true, placeId = placeDetails.id)
-        }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.addRemoveFavouriteState.collectLatest {
-                if (it) {
-                    placeDetails.isFavourite = !placeDetails.isFavourite
-                    binding.place = placeDetails
-
-                    viewModel.startAddRemoveFavouriteState(false)
-                    viewModel.addRemoveFavouriteState(false)
-                }
-            }
-        }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.startAddRemoveFavouriteState.collectLatest {
-                if (it) {
-                    viewModel.addRemoveFavourite()
-                }
-            }
-        }
 
         binding.call.setOnClickListener {
             if (placeDetails.whatsAppNumber != null) {
@@ -156,10 +109,6 @@ class PlaceDetailsFragment : Fragment() {
             binding.viewPagerIndicator.setViewPager2(binding.viewPager)
         }
         return binding.root
-    }
 
-    private fun navigateBack() {
-        setFragmentResult("changeFavourite", bundleOf("updated" to viewModel.madeFavouriteChanges))
-        findNavController().popBackStack()
     }
 }

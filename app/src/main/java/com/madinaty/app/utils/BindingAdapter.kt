@@ -74,7 +74,7 @@ fun EditText.setDateOfBirth(dateOfBirth: String) {
     val splitDate = dateOfBirth.split("-")
     val month = resources.getStringArray(R.array.short_months).indexOf(splitDate[1].lowercase()) + 1
 
-    val dob = "${splitDate[0]}-$month-${splitDate[2]}"
+    val dob = "${splitDate[0]}-${if (month < 10) "0$month" else month}-${splitDate[2]}"
     setText(dob)
 }
 

@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.madinaty.app.presentation.fragment.FavouritesFragment"
-        android:label="FavouritesFragment" />
+        android:label="FavouritesFragment" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_placeDetailsFragment2"
+            app:destination="@id/placeDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeDetailsFragment2"
+        android:name="com.madinaty.app.presentation.fragment.PlaceDetailsFragment"
+        android:label="PlaceDetailsFragment" >
+        <argument
+            android:name="place"
+            app:argType="com.madinaty.app.domain.model.Place" />
+    </fragment>
 </navigation>

@@ -159,4 +159,5 @@
     <string name="first_name_hint">First name</string>
     <string name="last_name_hint">Enter your last name</string>
     <string name="last_name_label">Last name</string>
+    <string name="my_places_header">My places</string>
 </resources>

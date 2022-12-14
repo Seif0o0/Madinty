@@ -6,16 +6,12 @@
     <data>
 
         <variable
-            name="favourite"
-            type="com.madinaty.app.domain.model.Favourite" />
+            name="myPlace"
+            type="com.madinaty.app.domain.model.MyPlace" />
 
         <variable
             name="clickListener"
-            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;com.madinaty.app.domain.model.Favourite>" />
-
-        <variable
-            name="favClickListener"
-            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;String>" />
+            type="com.madinaty.app.presentation.adapter.ListItemClickListener&lt;com.madinaty.app.domain.model.MyPlace>" />
 
     </data>
 
@@ -39,20 +35,9 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:place_first_photo="@{favourite.attachments}"
+                app:place_first_photo="@{myPlace.attachments}"
                 app:riv_corner_radius="@dimen/_5sdp"
                 tools:src="@mipmap/splash_screen" />
-
-            <ImageView
-                android:id="@+id/favourite_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:onClick="@{()-> favClickListener.onItemClickListener(favourite.id)}"
-                android:src="@drawable/ic_full_heart_icon"
-                app:layout_constraintStart_toStartOf="@id/image"
-                app:layout_constraintTop_toTopOf="@id/image" />
 
             <TextView
                 android:id="@+id/name"
@@ -64,7 +49,7 @@
                 android:fontFamily="@font/tajwal_medium"
                 android:gravity="start"
                 android:maxLines="2"
-                android:text="@{favourite.name}"
+                android:text="@{myPlace.name}"
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_title_text_color"
                 android:textSize="@dimen/_11ssp"
@@ -110,7 +95,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="2"
-                android:text="@{favourite.address}"
+                android:text="@{myPlace.address}"
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_location_text_color"
                 android:textSize="@dimen/_9ssp"
@@ -125,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/tajwal_medium"
-                android:onClick="@{()-> clickListener.onItemClickListener(favourite)}"
+                android:onClick="@{()-> clickListener.onItemClickListener(myPlace)}"
                 android:text="@string/more_details"
                 android:textColor="@color/auth_screens_main_color"
                 android:textSize="@dimen/_9ssp"
@@ -176,11 +161,11 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/places_location_text_color"
                 android:textSize="@dimen/_9ssp"
-                app:end_time="@{favourite.endTime}"
+                app:end_time="@{myPlace.endTime}"
                 app:layout_constraintBaseline_toBaselineOf="@id/times_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/times_label"
-                app:start_time="@{favourite.startTime}"
+                app:start_time="@{myPlace.startTime}"
                 tools:text="09:00 AM - 09:00 PM" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
