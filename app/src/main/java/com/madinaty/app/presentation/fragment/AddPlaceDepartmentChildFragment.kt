@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.madinaty.app.databinding.FragmentAddPlaceDepartmentChildBinding
 import com.madinaty.app.domain.model.Department
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.*
 
 class AddPlaceDepartmentChildFragment : Fragment() {
@@ -41,7 +42,8 @@ class AddPlaceDepartmentChildFragment : Fragment() {
                             Department(
                                 id = departmentChild.id,
                                 name = departmentChild.name,
-                                departmentChilds = departmentChild.childs
+                                departmentChilds = departmentChild.childs,
+                                places = departmentChild.places
                             )
                         )
                     )
@@ -58,5 +60,11 @@ class AddPlaceDepartmentChildFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

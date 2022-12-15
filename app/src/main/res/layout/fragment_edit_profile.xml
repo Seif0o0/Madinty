@@ -199,6 +199,7 @@
                     android:theme="@style/RadioButtonTheme"
                     app:layout_constraintEnd_toStartOf="@id/female_radio"
                     app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="@id/gender_label"
                     app:layout_constraintTop_toBottomOf="@id/gender_label" />
 
@@ -214,6 +215,7 @@
                     android:textSize="@dimen/_11ssp"
                     android:theme="@style/RadioButtonTheme"
                     app:layout_constraintBaseline_toBaselineOf="@id/male_radio"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/male_radio" />
 
                 <com.google.android.material.button.MaterialButton

@@ -63,9 +63,9 @@
             android:textColor="@color/darker_text_color"
             android:textSize="@dimen/_11ssp"
             app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@id/change_text"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintEnd_toStartOf="@id/change_text"
             app:layout_constraintStart_toStartOf="@id/region_label"
             app:layout_constraintTop_toBottomOf="@id/region_label"
             tools:text="Borg E-arab ada fajs fajf" />
@@ -160,17 +160,24 @@
             app:layout_constraintStart_toStartOf="@id/region_label"
             app:layout_constraintTop_toBottomOf="@id/view_pager_indicator" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:layout_width="wrap_content"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/notifications_icon"
             app:layout_constraintStart_toStartOf="@id/sections_label"
-            app:layout_constraintTop_toBottomOf="@id/sections_label"
-            tools:itemCount="100" />
+            app:layout_constraintTop_toBottomOf="@id/sections_label">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:itemCount="100" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <TextView
             android:id="@+id/empty_list_text"

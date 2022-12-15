@@ -11,6 +11,7 @@ abstract class BaseActivity:AppCompatActivity() {
             baseDelegate = super.getDelegate(),
             baseContext = this,
             wrapContext = AppLocale::wrap
+//        { baseContext -> Restring.wrapContext(baseContext) }
         )
     }
 

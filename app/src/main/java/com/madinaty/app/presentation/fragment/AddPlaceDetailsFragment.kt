@@ -11,11 +11,13 @@ import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.databinding.FragmentAddPlaceDetailsBinding
 import com.madinaty.app.domain.model.Region
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.viewmodel.AddPlaceViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -42,6 +44,21 @@ class AddPlaceDetailsFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.pickLocationIconBackground.setOnClickListener {
+            setFragmentResultListener("PickLatLng") { _, bundle ->
+                val latLng = bundle.getString("pickedLatLng")
+                latLng?.let {
+                    binding.placeLocationEdittext.setText(it)
+                }
+            }
+            findNavController().navigate(
+                AddPlaceDetailsFragmentDirections.actionAddPlaceDetailsFragmentToPickLocationFragment(
+                    latLng = binding.placeLocationEdittext.text.toString()
+                )
+            )
+        }
+
         binding.cityEdittext.setOnClickListener {
             val regionsDialog = RegionsDialogFragment.newInstance(requestKey)
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -149,5 +166,9 @@ class AddPlaceDetailsFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         ).show()
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
+    }
 }

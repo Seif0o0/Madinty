@@ -39,10 +39,6 @@ class PlaceDetailsFragment : Fragment() {
         val placeDetails = PlaceDetailsFragmentArgs.fromBundle(requireArguments()).place
         binding.place = placeDetails
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
-
         binding.backBtn.setOnClickListener {
             navigateBack()
         }
@@ -156,6 +152,12 @@ class PlaceDetailsFragment : Fragment() {
             binding.viewPagerIndicator.setViewPager2(binding.viewPager)
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 
     private fun navigateBack() {

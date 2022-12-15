@@ -42,9 +42,6 @@ class AddPlaceDepartmentFragment : Fragment() {
         binding.retryListener = null
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -104,6 +101,12 @@ class AddPlaceDepartmentFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 
 }

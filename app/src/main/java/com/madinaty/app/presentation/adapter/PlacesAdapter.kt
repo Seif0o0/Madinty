@@ -1,28 +1,30 @@
 package com.madinaty.app.presentation.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingData
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.madinaty.app.databinding.PlaceItemBinding
 import com.madinaty.app.domain.model.Place
 
 class PlacesAdapter(
-    private var clickListener: ListItemClickListener<Place>,
+    private val clickListener: ListItemClickListener<Place>,
     private val favClickListener: ListItemClickListener<String>
-) : PagingDataAdapter<Place, PlacesAdapter.ViewHolder>(PlacesComparator) {
+) :
+    ListAdapter<Place, PlacesAdapter.ViewHolder>(PlacesComparator) {
 
     fun updatePlace(placeId: String) {
-        val place = snapshot().firstOrNull { snapShotPlace ->
-            placeId == snapShotPlace?.id
+        val currentMutableList = currentList.toMutableList()
+        val place = currentMutableList.firstOrNull { item ->
+            item.id == placeId
         }
 
-        if (place != null) {
-            place.isFavourite = !place.isFavourite
-            notifyItemChanged(snapshot().indexOf(place), Unit)
+        place?.let { item ->
+            item.isFavourite = !item.isFavourite
+            val index = currentMutableList.indexOf(item)
+            currentMutableList[index] = item
+            submitList(currentMutableList)
         }
     }
 
@@ -31,7 +33,7 @@ class PlacesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, clickListener, favClickListener)
+        holder.bind(getItem(position), clickListener, favClickListener)
     }
 
     class ViewHolder private constructor(private val binding: PlaceItemBinding) :
@@ -50,9 +52,7 @@ class PlacesAdapter(
             fun from(parent: ViewGroup): ViewHolder {
                 return ViewHolder(
                     PlaceItemBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
+                        LayoutInflater.from(parent.context), parent, false
                     )
                 )
             }
@@ -60,7 +60,9 @@ class PlacesAdapter(
     }
 
     object PlacesComparator : DiffUtil.ItemCallback<Place>() {
+        override fun areItemsTheSame(oldItem: Place, newItem: Place) =
+            oldItem.id == newItem.id
+
         override fun areContentsTheSame(oldItem: Place, newItem: Place) = oldItem == newItem
-        override fun areItemsTheSame(oldItem: Place, newItem: Place) = oldItem.id == newItem.id
     }
 }

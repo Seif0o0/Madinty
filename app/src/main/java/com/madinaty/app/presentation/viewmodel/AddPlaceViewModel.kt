@@ -89,7 +89,7 @@ class AddPlaceViewModel @Inject constructor(
     val addressState = MutableLiveData("")
     val addressErrorState = MutableLiveData("")
 
-    val locationState = MutableLiveData("31.25526324,29.254545")
+    val locationState = MutableLiveData("")
     val locationErrorState = MutableLiveData(View.GONE)
 
     val workingHoursState = MutableLiveData("")

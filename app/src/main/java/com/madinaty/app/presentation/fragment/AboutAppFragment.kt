@@ -27,9 +27,6 @@ class AboutAppFragment : Fragment(R.layout.fragment_about_app) {
         }
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -44,5 +41,11 @@ class AboutAppFragment : Fragment(R.layout.fragment_about_app) {
             }
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

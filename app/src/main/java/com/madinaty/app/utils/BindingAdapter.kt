@@ -9,11 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.madinaty.app.R
 import com.madinaty.app.domain.model.Attachment
@@ -48,6 +50,27 @@ fun ImageView.loadImage(url: String) {
         .into(this)
 }
 
+
+@BindingAdapter("is_arabic")
+fun MaterialButton.setLangButtonsColors(isArabic: Boolean) {
+    if ((UserInfo.appLanguage == context.getString(R.string.arabic_value) && isArabic) ||
+        (UserInfo.appLanguage == context.getString(R.string.english_value) && !isArabic)
+    ) {
+        backgroundTintList =
+            ContextCompat.getColorStateList(context, R.color.language_screen_main_buttons_color)
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_right_mark)
+        iconTint = ContextCompat.getColorStateList(context, R.color.language_screen_main_text_color)
+        strokeColor = ContextCompat.getColorStateList(context, android.R.color.transparent)
+    } else {
+        backgroundTintList =
+            ContextCompat.getColorStateList(context, android.R.color.transparent)
+        icon = ContextCompat.getDrawable(context, R.drawable.ic_right_mark)
+        iconTint = ContextCompat.getColorStateList(context, android.R.color.transparent)
+        strokeColor =
+            ContextCompat.getColorStateList(context, R.color.language_screen_main_text_color)
+    }
+}
+
 @BindingAdapter("place_first_photo")
 fun ImageView.loadFirstAttachment(attachments: List<Attachment>) {
     val url = if (attachments.isEmpty()) "" else attachments[0].url
@@ -63,6 +86,15 @@ fun EditText.setErrorMessage(errorMessage: String) {
 fun ImageView.setFavIcon(isFavourite: Boolean) {
     setImageResource(if (isFavourite) R.drawable.ic_full_heart_icon else R.drawable.ic_heart_icon)
 }
+
+@BindingAdapter("gender")
+fun TextView.setGender(gender: String?) {
+    text = if (gender.isNullOrEmpty() || gender == Constants.MALE_VALUE)
+        context.getString(R.string.male)
+    else
+        context.getString(R.string.female)
+}
+
 
 @BindingAdapter("birth_date")
 fun EditText.setDateOfBirth(dateOfBirth: String) {

@@ -1,6 +1,7 @@
 package com.madinaty.app.data.paging
 
 import android.app.Application
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.madinaty.app.R
@@ -42,6 +43,9 @@ class DepartmentsPagingSource @Inject constructor(
             }
         } catch (e: IOException) {
             LoadResult.Error(Exception(application.getString(R.string.no_internet_connection)))
+        } catch (e: Exception) {
+            Log.d("DepartmentsPagingSource", "error: ${e.message}")
+            LoadResult.Error(Exception(e.message ?: ""))
         }
     }
 

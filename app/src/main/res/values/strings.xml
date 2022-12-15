@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Madinty</string>
+    <string name="google_api_key">ss</string>
     <string name="pick_language_header">Pick language</string>
     <string name="pick_language_title">Please pick application language</string>
     <string name="arabic_label">Arabic</string>
@@ -98,11 +99,11 @@
     <string name="resend_code">Resend code</string>
     <string name="confirm">Confirm</string>
     <string name="congratulations">Congratulations</string>
-    <string name="login_success_message">Your phone number cofirmed successfully</string>
+    <string name="login_success_message">Your phone number confirmed successfully</string>
     <string name="going_to_home">Navigate to home page</string>
     <string name="thanks">Thanks</string>
     <string name="english_value" translatable="false">en</string>
-    <string name="arabic_value" translatable="false">er</string>
+    <string name="arabic_value" translatable="false">ar</string>
     <string name="profile_header">Profile</string>
     <string name="personal_info">Personal information</string>
     <string name="logged_in">Logged in</string>
@@ -162,6 +163,9 @@
     <string name="last_name_hint">Enter your last name</string>
     <string name="last_name_label">Last name</string>
     <string name="my_places_header">My places</string>
+    <string name="pick_location">Pick location</string>
+    <string name="search_feature_not_available">Sorry this feature is not available now. coming soon</string>
+    <string name="send_message_successful_message">We appreciate you contacting us. One of our colleagues will get back in touch with you soon!\nHave a great day!</string>
 
     <string-array name="short_months" translatable="false">
         <item>jan</item>

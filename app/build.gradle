@@ -6,6 +6,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-parcelize'
     id 'com.google.dagger.hilt.android'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -88,6 +89,7 @@ dependencies {
 
     // Recycler view + card view + paging
     implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.paging:paging-runtime-ktx:3.2.0-alpha03"
 
@@ -117,7 +119,9 @@ dependencies {
     implementation "com.airbnb.android:lottie:4.2.1"
 
     // google map and location
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+
 //    implementation 'com.github.BirjuVachhani:locus-android:4.0.1'
     // Autocomplete (location search)
     implementation 'com.google.android.libraries.places:places:2.7.0'
@@ -136,4 +140,8 @@ dependencies {
     // Allows to update the text of views at runtime without recreating the activity
     implementation 'dev.b3nedikt.reword:reword:4.0.2'
 
+}
+
+secrets{
+    defaultPropertiesFileName 'local.properties'
 }

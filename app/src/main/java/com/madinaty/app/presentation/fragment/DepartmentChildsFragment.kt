@@ -40,9 +40,6 @@ class DepartmentChildsFragment : Fragment() {
         binding.viewModel = pinOffersViewModel
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
         return binding.root
     }
 
@@ -53,7 +50,8 @@ class DepartmentChildsFragment : Fragment() {
                     findNavController().navigate(
                         DepartmentChildsFragmentDirections.actionDepartmentChildsFragmentToPlacesFragment(
                             id = departmentChild.id,
-                            title = departmentChild.name
+                            title = departmentChild.name,
+                            places = departmentChild.places?.toTypedArray()
                         )
                     )
                 } else {
@@ -62,7 +60,8 @@ class DepartmentChildsFragment : Fragment() {
                             Department(
                                 id = departmentChild.id,
                                 name = departmentChild.name,
-                                departmentChilds = departmentChild.childs
+                                departmentChilds = departmentChild.childs,
+                                places = departmentChild.places
                             )
                         )
                     )
@@ -91,5 +90,11 @@ class DepartmentChildsFragment : Fragment() {
                 binding.viewPagerIndicator.setViewPager2(binding.viewPager)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

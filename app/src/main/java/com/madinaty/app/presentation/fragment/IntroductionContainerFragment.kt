@@ -51,22 +51,25 @@ class IntroductionContainerFragment : Fragment() {
                     2 -> {
                         binding.prevBtn.visibility = View.VISIBLE
                         binding.nextBtn.text = getString(R.string.login)
-                        binding.prevBtn.text = getString(R.string.join_as_guest)
+                        binding.prevBtn.text = getString(R.string.previous)
+
                     }
                 }
             }
         }
         binding.viewPager.registerOnPageChangeCallback(switchBtn)
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if(binding.viewPager.currentItem == 0){
-                    findNavController().popBackStack()
-                }else {
-                    binding.viewPager.currentItem--
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (binding.viewPager.currentItem == 0) {
+                        findNavController().popBackStack()
+                    } else {
+                        binding.viewPager.currentItem--
+                    }
                 }
-            }
-        })
+            })
 
         binding.nextBtn.setOnClickListener {
             if (binding.viewPager.currentItem < 2) {
@@ -79,12 +82,7 @@ class IntroductionContainerFragment : Fragment() {
         }
 
         binding.prevBtn.setOnClickListener {
-            if (binding.viewPager.currentItem == 2) {
-                // login as a guest
-                UserInfo.isFirstTime = false
-            } else {
-                binding.viewPager.currentItem--
-            }
+            binding.viewPager.currentItem--
         }
 
 

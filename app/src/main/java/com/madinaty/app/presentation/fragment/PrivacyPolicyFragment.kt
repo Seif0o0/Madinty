@@ -27,9 +27,6 @@ class PrivacyPolicyFragment : Fragment(R.layout.fragment_privacy_policy) {
         }
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -43,5 +40,11 @@ class PrivacyPolicyFragment : Fragment(R.layout.fragment_privacy_policy) {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

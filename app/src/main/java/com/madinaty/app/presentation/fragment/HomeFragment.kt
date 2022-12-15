@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         binding.errorMessage = ""
         binding.retryListener = null
         binding.viewModel = pinOffersViewModel
-        if (UserInfo.city.isEmpty()) {
+        if (UserInfo.city.isEmpty() || UserInfo.city == "TODO::CITY".lowercase()) {//TODO dont forget to remove || condition
             binding.regionValue = getString(R.string.no_selected_region)
             binding.changeText.text = getString(R.string.select)
         } else {
@@ -53,9 +53,6 @@ class HomeFragment : Fragment() {
             pinOffersViewModel.getOffers()
         }
         binding.lifecycleOwner = requireActivity()
-
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(false)
 
         binding.changeText.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPickCityFragment())
@@ -73,11 +70,21 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToPlacesFragment(
                             id = department.id,
-                            title = department.name
+                            title = department.name,
+                            places = department.places?.toTypedArray()
                         )
                     )
                 }
             })
+
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.auth_screens_main_color
+        )
+
+        binding.swipeRefresh.setOnRefreshListener {
+            departmentsAdapter.refresh()
+        }
+
         departmentsAdapter.addLoadStateListener { combinedLoadStates ->
             if (combinedLoadStates.refresh is LoadState.NotLoading) {
                 binding.emptyListText.visibility = if (departmentsAdapter.itemCount == 0) {
@@ -110,6 +117,9 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.departments.collectLatest {
+                if (binding.swipeRefresh.isRefreshing) {
+                    binding.swipeRefresh.isRefreshing = false
+                }
                 departmentsAdapter.submitData(it)
             }
         }
@@ -129,5 +139,11 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(false)
     }
 }

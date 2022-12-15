@@ -37,8 +37,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -64,6 +62,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 binding.userInfo = it
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 
     private fun addFragmentResultListener() {

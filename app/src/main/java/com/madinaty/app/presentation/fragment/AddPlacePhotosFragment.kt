@@ -18,6 +18,7 @@ import com.github.drjacky.imagepicker.ImagePicker
 import com.github.drjacky.imagepicker.constant.ImageProvider
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentAddPlacePhotosBinding
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.ListItemClickListener
 import com.madinaty.app.presentation.adapter.PickedImagesAdapter
 import com.madinaty.app.presentation.viewmodel.AddPlaceViewModel
@@ -118,5 +119,10 @@ class AddPlacePhotosFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
+    }
 
 }

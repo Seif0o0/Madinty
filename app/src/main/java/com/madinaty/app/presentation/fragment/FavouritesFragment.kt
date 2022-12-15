@@ -41,8 +41,6 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         }
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(false)
 
         favouritesAdapter = FavouritesAdapter(clickListener = ListItemClickListener {
             setFragmentResultListener("changeFavourite") { _, bundle ->
@@ -56,6 +54,14 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         }, favClickListener = ListItemClickListener {
             addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
         })
+
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.auth_screens_main_color)
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getFavourites()
+        }
+
 
         lifecycleScope.launchWhenStarted {
             addRemoveFavouriteViewModel.addRemoveFavouriteState.collectLatest {
@@ -86,6 +92,9 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
         lifecycleScope.launchWhenStarted {
             viewModel.favourites.collectLatest {
+                if (binding.swipeRefresh.isRefreshing) {
+                    binding.swipeRefresh.isRefreshing = false
+                }
                 favouritesAdapter.submitList(it)
             }
         }
@@ -119,5 +128,11 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
             dialog.dismiss()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(false)
     }
 }

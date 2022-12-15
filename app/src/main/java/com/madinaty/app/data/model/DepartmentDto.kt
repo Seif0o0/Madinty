@@ -9,4 +9,5 @@ data class DepartmentDto(
     val id: String,
     val name: String,
     @Json(name = "children") val departmentChilds: List<DepartmentChildDto>?,
+    @Json(name = "incoming_advertisement_requests") val places : List<PlaceDto>?
 )

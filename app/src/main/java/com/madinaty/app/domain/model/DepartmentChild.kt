@@ -9,5 +9,6 @@ data class DepartmentChild(
     val id: String,
     val name: String,
     val departmentId: String,
-    val childs: List<DepartmentChild>?
-):Parcelable
+    val childs: List<DepartmentChild>?,
+    val places: List<Place>?
+) : Parcelable

@@ -8,25 +8,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.libraries.places.api.Places
 import com.madinaty.app.databinding.FragmentPlacesBinding
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.*
 import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.presentation.viewmodel.PinOffersViewModel
-import com.madinaty.app.presentation.viewmodel.PlacesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class PlacesFragment : Fragment() {
-    private val viewModel: PlacesViewModel by viewModels()
+    //    private val viewModel: PlacesViewModel by viewModels()
     private val pinOffersViewModel: PinOffersViewModel by viewModels()
     private val addRemoveFavouriteViewModel: AddRemoveFavouriteViewModel by viewModels()
     private lateinit var binding: FragmentPlacesBinding
 
-    lateinit var placesAdapter: PlacesAdapter
+//    lateinit var pagingPlacesAdapter: PagingPlacesAdapter
+
+    private lateinit var placesAdapter: PlacesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,30 +41,40 @@ class PlacesFragment : Fragment() {
         binding.titleString = args.title
         binding.viewModel = pinOffersViewModel
         binding.offersRetryListener = RetryClickListener {
-            pinOffersViewModel.getOffers()
+//            pinOffersViewModel.getOffers()
         }
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
-
-        placesAdapter = PlacesAdapter(clickListener = ListItemClickListener {
-            findNavController().navigate(
-                PlacesFragmentDirections.actionPlacesFragmentToPlaceDetailsFragment(
-                    it
+        val places = args.places?.toMutableList()
+        if (places.isNullOrEmpty()) {
+            binding.emptyListText.visibility = View.VISIBLE
+        } else {
+            binding.emptyListText.visibility = View.GONE
+            placesAdapter = PlacesAdapter(clickListener = ListItemClickListener {
+                findNavController().navigate(
+                    PlacesFragmentDirections.actionPlacesFragmentToPlaceDetailsFragment(
+                        it
+                    )
                 )
-            )
-        }, favClickListener = ListItemClickListener {
-            addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
-        })
+            }, favClickListener = ListItemClickListener {
+                addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
+            })
+            placesAdapter.submitList(places)
+
+            binding.list.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = placesAdapter
+            }
+        }
+
+
+
 
         lifecycleScope.launchWhenStarted {
             addRemoveFavouriteViewModel.addRemoveFavouriteState.collectLatest {
                 if (it) {
                     addRemoveFavouriteViewModel.placeId?.let { placeId ->
-                        placesAdapter.updatePlace(
-                            placeId
-                        )
+                        placesAdapter.updatePlace(placeId)
                     }
                     addRemoveFavouriteViewModel.startAddRemoveFavouriteState(false)
                     addRemoveFavouriteViewModel.addRemoveFavouriteState(false)
@@ -81,45 +92,6 @@ class PlacesFragment : Fragment() {
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
-        }
-
-
-        placesAdapter.addLoadStateListener { combinedLoadStates ->
-            if (combinedLoadStates.refresh is LoadState.NotLoading) {
-                binding.emptyListText.visibility = if (placesAdapter.itemCount == 0) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
-                }
-            }
-
-            binding.loadingState = combinedLoadStates.refresh is LoadState.Loading
-            if (combinedLoadStates.refresh is LoadState.Error) {
-                var error = (combinedLoadStates.refresh as LoadState.Error).error.localizedMessage
-                binding.errorState = true
-                binding.errorMessage = error
-                binding.retryListener = RetryClickListener {
-                    placesAdapter.retry()
-                }
-            } else {
-                binding.errorState = false
-                binding.retryListener = null
-            }
-        }
-
-        binding.list.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = placesAdapter.withLoadStateFooter(
-                footer = ListsLoadStateAdapter(RetryClickListener {
-                    placesAdapter.retry()
-                })
-            )
-        }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.places.collectLatest {
-                placesAdapter.submitData(it)
-            }
         }
 
         /* offers slider part */
@@ -141,4 +113,64 @@ class PlacesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
+    }
+
 }
+
+// initialize adapter
+//        pagingPlacesAdapter = PagingPlacesAdapter(clickListener = ListItemClickListener {
+//            findNavController().navigate(
+//                PlacesFragmentDirections.actionPlacesFragmentToPlaceDetailsFragment(
+//                    it
+//                )
+//            )
+//        }, favClickListener = ListItemClickListener {
+//            addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
+//        })
+
+// set adapter loadState Listener
+//        placesAdapter.addLoadStateListener { combinedLoadStates ->
+//            if (combinedLoadStates.refresh is LoadState.NotLoading) {
+//                binding.emptyListText.visibility = if (placesAdapter.itemCount == 0) {
+//                    View.VISIBLE
+//                } else {
+//                    View.GONE
+//                }
+//            }
+//
+//            binding.loadingState = combinedLoadStates.refresh is LoadState.Loading
+//            if (combinedLoadStates.refresh is LoadState.Error) {
+//                var error = (combinedLoadStates.refresh as LoadState.Error).error.localizedMessage
+//                binding.errorState = true
+//                binding.errorMessage = error
+//                binding.retryListener = RetryClickListener {
+//                    placesAdapter.retry()
+//                }
+//            } else {
+//                binding.errorState = false
+//                binding.retryListener = null
+//            }
+//        }
+
+// set Adapter to recyclerView
+//                pagingPlacesAdapter.withLoadStateFooter(
+//                footer = ListsLoadStateAdapter(RetryClickListener {
+//                    pagingPlacesAdapter.retry()
+//                })
+//            )
+
+// update list after remove favourites
+//                        pagingPlacesAdapter.updatePlace(
+//                            placeId
+//                        )
+
+// listen to places api
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.places.collectLatest {
+//                placesAdapter.submitData(it)
+//            }
+//        }

@@ -61,6 +61,7 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:src="@drawable/ic_share_icon"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Group

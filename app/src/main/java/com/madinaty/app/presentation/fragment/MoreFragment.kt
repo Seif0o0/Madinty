@@ -27,7 +27,7 @@ class MoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMoreBinding.inflate(layoutInflater, container, false)
-
+        binding.lifecycleOwner = requireActivity()
         val activity = requireActivity() as MainActivity
         activity.hideBottomNav(false)
 
@@ -72,7 +72,7 @@ class MoreFragment : Fragment() {
                 UserInfo.appLanguage = getString(R.string.arabic_value)
                 AppLocale.desiredLocale = Locale(getString(R.string.arabic_value))
             }
-            requireActivity().recreate()
+            (requireActivity() as MainActivity).recreate()
         }
 
         binding.logout.setOnClickListener {

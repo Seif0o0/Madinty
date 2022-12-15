@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentMyPlaceDetailsBinding
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.AttachmentsAdapter
 import com.madinaty.app.presentation.adapter.ListItemClickListener
 import com.madinaty.app.utils.CustomDialog
@@ -110,5 +111,11 @@ class MyPlaceDetailsFragment : Fragment() {
         }
         return binding.root
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

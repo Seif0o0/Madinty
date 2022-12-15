@@ -32,8 +32,9 @@ class MyPlacesFragment : Fragment(R.layout.fragment_my_places) {
         }
         binding.lifecycleOwner = requireActivity()
 
-        val activity = requireActivity() as MainActivity
-        activity.hideBottomNav(true)
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         myPlacesAdapter = MyPlacesAdapter(clickListener = ListItemClickListener {
             findNavController().navigate(
@@ -41,14 +42,31 @@ class MyPlacesFragment : Fragment(R.layout.fragment_my_places) {
             )
         })
 
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.auth_screens_main_color
+        )
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getMyPlaces()
+        }
+
         binding.list.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = myPlacesAdapter
         }
         lifecycleScope.launchWhenStarted {
             viewModel.myPlaces.collectLatest {
+                if (binding.swipeRefresh.isRefreshing) {
+                    binding.swipeRefresh.isRefreshing = false
+                }
                 myPlacesAdapter.submitList(it)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

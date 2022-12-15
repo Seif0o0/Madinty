@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentOffersBinding
 import com.madinaty.app.presentation.adapter.ListsLoadStateAdapter
 import com.madinaty.app.presentation.adapter.OffersAdapter
@@ -40,6 +41,13 @@ class OffersFragment : Fragment() {
         binding.errorMessage = ""
         binding.retryListener = null
         binding.lifecycleOwner = requireActivity()
+
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.auth_screens_main_color)
+
+        binding.swipeRefresh.setOnRefreshListener {
+            offersAdapter.refresh()
+        }
 
         offersAdapter.addLoadStateListener { combinedLoadStates ->
             if (combinedLoadStates.refresh is LoadState.NotLoading) {
@@ -74,6 +82,9 @@ class OffersFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.offers.collectLatest {
+                if(binding.swipeRefresh.isRefreshing){
+                    binding.swipeRefresh.isRefreshing = false
+                }
                 offersAdapter.submitData(it)
             }
         }

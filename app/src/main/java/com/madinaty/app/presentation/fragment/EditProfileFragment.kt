@@ -21,6 +21,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
+import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.utils.CustomDialog
 import kotlinx.coroutines.flow.collectLatest
 import java.util.*
@@ -129,5 +130,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile),
         val date =
             "$year-${viewModel.convertToShortMonth(month)}-${if (dayOfMonth < 10) "0$dayOfMonth" else dayOfMonth}"
         viewModel.dobState.value = date
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.madinaty.app.databinding.FragmentPickCityBinding
 import com.madinaty.app.domain.model.Region
 import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.MainActivity
 
 @Suppress("DEPRECATION")
 class PickCityFragment : Fragment() {
@@ -48,5 +49,11 @@ class PickCityFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as MainActivity
+        activity.hideBottomNav(true)
     }
 }
