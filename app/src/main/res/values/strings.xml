@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">Madinty</string>
-    <string name="google_api_key">ss</string>
+
+    <!-- FB-Strings -->
+    <string name="facebook_app_id" translatable="false">870127334030413</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb@870127334030413</string>
+    <string name="facebook_client_token" translatable="false">d822a289f1b798d232d44fd873d6fb04</string>
+    <!-- FB-Strings -->
+    <!-- Google-Strings -->
+    <string name="client_id" translatable="false">193416750238-8k5l48sjd6sd4dutneikfqh7gepfj2mg.apps.googleusercontent.com</string>
+    <string name="client_secret" translatable="false">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</string>
+    <!-- Google-Strings -->
+
+
     <string name="pick_language_header">Pick language</string>
     <string name="pick_language_title">Please pick application language</string>
     <string name="arabic_label">Arabic</string>
@@ -166,6 +177,19 @@
     <string name="pick_location">Pick location</string>
     <string name="search_feature_not_available">Sorry this feature is not available now. coming soon</string>
     <string name="send_message_successful_message">We appreciate you contacting us. One of our colleagues will get back in touch with you soon!\nHave a great day!</string>
+    <string name="username_length_error_message">username must contain at least 3 characters</string>
+    <string name="first_name_length_error_message">first name must contain at least 3 characters</string>
+    <string name="last_name_length_error_message">last name must contain at least 3 characters</string>
+    <string name="password_length_error_message">Password must contain at least 6 characters</string>
+    <string name="confirmation_password_error_message">Password and it\'s confirmation don\'t match</string>
+    <string name="register_title">Sign up</string>
+    <string name="confirm_password_label">Confirmation password</string>
+    <string name="confirm_password_hint">Enter your confirmation password</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="username">Username</string>
+    <string name="register_label">Sign up</string>
+    <string name="search_hint">Search....</string>
+
 
     <string-array name="short_months" translatable="false">
         <item>jan</item>

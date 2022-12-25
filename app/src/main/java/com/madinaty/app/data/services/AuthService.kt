@@ -4,6 +4,7 @@ import com.madinaty.app.data.model.PlaceDto
 import com.madinaty.app.data.response.*
 import com.madinaty.app.utils.Constants
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -16,6 +17,17 @@ interface AuthService {
     suspend fun login(
         @Query("mobile") phoneNumber: String,
         @Query("password") password: String
+    ): Response<PhoneLoginResponse>
+
+    @POST("${Constants.AUTH_ROOT}${Constants.REGISTER}")
+    suspend fun register(
+        @Body map: Map<String, String>,
+    ): Response<PhoneLoginResponse>
+
+    @POST("${Constants.AUTH_ROOT}${Constants.LOGIN}${Constants.SOCIAL_LOGIN}")
+    suspend fun socialLogin(
+        @Query("provider") provider: String,
+        @Query("access_provider_token") accessToken: String
     ): Response<PhoneLoginResponse>
 
     @GET("${Constants.AUTH_ROOT}${Constants.PROFILE}")

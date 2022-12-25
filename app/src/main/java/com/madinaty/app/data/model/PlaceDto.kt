@@ -25,5 +25,6 @@ class PlaceDto(
     val rating: Float,
     @Json(name = "is_approved") val isApproved: Int,/* 1 == true */
     val department: DepartmentDto,
-    val region: RegionDto
+    val region: RegionDto,
+    @Json(name="isFav") val isFavourite:Boolean = false
 )

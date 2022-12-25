@@ -61,6 +61,14 @@ abstract class RepositoriesModule {
 
     @Binds
     @ViewModelScoped
+    abstract fun provideSocialLoginRepository(repoImpl: SocialLoginRepositoryImpl): SocialLoginRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideRegisterRepository(repoImpl: RegisterRepositoryImpl): RegisterRepository
+
+    @Binds
+    @ViewModelScoped
     abstract fun provideDataStoreRepository(repoImpl: DataStoreRepositoryImpl): DataStoreRepository
 
 }

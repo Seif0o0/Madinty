@@ -19,8 +19,7 @@ interface PlacesService {
     @GET(Constants.ADMIN_ROOT.plus(Constants.PLACES))
     suspend fun fetchPlaces(
         @Header("Authorization") token: String,
-        @Query("page") page: Int,
-        @Query("department_id") id: String//TODO ask wessam about department id to fetch places
+        @QueryMap map:Map<String,String>,
     ): Response<PlacesResponse>
 
     @Multipart

@@ -163,4 +163,16 @@
     <string name="pick_location">حدد الموقع</string>
     <string name="search_feature_not_available">نأسف هذه الخاصية غير متاحة حالياً. قريباً</string>
     <string name="send_message_successful_message">نحن نقدر اتصالك بنا. سيتواصل معك أحد زملائنا قريبًا!\nأتمنى لك يومًا سعيدًا!</string>
+    <string name="username_length_error_message">يجب ان يتكون الاسم على الاقل من 3 احرف</string>
+    <string name="first_name_length_error_message">يجب ان يتكون الاسم الاول على الاقل من 3 احرف</string>
+    <string name="last_name_length_error_message">يجب ان يتكون الاسم الاخير على الاقل من 3 احرف</string>
+    <string name="password_length_error_message">يجب ان يتكون الرقم السري على الاقل من 6 احرف</string>
+    <string name="confirmation_password_error_message">كلمتي المرور غير متطابقتين</string>
+    <string name="register_title">تسجيل الدخول</string>
+    <string name="confirm_password_label">تأكيد كلمة المرور</string>
+    <string name="confirm_password_hint">أدخل تأكيد كلمة المرور</string>
+    <string name="username_hint">أدخل اسم المستخدم</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="register_label">تسجيل الدخول</string>
+    <string name="search_hint">بحث....</string>
 </resources>

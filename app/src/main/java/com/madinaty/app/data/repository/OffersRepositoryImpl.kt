@@ -8,6 +8,7 @@ import com.madinaty.app.data.paging.OffersPagingSource
 import com.madinaty.app.data.services.OffersService
 import com.madinaty.app.domain.model.Offer
 import com.madinaty.app.domain.repository.OffersRepository
+import com.madinaty.app.utils.Constants
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ class OffersRepositoryImpl @Inject constructor(
     private val service: OffersService
 ) : OffersRepository {
     override fun fetchOffers(): Flow<PagingData<Offer>> {
-        return Pager(PagingConfig(pageSize = 8)) {
+        return Pager(PagingConfig(pageSize = Constants.PAGE_SIZE)) {
             OffersPagingSource(application, service)
         }.flow
     }

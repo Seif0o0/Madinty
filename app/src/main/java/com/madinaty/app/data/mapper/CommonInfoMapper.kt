@@ -7,5 +7,7 @@ import com.madinaty.app.domain.model.CommonInfo
 fun CommonInfoDto.toCommon() = CommonInfo(
     privacyPolicy = privacyPolicy,
     termsAndConditions = termsAndConditions,
-    aboutUs = aboutUs
+    aboutUs = aboutUs,
+    whatsAppNumber = whatsAppNumber,
+    phoneNumber = phoneNumber
 )

@@ -1,37 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.SearchViewModel" />
+
+        <variable
+            name="loadingState"
+            type="Boolean" />
+
+        <variable
+            name="errorState"
+            type="Boolean" />
+
+        <variable
+            name="errorMessage"
+            type="String" />
+
+        <variable
+            name="retryListener"
+            type="com.madinaty.app.presentation.adapter.RetryClickListener" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/search_edittext"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@mipmap/splash_logo"
-            app:layout_constraintBottom_toTopOf="@id/message"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="@font/tajwal_regular"
+            android:gravity="start"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingTop="@dimen/_9sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_9sdp"
+            android:text="@={viewModel.query}"
+            android:textAlignment="viewStart"
+            android:textColor="@color/auth_screens_title_color"
+            android:textColorHint="@color/help_center_description"
+            android:textCursorDrawable="@drawable/cursor_shape"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/search_edittext"
+            app:layout_constraintStart_toStartOf="@id/search_edittext"
+            app:layout_constraintTop_toBottomOf="@id/search_edittext">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                tools:itemCount="5"
+                tools:listitem="@layout/place_item" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <TextView
-            android:id="@+id/message"
+            android:id="@+id/empty_list_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
             android:fontFamily="@font/tajwal_medium"
-            android:gravity="center"
-            android:text="@string/search_feature_not_available"
-            android:textColor="@color/darker_text_color"
-            android:textSize="@dimen/_18sdp"
+            android:text="@string/empty_list_text"
+            android:textColor="@color/empty_list_text_color"
+            android:textSize="@dimen/_10ssp"
+            android:visibility="gone"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+            app:layout_constraintTop_toBottomOf="@id/search_edittext" />
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/error_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:errorMessage="@{errorMessage}"
+            app:errorState="@{errorState}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_edittext"
+            app:retryListener="@{retryListener}" />
+
+        <include
+            layout="@layout/loading_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_edittext"
+            app:loadingStatus="@{loadingState}" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -110,6 +110,16 @@ fun EditText.setDateOfBirth(dateOfBirth: String) {
     setText(dob)
 }
 
+@BindingAdapter("birth_date_error")
+fun TextView.setError(errorMessage: String) {
+    if (errorMessage.isEmpty()) {
+        visibility = View.GONE
+    } else {
+        visibility = View.VISIBLE
+        text = errorMessage
+    }
+}
+
 @BindingAdapter("loading_status")
 fun LottieAnimationView.setLoadingStatus(isLoading: Boolean) {
     if (isLoading) {

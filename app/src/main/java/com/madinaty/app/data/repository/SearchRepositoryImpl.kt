@@ -12,19 +12,15 @@ import com.madinaty.app.utils.Constants
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class PlacesRepositoryImpl @Inject constructor(
+class SearchRepositoryImpl @Inject constructor(
     private val application: Application, private val service: PlacesService
 ) : PlacesRepository {
-
     override fun fetchPlaces(query: String?, departmentId: String?): Flow<PagingData<Place>> {
         return Pager(PagingConfig(pageSize = Constants.PAGE_SIZE)) {
-            PlacesPagingSource(
-                application,
-                service,
+            PlacesPagingSource(application = application,
+                service = service,
                 departmentId = departmentId,
-                query = query
-            )
+                query = query)
         }.flow
     }
-
 }

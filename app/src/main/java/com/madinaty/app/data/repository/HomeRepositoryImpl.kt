@@ -8,6 +8,7 @@ import com.madinaty.app.data.paging.DepartmentsPagingSource
 import com.madinaty.app.data.services.DepartmentsService
 import com.madinaty.app.domain.model.Department
 import com.madinaty.app.domain.repository.HomeRepository
+import com.madinaty.app.utils.Constants
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class HomeRepositoryImpl @Inject constructor(
 ) : HomeRepository {
 
     override fun fetchDepartments(): Flow<PagingData<Department>> {
-        return Pager(PagingConfig(pageSize = 8)) {
+        return Pager(PagingConfig(pageSize = Constants.PAGE_SIZE)) {
             DepartmentsPagingSource(application, service)
         }.flow
     }

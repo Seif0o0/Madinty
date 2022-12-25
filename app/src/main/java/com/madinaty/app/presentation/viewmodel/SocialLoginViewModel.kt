@@ -1,30 +1,24 @@
 package com.madinaty.app.presentation.viewmodel
 
 import android.app.Application
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.madinaty.app.R
 import com.madinaty.app.data.mapper.toUser
 import com.madinaty.app.data.response.PhoneLoginInfoResponse
-import com.madinaty.app.domain.repository.PhoneLoginRepository
+import com.madinaty.app.domain.repository.SocialLoginRepository
 import com.madinaty.app.kot_pref.UserInfo
-import com.madinaty.app.utils.CustomDialog
 import com.madinaty.app.utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class PhoneLoginViewModel @Inject constructor(
+class SocialLoginViewModel @Inject constructor(
     private val application: Application,
-    private val repo: PhoneLoginRepository
+    private val repo: SocialLoginRepository
 ) : ViewModel() {
     private val _loadingState = MutableStateFlow(false)
     val loadingState: StateFlow<Boolean> get() = _loadingState
@@ -40,55 +34,35 @@ class PhoneLoginViewModel @Inject constructor(
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> get() = _errorState
 
-    val phoneNumberState = MutableLiveData("")
-    val phoneNumberErrorState = MutableLiveData("")
-
-    val passwordState = MutableLiveData("")
-    val passwordErrorState = MutableLiveData("")
-
     private val _startLogging = MutableStateFlow(false)
+
     val startLogging: StateFlow<Boolean> get() = _startLogging
     fun startLogging(value: Boolean) {
         _startLogging.value = value
     }
 
-    fun onLoginBtnClicked() {
-        var pass = true
-        if (phoneNumberState.value!!.isEmpty()) {
-            phoneNumberErrorState.value = application.getString(R.string.empty_field_error_message)
-            pass = false
-        }
-        if (passwordState.value!!.isEmpty()) {
-            passwordErrorState.value = application.getString(R.string.empty_field_error_message)
-            pass = false
-        }
-
-        if (pass)
-            startLogging(true)
-    }
-
-    fun login() {
+    var provider: String? = null
+    var accessToken: String? = null
+    fun socialLogin() {
         viewModelScope.launch {
-            repo.login(phoneNumber = phoneNumberState.value!!, password = passwordState.value!!)
-                .collect { result ->
-                    startLogging(false)
-                    when (result) {
-                        is DataState.Success -> {
-                            _loadingState.emit(false)
-                            _errorState.emit("")
-                            saveUser(result.data!!)
-                        }
-                        is DataState.Error -> {
-                            _loadingState.emit(false)
-                            _errorState.emit(result.message!!)
-                        }
-                        is DataState.Loading -> {
-                            _loadingState.emit(true)
-                            _errorState.emit("")
-                        }
+            repo.socialLogin(provider!!, accessToken!!).collectLatest { result ->
+                startLogging(false)
+                when (result) {
+                    is DataState.Loading -> {
+                        _loadingState.emit(true)
+                        _errorState.emit("")
                     }
-
+                    is DataState.Success -> {
+                        _loadingState.emit(false)
+                        _errorState.emit("")
+                        saveUser(result.data!!)
+                    }
+                    is DataState.Error -> {
+                        _loadingState.emit(false)
+                        _errorState.emit(result.message!!)
+                    }
                 }
+            }
         }
     }
 
@@ -108,7 +82,8 @@ class PhoneLoginViewModel @Inject constructor(
         UserInfo.dateOfBirth = user.dateOfBirth
         UserInfo.isApproved = user.isApproved
         UserInfo.isVerified = user.isVerified
-        UserInfo.loginType = 0
+        UserInfo.loginType = if (provider == "facebook") 1 else 2
         loginState(true)
+
     }
 }

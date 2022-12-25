@@ -25,7 +25,7 @@ fun PlaceDto.toPlace() = Place(
     isApproved = isApproved == 1,
     department = department.toDepartment(),
     region = region.toRegion(),
-    //TODO don't forget to add favourite flag here
+    isFavourite = isFavourite
 )
 
 fun PlaceDto.toMyPlace() = MyPlace(

@@ -16,6 +16,7 @@ import com.madinaty.app.kot_pref.UserInfo
 import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.RetryClickListener
+import com.madinaty.app.presentation.viewmodel.CommonInfoViewModel
 import com.madinaty.app.presentation.viewmodel.ProfileViewModel
 import com.madinaty.app.utils.CustomDialog
 import com.madinaty.app.utils.logUserOut
@@ -25,7 +26,6 @@ import kotlinx.coroutines.flow.collectLatest
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by viewModels()
-
     private lateinit var binding: FragmentProfileBinding
 
 
@@ -37,6 +37,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = requireActivity()
 
+        when (UserInfo.loginType) {
+            0 -> {
+                binding.phoneGroup.visibility = View.VISIBLE
+                binding.googleGroup.visibility = View.GONE
+                binding.facebookGroup.visibility = View.GONE
+            }
+            1 -> {
+                binding.phoneGroup.visibility = View.GONE
+                binding.googleGroup.visibility = View.GONE
+                binding.facebookGroup.visibility = View.VISIBLE
+            }
+            2 -> {
+                binding.phoneGroup.visibility = View.GONE
+                binding.googleGroup.visibility = View.VISIBLE
+                binding.facebookGroup.visibility = View.GONE
+            }
+        }
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -62,6 +79,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 binding.userInfo = it
             }
         }
+
+
     }
 
     override fun onResume() {

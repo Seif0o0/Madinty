@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.madinaty.app.presentation.fragment.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_placeDetailsFragment3"
+            app:destination="@id/placeDetailsFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/placeDetailsFragment3"
+        android:name="com.madinaty.app.presentation.fragment.PlaceDetailsFragment"
+        android:label="PlaceDetailsFragment" >
+        <argument
+            android:name="place"
+            app:argType="com.madinaty.app.domain.model.Place" />
+    </fragment>
 </navigation>

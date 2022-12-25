@@ -41,7 +41,7 @@ class PlacesFragment : Fragment() {
         binding.titleString = args.title
         binding.viewModel = pinOffersViewModel
         binding.offersRetryListener = RetryClickListener {
-//            pinOffersViewModel.getOffers()
+            pinOffersViewModel.getOffers()
         }
         binding.lifecycleOwner = requireActivity()
 

@@ -8,10 +8,13 @@ object Constants {
 
     const val AUTH_ROOT = "auth/"
     const val LOGIN = "login"
+    const val REGISTER = "register"
+    const val VERIFY = "verify"
     const val PROFILE = "getAuthenticatedUser"
     const val FAVOURITES = "favorite-places"
     const val EDIT_PROFILE = "update-profile"
     const val MY_PLACES = "my-places"
+    const val SOCIAL_LOGIN = "/callback"
 
     const val ADMIN_ROOT = "admin/"
     const val DEPARTMENTS = "departments" /* for department details {url}/{department_id} */

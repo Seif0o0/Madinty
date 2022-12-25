@@ -1,6 +1,7 @@
 package com.madinaty.app.presentation.activity
 
 import android.os.Bundle
+import com.facebook.FacebookSdk
 import com.madinaty.app.R
 
 class IntroActivity : BaseActivity() {

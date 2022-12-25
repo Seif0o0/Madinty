@@ -17,6 +17,7 @@ object UserInfo : KotprefModel() {
     var isApproved by booleanPref(false)
     var isVerified by booleanPref(false)
 
+    var loginType by intPref(0) //0-> mobile, 1-> facebook, 2-> google
     var isFirstTime by booleanPref(true) /* for language & intro screens */
     var appLanguage by stringPref(context.getString(R.string.english_value))
 }

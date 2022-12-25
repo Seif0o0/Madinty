@@ -5,5 +5,5 @@ import com.madinaty.app.domain.model.Place
 import kotlinx.coroutines.flow.Flow
 
 interface PlacesRepository {
-    fun fetchPlaces(departmentId: String):Flow<PagingData<Place>>
+    fun fetchPlaces(query: String? = null, departmentId: String? = null): Flow<PagingData<Place>>
 }

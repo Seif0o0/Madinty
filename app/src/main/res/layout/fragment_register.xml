@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.RegisterViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/auth_screens_background"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/main_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/tajwal_bold"
+                    android:text="@string/register_title"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintEnd_toEndOf="@id/logo"
+                    app:layout_constraintStart_toStartOf="@id/logo"
+                    app:layout_constraintTop_toBottomOf="@id/logo" />
+
+
+                <TextView
+                    android:id="@+id/username_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/username"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+                <EditText
+                    android:id="@+id/username_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/username_hint"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.usernameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.usernameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/username_label"
+                    app:layout_constraintTop_toBottomOf="@id/username_label" />
+
+                <TextView
+                    android:id="@+id/first_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/first_name_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/username_edittext" />
+
+                <EditText
+                    android:id="@+id/first_name_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/first_name_hint"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.firstNameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.firstNameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/first_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/first_name_label" />
+
+                <TextView
+                    android:id="@+id/last_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/last_name_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/first_name_edittext" />
+
+                <EditText
+                    android:id="@+id/last_name_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/last_name_hint"
+                    android:inputType="textPersonName"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.lastNameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.lastNameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/last_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/last_name_label" />
+
+                <TextView
+                    android:id="@+id/phone_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/last_name_edittext" />
+
+                <EditText
+                    android:id="@+id/phone_number_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/phone_number_hint"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.mobileState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.mobileErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_label"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
+
+                <TextView
+                    android:id="@+id/password_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/password_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_edittext" />
+
+                <EditText
+                    android:id="@+id/password_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.passwordState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.passwordErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/password_label"
+                    app:layout_constraintTop_toBottomOf="@id/password_label" />
+
+                <TextView
+                    android:id="@+id/confirm_password_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/confirm_password_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/password_edittext" />
+
+                <EditText
+                    android:id="@+id/confirm_password_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/confirm_password_hint"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.confirmPasswordState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.confirmPasswordErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/confirm_password_label"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_password_label" />
+
+                <TextView
+                    android:id="@+id/email_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/email_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/confirm_password_edittext" />
+
+                <EditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.emailState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.emailErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/email_label"
+                    app:layout_constraintTop_toBottomOf="@id/email_label" />
+
+                <TextView
+                    android:id="@+id/birthdate_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/birthdate_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/email_edittext" />
+
+
+                <EditText
+                    android:id="@+id/birthdate_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/edit_text_background"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/birthdate_hint"
+                    android:inputType="text"
+                    android:longClickable="false"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    android:text="@={viewModel.dobState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/birthdate_label"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate_label" />
+
+                <TextView
+                    android:id="@+id/birthdate_error"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/empty_field_error_message"
+                    android:textColor="@color/error_dialog_dismiss_text_background_color"
+                    android:textSize="@dimen/_8ssp"
+                    app:birth_date_error="@{viewModel.dobErrorState}"
+                    app:layout_constraintEnd_toEndOf="@id/birthdate_edittext"
+                    app:layout_constraintStart_toStartOf="@id/birthdate_label"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate_edittext" />
+
+                <TextView
+                    android:id="@+id/gender_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/gender_label"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate_error" />
+
+                <RadioButton
+                    android:id="@+id/male_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={viewModel.genderState}"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="center_vertical"
+                    android:padding="0dp"
+                    android:text="@string/male"
+                    android:textSize="@dimen/_11ssp"
+                    android:theme="@style/RadioButtonTheme"
+                    app:layout_constraintEnd_toStartOf="@id/female_radio"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/gender_label"
+                    app:layout_constraintTop_toBottomOf="@id/gender_label" />
+
+                <RadioButton
+                    android:id="@+id/female_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:checked="@={!viewModel.genderState}"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/female"
+                    android:textSize="@dimen/_11ssp"
+                    android:theme="@style/RadioButtonTheme"
+                    app:layout_constraintBaseline_toBaselineOf="@id/male_radio"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/male_radio" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/next_step"
+                    android:textAllCaps="false"
+                    android:textColor="@color/language_screen_main_text_color"
+                    android:textSize="@dimen/_12ssp"
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:backgroundTint="@color/language_screen_main_buttons_color"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintEnd_toEndOf="@id/password_edittext"
+                    app:layout_constraintStart_toStartOf="@id/password_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/male_radio"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_goneMarginTop="@dimen/_20sdp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/phone_login_back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/places_title_text_color"
+                    android:textSize="@dimen/_12ssp"
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:backgroundTint="@color/language_screen_main_text_color"
+                    app:cornerRadius="@dimen/_4sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/phone_number_edittext"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/next_btn"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_goneMarginTop="@dimen/_20sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            layout="@layout/loading_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadingStatus="@{viewModel.loadingState}" />
+
+    </FrameLayout>
+</layout>
