@@ -22,7 +22,8 @@ class PinOffersRepositoryImpl @Inject constructor(
         return flow {
             try {
                 emit(DataState.Loading())
-                val response = service.fetchOffers(token = "Bearer ${UserInfo.token}")
+                val response =
+                    service.fetchOffers(token = if (UserInfo.userId.isEmpty()) "" else "Bearer ${UserInfo.token}")
                 if (response.isSuccessful) {
                     emit(DataState.Success(data = response.body()!!.data.map { it.toOffer() }))
                 } else {

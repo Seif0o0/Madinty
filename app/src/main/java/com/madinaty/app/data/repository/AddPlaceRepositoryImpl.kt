@@ -42,7 +42,7 @@ class AddPlaceRepositoryImpl @Inject constructor(
                     }
                 } else {
                     when (response.code()) {
-                        500 -> {
+                        422,500 -> {
                             val body = response.errorBody()
                             val adapter =
                                 Moshi.Builder().build().adapter(AddPlaceResponse::class.java)

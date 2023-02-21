@@ -1,5 +1,6 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentMoreBinding
@@ -28,26 +32,70 @@ class MoreFragment : Fragment() {
     ): View {
         binding = FragmentMoreBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = requireActivity()
+        if (UserInfo.userId.isEmpty()) {
+            binding.logout.text = getString(R.string.login)
+        } else {
+            binding.logout.text = getString(R.string.logout)
+        }
+
         val activity = requireActivity() as MainActivity
         activity.hideBottomNav(false)
 
         return binding.root
     }
 
+    private val profileLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                navigateTo(MoreFragmentDirections.actionMoreFragmentToProfileFragment())
+            }
+        }
+
+    private val addPlaceLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                navigateTo(MoreFragmentDirections.actionMoreFragmentToAddPlaceDepartmentFragment())
+            }
+        }
+
+    private val myPlaceLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                navigateTo(MoreFragmentDirections.actionMoreFragmentToMyPlacesFragment())
+            }
+        }
+
+    private val loginLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (requireActivity() as MainActivity).navigateTo(R.id.bottom_nav_home)
+            }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.profile.setOnClickListener {
-            findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToProfileFragment())
+            launchActivity(
+                launcher = profileLauncher,
+                destination = MoreFragmentDirections.actionMoreFragmentToProfileFragment()
+            )
         }
 
         binding.addPlace.setOnClickListener {
-            findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToAddPlaceDepartmentFragment())
+            launchActivity(
+                launcher = addPlaceLauncher,
+                destination = MoreFragmentDirections.actionMoreFragmentToAddPlaceDepartmentFragment()
+            )
         }
 
         binding.myPlace.setOnClickListener {
-            findNavController().navigate(MoreFragmentDirections.actionMoreFragmentToMyPlacesFragment())
+            launchActivity(
+                launcher = myPlaceLauncher,
+                destination = MoreFragmentDirections.actionMoreFragmentToMyPlacesFragment()
+            )
         }
+
         binding.appLanguageValue.text =
             if (UserInfo.appLanguage == getString(R.string.arabic_value)) getString(R.string.arabic_label) else getString(
                 R.string.english_label
@@ -76,11 +124,36 @@ class MoreFragment : Fragment() {
         }
 
         binding.logout.setOnClickListener {
-            CustomDialog.showLogoutDialog(context = requireContext()) {
-                logUserOut()
-                startActivity(Intent(requireActivity(), AuthActivity::class.java))
-                requireActivity().finish()
+            launchActivity(loginLauncher)
+        }
+    }
+
+    private fun launchActivity(
+        launcher: ActivityResultLauncher<Intent>,
+        destination: NavDirections? = null,
+    ) {
+        if (UserInfo.userId.isEmpty()) {
+            launcher.launch(
+                Intent(
+                    requireContext(),
+                    AuthActivity::class.java
+                ).apply {
+                    putExtra("requiredLogin", true)
+                })
+        } else {
+            if (destination == null) {
+                CustomDialog.showLogoutDialog(context = requireContext()) {
+                    logUserOut()
+                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
+            } else {
+                navigateTo(destination)
             }
         }
+    }
+
+    private fun navigateTo(destination: NavDirections) {
+        findNavController().navigate(destination)
     }
 }

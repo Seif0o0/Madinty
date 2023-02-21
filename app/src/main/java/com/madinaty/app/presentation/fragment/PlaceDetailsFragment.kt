@@ -83,9 +83,9 @@ class PlaceDetailsFragment : Fragment() {
         }
 
         binding.call.setOnClickListener {
-            if (placeDetails.whatsAppNumber != null) {
+            if (placeDetails.phoneNumber != null) {
                 val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:${placeDetails.whatsAppNumber}")
+                intent.data = Uri.parse("tel:${placeDetails.phoneNumber}")
                 startActivity(intent)
             }
         }
@@ -95,7 +95,7 @@ class PlaceDetailsFragment : Fragment() {
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("https://wa.me/${placeDetails.whatsAppNumber}")
+                        Uri.parse("https://wa.me/+2${placeDetails.whatsAppNumber}")
                     )
                 )
             }

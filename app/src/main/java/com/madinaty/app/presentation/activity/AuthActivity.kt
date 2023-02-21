@@ -20,7 +20,6 @@ import java.util.*
 @AndroidEntryPoint
 class AuthActivity : BaseActivity() {
     private lateinit var binding: ActivityAuthBinding
-    private val callbackManager = CallbackManager.Factory.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)

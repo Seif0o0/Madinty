@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.madinaty.app.presentation.viewmodel.UpdatePlaceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/auth_screens_background">
+
+        <TextView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/back"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:drawableStartCompat="@drawable/ic_back_arrow_icon"
+            app:drawableTint="@color/auth_screens_title_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:gravity="center"
+            android:text="@string/add_place_details_title"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBaseline_toBaselineOf="@id/back_btn"
+            app:layout_constraintEnd_toStartOf="@id/next_btn"
+            app:layout_constraintStart_toEndOf="@id/back_btn" />
+
+        <TextView
+            android:id="@+id/next_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:text="@string/next"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:drawableEndCompat="@drawable/ic_flipped_back_arrow_icon"
+            app:drawableTint="@color/auth_screens_title_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/second_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/tajwal_medium"
+            android:gravity="center"
+            android:text="@string/add_place_details"
+            android:textColor="@color/auth_screens_title_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@color/auth_screens_main_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/second_title"
+            app:layout_constraintWidth_percent="0.66" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_line">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/place_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/place_name"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/place_name_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/place_name_hint"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.nameState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.nameErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/place_name_label"
+                    app:layout_constraintTop_toBottomOf="@id/place_name_label" />
+
+                <TextView
+                    android:id="@+id/city_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/city"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/place_name_edittext" />
+
+                <EditText
+                    android:id="@+id/city_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_down_icon"
+                    android:focusable="false"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:gravity="start"
+                    android:hint="@string/pick_place_city_hint"
+                    android:inputType="text"
+                    android:longClickable="false"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/city_label"
+                    app:layout_constraintTop_toBottomOf="@id/city_label" />
+
+                <TextView
+                    android:id="@+id/city_error"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/empty_field_error_message"
+                    android:textColor="@color/error_dialog_dismiss_text_background_color"
+                    android:textSize="@dimen/_8ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/city_edittext"
+                    app:layout_constraintStart_toStartOf="@id/city_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/city_edittext" />
+
+                <TextView
+                    android:id="@+id/place_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/place_address"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/city_error" />
+
+                <EditText
+                    android:id="@+id/place_address_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/place_address_hint"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.addressState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.addressErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/place_address_label"
+                    app:layout_constraintTop_toBottomOf="@id/place_address_label" />
+
+                <TextView
+                    android:id="@+id/phone_number_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/place_address_edittext" />
+
+                <EditText
+                    android:id="@+id/phone_number_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/phone_number_hint"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.phoneNumberState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.phoneNumberErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/phone_number_label"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
+
+                <TextView
+                    android:id="@+id/whats_app_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/whats_app"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/phone_number_edittext" />
+
+                <EditText
+                    android:id="@+id/whats_app_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/whats_app_hint"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.whatsAppState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.whatsAppErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/whats_app_label"
+                    app:layout_constraintTop_toBottomOf="@id/whats_app_label" />
+
+                <TextView
+                    android:id="@+id/email_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/email"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/whats_app_edittext" />
+
+                <EditText
+                    android:id="@+id/email_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.emailState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.emailErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/email_label"
+                    app:layout_constraintTop_toBottomOf="@id/email_label" />
+
+                <TextView
+                    android:id="@+id/facebook_account_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/facebook_account"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/email_edittext" />
+
+                <EditText
+                    android:id="@+id/facebook_account_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/facebook_account_hint"
+                    android:inputType="textWebEmailAddress"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.facebookState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.facebookErrorState}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/facebook_account_label"
+                    app:layout_constraintTop_toBottomOf="@id/facebook_account_label" />
+
+                <TextView
+                    android:id="@+id/working_hours_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/working_hours"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/facebook_account_edittext" />
+
+                <EditText
+                    android:id="@+id/working_hours_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/working_hours_hint"
+                    android:inputType="text"
+                    android:longClickable="false"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.workingHoursState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/working_hours_label"
+                    app:layout_constraintTop_toBottomOf="@id/working_hours_label" />
+
+                <TextView
+                    android:id="@+id/working_hours_error"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/empty_field_error_message"
+                    android:textColor="@color/error_dialog_dismiss_text_background_color"
+                    android:textSize="@dimen/_8ssp"
+                    android:visibility="@{viewModel.workingHoursErrorState}"
+                    app:layout_constraintEnd_toEndOf="@id/working_hours_edittext"
+                    app:layout_constraintStart_toStartOf="@id/working_hours_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/working_hours_edittext" />
+
+
+                <TextView
+                    android:id="@+id/place_location_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/place_location"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/working_hours_error" />
+
+                <EditText
+                    android:id="@+id/place_location_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/place_location_hint"
+                    android:inputType="textWebEmailAddress"
+                    android:longClickable="false"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.locationState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toStartOf="@id/pick_location_icon_background"
+                    app:layout_constraintStart_toStartOf="@id/place_location_label"
+                    app:layout_constraintTop_toBottomOf="@id/place_location_label" />
+
+                <TextView
+                    android:id="@+id/location_error"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:text="@string/empty_field_error_message"
+                    android:textColor="@color/error_dialog_dismiss_text_background_color"
+                    android:textSize="@dimen/_8ssp"
+                    android:visibility="@{viewModel.locationErrorState}"
+                    app:layout_constraintEnd_toEndOf="@id/place_location_edittext"
+                    app:layout_constraintStart_toStartOf="@id/place_location_edittext"
+                    app:layout_constraintTop_toBottomOf="@id/place_location_edittext" />
+
+
+                <View
+                    android:id="@+id/pick_location_icon_background"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    app:layout_constraintBottom_toBottomOf="@id/place_location_edittext"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/place_location_edittext" />
+
+                <ImageView
+                    android:id="@+id/pick_location_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_location_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/pick_location_icon_background"
+                    app:layout_constraintEnd_toEndOf="@id/pick_location_icon_background"
+                    app:layout_constraintStart_toStartOf="@id/pick_location_icon_background"
+                    app:layout_constraintTop_toTopOf="@id/pick_location_icon_background" />
+
+
+                <TextView
+                    android:id="@+id/description_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/description"
+                    android:textColor="@color/darker_text_color"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/location_error" />
+
+                <EditText
+                    android:id="@+id/description_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:background="@drawable/grey_edit_text_background"
+                    android:fontFamily="@font/tajwal_regular"
+                    android:gravity="start"
+                    android:hint="@string/description_hint"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingTop="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.descriptionState}"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/auth_screens_title_color"
+                    android:textColorHint="@color/help_center_description"
+                    android:textCursorDrawable="@drawable/cursor_shape"
+                    android:textSize="@dimen/_11ssp"
+                    app:error_message="@{viewModel.descriptionErrorState}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/description_label"
+                    app:layout_constraintTop_toBottomOf="@id/description_label"
+                    app:layout_constraintVertical_bias="0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

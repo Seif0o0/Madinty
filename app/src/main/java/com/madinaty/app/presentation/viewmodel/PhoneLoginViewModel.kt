@@ -69,7 +69,7 @@ class PhoneLoginViewModel @Inject constructor(
 
     fun login() {
         viewModelScope.launch {
-            repo.login(phoneNumber = phoneNumberState.value!!, password = passwordState.value!!)
+            repo.login(phoneNumber = "+2${phoneNumberState.value}", password = passwordState.value!!)
                 .collect { result ->
                     startLogging(false)
                     when (result) {

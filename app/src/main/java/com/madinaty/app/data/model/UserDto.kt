@@ -10,7 +10,7 @@ data class UserDto(
     val username: String,
     @Json(name = "first_name") val firstName: String,
     @Json(name = "last_name") val lastName: String,
-    val email: String,
+    val email: String?,
     @Json(name = "email_verified_at") val emailVerificationDate: String?,
     @Json(name = "mobile") val phoneNumber: String,
     val gender: String? ,

@@ -4,7 +4,7 @@ import com.madinaty.app.data.model.UserDto
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PhoneLoginResponse(val data: PhoneLoginDataResponse?,val message:String?)
+data class PhoneLoginResponse(val data: PhoneLoginDataResponse?, val message: String?)
 
 @JsonClass(generateAdapter = true)
 data class PhoneLoginDataResponse(

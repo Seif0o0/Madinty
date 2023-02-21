@@ -47,6 +47,7 @@ class MyPlacesFragment : Fragment(R.layout.fragment_my_places) {
         )
 
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
             viewModel.getMyPlaces()
         }
 
@@ -56,9 +57,6 @@ class MyPlacesFragment : Fragment(R.layout.fragment_my_places) {
         }
         lifecycleScope.launchWhenStarted {
             viewModel.myPlaces.collectLatest {
-                if (binding.swipeRefresh.isRefreshing) {
-                    binding.swipeRefresh.isRefreshing = false
-                }
                 myPlacesAdapter.submitList(it)
             }
         }

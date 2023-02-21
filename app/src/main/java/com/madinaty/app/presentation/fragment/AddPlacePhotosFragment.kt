@@ -97,9 +97,12 @@ class AddPlacePhotosFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.addPlaceState.collectLatest {
                 if (it) {
+                    viewModel.addPlaceState(false)
                     CustomDialog.showAddPlaceSuccessDialog(
                         context = requireContext(),
+                        successMessage = getString(R.string.add_place_success_message)
                     ) {
+                        viewModel.deleteAllData()
                         findNavController().navigate(
                             AddPlacePhotosFragmentDirections.actionAddPlacePhotosFragmentToMoreFragment()
                         )

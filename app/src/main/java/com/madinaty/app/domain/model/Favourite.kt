@@ -11,6 +11,7 @@ data class Favourite(
     val endTime: String,
     val description: String,
     val facebookUrl: String?,
+    val phoneNumber:String?,
     val whatsAppNumber: String?,
     val userId: String,
     val regionId: String,

@@ -43,9 +43,11 @@ class OffersFragment : Fragment() {
         binding.lifecycleOwner = requireActivity()
 
         binding.swipeRefresh.setColorSchemeResources(
-            R.color.auth_screens_main_color)
+            R.color.auth_screens_main_color
+        )
 
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
             offersAdapter.refresh()
         }
 
@@ -82,9 +84,6 @@ class OffersFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.offers.collectLatest {
-                if(binding.swipeRefresh.isRefreshing){
-                    binding.swipeRefresh.isRefreshing = false
-                }
                 offersAdapter.submitData(it)
             }
         }

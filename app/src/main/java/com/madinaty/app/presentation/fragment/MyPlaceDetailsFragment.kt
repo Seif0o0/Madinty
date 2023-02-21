@@ -32,6 +32,13 @@ class MyPlaceDetailsFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.updateBtn.setOnClickListener {
+            findNavController().navigate(
+                MyPlaceDetailsFragmentDirections.actionMyPlaceDetailsFragmentToUpdatePlaceDepartmentFragment(
+                    placeDetails
+                )
+            )
+        }
         binding.address.setOnClickListener {
             val latlngUri = Uri.parse("geo:${placeDetails.latitude},${placeDetails.longitude}?z=15")
             val mapIntent = Intent(Intent.ACTION_VIEW, latlngUri)
@@ -41,9 +48,9 @@ class MyPlaceDetailsFragment : Fragment() {
 
 
         binding.call.setOnClickListener {
-            if (placeDetails.whatsAppNumber != null) {
+            if (placeDetails.phoneNumber != null) {
                 val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:${placeDetails.whatsAppNumber}")
+                intent.data = Uri.parse("tel:${placeDetails.phoneNumber}")
                 startActivity(intent)
             }
         }
@@ -53,7 +60,7 @@ class MyPlaceDetailsFragment : Fragment() {
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("https://wa.me/${placeDetails.whatsAppNumber}")
+                        Uri.parse("https://wa.me/+2${placeDetails.whatsAppNumber}")
                     )
                 )
             }

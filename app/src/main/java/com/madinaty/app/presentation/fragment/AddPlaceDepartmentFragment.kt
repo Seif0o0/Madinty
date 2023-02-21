@@ -103,6 +103,11 @@ class AddPlaceDepartmentFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.deleteAllData()
+    }
+
     override fun onResume() {
         super.onResume()
         val activity = requireActivity() as MainActivity

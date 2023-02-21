@@ -45,58 +45,18 @@
                     app:layout_constraintStart_toStartOf="@id/logo"
                     app:layout_constraintTop_toBottomOf="@id/logo" />
 
-
-                <TextView
-                    android:id="@+id/username_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:fontFamily="@font/tajwal_regular"
-                    android:text="@string/username"
-                    android:textColor="@color/darker_text_color"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title" />
-
-                <EditText
-                    android:id="@+id/username_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/edit_text_background"
-                    android:fontFamily="@font/tajwal_regular"
-                    android:gravity="start"
-                    android:hint="@string/username_hint"
-                    android:inputType="textPersonName"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_9sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingBottom="@dimen/_9sdp"
-                    android:text="@={viewModel.usernameState}"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/auth_screens_title_color"
-                    android:textColorHint="@color/help_center_description"
-                    android:textCursorDrawable="@drawable/cursor_shape"
-                    android:textSize="@dimen/_11ssp"
-                    app:error_message="@{viewModel.usernameErrorState}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/username_label"
-                    app:layout_constraintTop_toBottomOf="@id/username_label" />
-
                 <TextView
                     android:id="@+id/first_name_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/tajwal_regular"
                     android:text="@string/first_name_label"
                     android:textColor="@color/darker_text_color"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/username_edittext" />
+                    app:layout_constraintTop_toBottomOf="@id/title" />
 
                 <EditText
                     android:id="@+id/first_name_edittext"
@@ -164,45 +124,6 @@
                     app:layout_constraintTop_toBottomOf="@id/last_name_label" />
 
                 <TextView
-                    android:id="@+id/phone_number_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/tajwal_regular"
-                    android:text="@string/phone_number"
-                    android:textColor="@color/darker_text_color"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/last_name_edittext" />
-
-                <EditText
-                    android:id="@+id/phone_number_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/edit_text_background"
-                    android:fontFamily="@font/tajwal_regular"
-                    android:gravity="start"
-                    android:hint="@string/phone_number_hint"
-                    android:inputType="phone"
-                    android:paddingStart="@dimen/_8sdp"
-                    android:paddingTop="@dimen/_9sdp"
-                    android:paddingEnd="@dimen/_8sdp"
-                    android:paddingBottom="@dimen/_9sdp"
-                    android:text="@={viewModel.mobileState}"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/auth_screens_title_color"
-                    android:textColorHint="@color/help_center_description"
-                    android:textCursorDrawable="@drawable/cursor_shape"
-                    android:textSize="@dimen/_11ssp"
-                    app:error_message="@{viewModel.mobileErrorState}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/phone_number_label"
-                    app:layout_constraintTop_toBottomOf="@id/phone_number_label" />
-
-                <TextView
                     android:id="@+id/password_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,7 +134,7 @@
                     android:textColor="@color/darker_text_color"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/phone_number_edittext" />
+                    app:layout_constraintTop_toBottomOf="@id/last_name_edittext" />
 
                 <EditText
                     android:id="@+id/password_edittext"
@@ -351,12 +272,12 @@
                     android:paddingTop="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_8sdp"
                     android:paddingBottom="@dimen/_9sdp"
+                    android:text="@={viewModel.dobState}"
                     android:textAlignment="viewStart"
                     android:textColor="@color/auth_screens_title_color"
                     android:textColorHint="@color/help_center_description"
                     android:textCursorDrawable="@drawable/cursor_shape"
                     android:textSize="@dimen/_11ssp"
-                    android:text="@={viewModel.dobState}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/birthdate_label"
                     app:layout_constraintTop_toBottomOf="@id/birthdate_label" />
@@ -462,8 +383,8 @@
                     app:backgroundTint="@color/language_screen_main_text_color"
                     app:cornerRadius="@dimen/_4sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/phone_number_edittext"
-                    app:layout_constraintStart_toStartOf="@id/phone_number_edittext"
+                    app:layout_constraintEnd_toEndOf="@id/first_name_edittext"
+                    app:layout_constraintStart_toStartOf="@id/first_name_label"
                     app:layout_constraintTop_toBottomOf="@id/next_btn"
                     app:layout_constraintVertical_bias="0"
                     app:layout_goneMarginTop="@dimen/_20sdp" />

@@ -20,7 +20,7 @@ class OffersPagingSource @Inject constructor(
         val currentPage = params.key ?: 1
         return try {
             val response =
-                service.fetchOffers(token = "Bearer ${UserInfo.token}", page = currentPage)
+                service.fetchOffers(token = if (UserInfo.userId.isEmpty()) "" else "Bearer ${UserInfo.token}", page = currentPage)
             if (response.isSuccessful) {
                 val body = response.body()!!
                 val offers = body.data.map { it.toOffer() }

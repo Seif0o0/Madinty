@@ -1,4 +1,13 @@
 <resources>
+
+    <!-- location library strings -->
+    <string name="locus_location_resolution_title">خدمة الموقع معطلة حالياً</string>
+    <string name="locus_location_resolution_message">من فضلك قم بتفعيل خدمة الوصول لموقع الجهاز للحصول على خدمات افضل</string>
+    <string name="enable">تفعيل</string>
+    <string name="cancel">الغاء</string>
+    <!--    -->
+
+
     <string name="app_name">مدينتي</string>
     <string name="pick_language_header">اختيار اللغة</string>
     <string name="pick_language_title">الرجاء اختيار لغة التطبيق</string>
@@ -59,7 +68,7 @@
     <string name="favourites_header">المفضلة</string>
     <string name="remove_favourites_warning_message">هل تود بالفعل في حذف جميع العناصر المحفوظة؟</string>
     <string name="yes">نعم</string>
-    <string name="cancel">تراجع</string>
+    <string name="cancel_key">تراجع</string>
     <string name="logout_warning_message">هل أنت متأكد من تسجيل الخروج؟</string>
     <string name="back">عودة</string>
     <string name="add_place_details_title">إضافة مكان</string>
@@ -119,9 +128,9 @@
     <string name="underline_confirm"><u>تأكيد</u></string>
     <string name="save_changes">حفظ التغييرات</string>
     <string name="confirm_phone_header">تأكيد رقم الهاتف</string>
-    <string name="confirm_phone_message">Enter 5 digits code that was sent to your phone number which ends with 560</string>
+    <string name="confirm_phone_message">ادخل الكود المرسل الى هاتفك</string>
     <string name="code_hint">"     "</string>
-    <string name="resend_code_label">Didn\'t receive it?</string>
+    <string name="resend_code_label">لم تتلقى الكود بعد؟</string>
     <string name="underline_resend_code">إعادة ارساله</string>
     <string name="ok">حسناً</string>
     <string name="empty_field_error_message">من فضلك املأ هذا الحقل</string>
@@ -162,7 +171,7 @@
     <string name="my_places_header">اماكني</string>
     <string name="pick_location">حدد الموقع</string>
     <string name="search_feature_not_available">نأسف هذه الخاصية غير متاحة حالياً. قريباً</string>
-    <string name="send_message_successful_message">نحن نقدر اتصالك بنا. سيتواصل معك أحد زملائنا قريبًا!\nأتمنى لك يومًا سعيدًا!</string>
+    <string name="send_message_successful_message">نحن نقدر تواصلك معنا. سيتواصل معك أحد زملائنا قريبًا!\nنتمنى لك يومًا سعيدًا!</string>
     <string name="username_length_error_message">يجب ان يتكون الاسم على الاقل من 3 احرف</string>
     <string name="first_name_length_error_message">يجب ان يتكون الاسم الاول على الاقل من 3 احرف</string>
     <string name="last_name_length_error_message">يجب ان يتكون الاسم الاخير على الاقل من 3 احرف</string>
@@ -173,6 +182,15 @@
     <string name="confirm_password_hint">أدخل تأكيد كلمة المرور</string>
     <string name="username_hint">أدخل اسم المستخدم</string>
     <string name="username">اسم المستخدم</string>
-    <string name="register_label">تسجيل الدخول</string>
+    <string name="register_label">تسجيل حساب جديد</string>
     <string name="search_hint">بحث....</string>
+    <string name="invalid_mobile_error_message">صيغة رقم الهاتف غير صحيحة</string>
+    <string name="update_place">تعديل المكان</string>
+    <string name="your_selected_category_is">الفئة المحددة من قبل: %1$s</string>
+    <string name="skip">تخطي</string>
+    <string name="update_place_details_title">تعديل المكان</string>
+    <string name="update_place_photos">تعديل صور المكان</string>
+    <string name="add_place_success_message">تم انشاء طلب اضافة مكان بنجاح وفي انتظار المراجعة</string>
+    <string name="update_place_success_message">تم تعديل مكانك بنجاح</string>
+    <string name="login_required_message">الرجاء تسجيل الدخول اولاً</string>
 </resources>

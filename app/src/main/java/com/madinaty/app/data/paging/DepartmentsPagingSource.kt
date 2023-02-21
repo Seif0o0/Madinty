@@ -22,7 +22,10 @@ class DepartmentsPagingSource @Inject constructor(
         val currentPage = params.key ?: 1
         return try {
             val response =
-                service.fetchDepartments(token = "Bearer ${UserInfo.token}", page = currentPage)
+                service.fetchDepartments(
+                    token = if (UserInfo.userId.isEmpty()) "" else "Bearer ${UserInfo.token}",
+                    page = currentPage
+                )
             if (response.isSuccessful) {
                 val body = response.body()!!
                 val meta = body.meta

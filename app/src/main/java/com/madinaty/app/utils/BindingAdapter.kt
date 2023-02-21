@@ -194,3 +194,31 @@ fun TextView.concatChildsName(childs: List<DepartmentChild>) {
 
     text = rslt
 }
+
+@BindingAdapter("error_message")
+fun TextView.setErrorMessage(errorMessage: String) {
+    if (errorMessage.isEmpty()) {
+        visibility = View.GONE
+    } else {
+        visibility = View.VISIBLE
+        text = errorMessage
+    }
+}
+
+@BindingAdapter("resend_code_timer")
+fun TextView.setResendCodeClickable(timer: String) {
+    isClickable = timer.isEmpty()
+}
+
+@BindingAdapter("my_place_status")
+fun ImageView.setMyPlaceStatus(status: Boolean) {
+    if (status)
+        setImageResource(R.drawable.approved_icon)
+    else
+        setImageResource(R.drawable.pending_icon)
+}
+
+@BindingAdapter("my_place_status")
+fun MaterialButton.setEditBtnVisibility(status: Boolean) {
+    visibility = if (status) View.VISIBLE else View.INVISIBLE
+}

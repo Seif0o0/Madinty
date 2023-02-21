@@ -1,22 +1,31 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentSearchBinding
+import com.madinaty.app.domain.model.Place
+import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.*
 import com.madinaty.app.presentation.viewmodel.AddRemoveFavouriteViewModel
 import com.madinaty.app.presentation.viewmodel.SearchViewModel
+import com.madinaty.app.utils.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
@@ -27,6 +36,19 @@ class SearchFragment : Fragment() {
     private val addRemoveFavouriteViewModel: AddRemoveFavouriteViewModel by viewModels()
 
     private lateinit var placesAdapter: PagingPlacesAdapter
+
+    private val placeDetailsLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                findNavController().navigate(
+                    PlacesFragmentDirections.actionPlacesFragmentToPlaceDetailsFragment(
+                        pickedPlace
+                    )
+                )
+            }
+        }
+    lateinit var pickedPlace: Place
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,13 +65,23 @@ class SearchFragment : Fragment() {
 
 
         placesAdapter = PagingPlacesAdapter(clickListener = ListItemClickListener {
-            findNavController().navigate(
-                SearchFragmentDirections.actionSearchFragmentToPlaceDetailsFragment3(
+            pickedPlace = it
+            launchActivity(
+                launcher = placeDetailsLauncher,
+                destination = SearchFragmentDirections.actionSearchFragmentToPlaceDetailsFragment3(
                     it
                 )
             )
         }, favClickListener = ListItemClickListener {
-            addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
+            if (UserInfo.userId.isEmpty()) {
+                CustomDialog.showErrorDialog(
+                    context = requireContext(),
+                    errorMessage = getString(R.string.login_required_message)
+                )
+            } else {
+                addRemoveFavouriteViewModel.startAddRemoveFavouriteState(true, it)
+            }
+
         })
 
         binding.list.apply {
@@ -64,6 +96,7 @@ class SearchFragment : Fragment() {
         )
 
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
             placesAdapter.refresh()
         }
         placesAdapter.addLoadStateListener { combinedLoadStates ->
@@ -117,13 +150,28 @@ class SearchFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.places.collectLatest {
-                if (binding.swipeRefresh.isRefreshing) {
-                    binding.swipeRefresh.isRefreshing = false
-                }
                 placesAdapter.submitData(it)
             }
         }
         return binding.root
+    }
+
+    private fun launchActivity(
+        launcher: ActivityResultLauncher<Intent>,
+        destination: NavDirections,
+    ) {
+        if (UserInfo.userId.isEmpty()) {
+            launcher.launch(
+                Intent(
+                    requireContext(),
+                    AuthActivity::class.java
+                ).apply {
+                    putExtra("requiredLogin", true)
+                })
+        } else {
+            findNavController().navigate(destination)
+
+        }
     }
 
     override fun onResume() {

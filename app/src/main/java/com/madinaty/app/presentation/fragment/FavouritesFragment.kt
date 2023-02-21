@@ -1,7 +1,10 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -16,6 +19,8 @@ import com.madinaty.app.R
 import com.madinaty.app.data.mapper.toPlace
 import com.madinaty.app.databinding.DeleteFavouritesDialogLayoutBinding
 import com.madinaty.app.databinding.FragmentFavouritesBinding
+import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.FavouritesAdapter
 import com.madinaty.app.presentation.adapter.ListItemClickListener
@@ -41,7 +46,29 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         }
         binding.lifecycleOwner = requireActivity()
 
+        if (UserInfo.userId.isEmpty()) {
+            val loginLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                    if (it.resultCode == Activity.RESULT_OK) {
+                        initViews()
+                    } else {
+                        (requireActivity() as MainActivity).navigateTo(R.id.bottom_nav_home)
+                    }
+                }
+            loginLauncher.launch(
+                Intent(
+                    requireContext(),
+                    AuthActivity::class.java
+                ).apply {
+                    putExtra("requiredLogin", true)
+                })
+        } else {
+            initViews()
+        }
 
+    }
+
+    private fun initViews() {
         favouritesAdapter = FavouritesAdapter(clickListener = ListItemClickListener {
             setFragmentResultListener("changeFavourite") { _, bundle ->
                 if (bundle.getBoolean("updated")) {
@@ -56,12 +83,13 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         })
 
         binding.swipeRefresh.setColorSchemeResources(
-            R.color.auth_screens_main_color)
+            R.color.auth_screens_main_color
+        )
 
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
             viewModel.getFavourites()
         }
-
 
         lifecycleScope.launchWhenStarted {
             addRemoveFavouriteViewModel.addRemoveFavouriteState.collectLatest {
@@ -92,14 +120,9 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
         lifecycleScope.launchWhenStarted {
             viewModel.favourites.collectLatest {
-                if (binding.swipeRefresh.isRefreshing) {
-                    binding.swipeRefresh.isRefreshing = false
-                }
                 favouritesAdapter.submitList(it)
             }
         }
-
-
 
         binding.deleteIcon.setOnClickListener {
             showDeleteFavouritesDialog()

@@ -1,24 +1,32 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.madinaty.app.R
 import com.madinaty.app.databinding.FragmentHomeBinding
 import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.presentation.adapter.*
 import com.madinaty.app.presentation.viewmodel.HomeViewModel
 import com.madinaty.app.presentation.viewmodel.PinOffersViewModel
+import com.madinaty.app.utils.CustomDialog
+import com.madinaty.app.utils.logUserOut
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -31,6 +39,13 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     lateinit var departmentsAdapter: DepartmentsAdapter
+
+    private val changeCityLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPickCityFragment())
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -55,8 +70,12 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = requireActivity()
 
         binding.changeText.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPickCityFragment())
+            launchActivity(
+                launcher = changeCityLauncher,
+                destination = HomeFragmentDirections.actionHomeFragmentToPickCityFragment()
+            )
         }
+
         /* departments list section */
         departmentsAdapter =
             DepartmentsAdapter(clickListener = ListItemClickListener { department ->
@@ -82,6 +101,7 @@ class HomeFragment : Fragment() {
         )
 
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = false
             departmentsAdapter.refresh()
         }
 
@@ -117,9 +137,6 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.departments.collectLatest {
-                if (binding.swipeRefresh.isRefreshing) {
-                    binding.swipeRefresh.isRefreshing = false
-                }
                 departmentsAdapter.submitData(it)
             }
         }
@@ -139,6 +156,23 @@ class HomeFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun launchActivity(
+        launcher: ActivityResultLauncher<Intent>,
+        destination: NavDirections,
+    ) {
+        if (UserInfo.userId.isEmpty()) {
+            launcher.launch(
+                Intent(
+                    requireContext(),
+                    AuthActivity::class.java
+                ).apply {
+                    putExtra("requiredLogin", true)
+                })
+        } else {
+            findNavController().navigate(destination)
+        }
     }
 
     override fun onResume() {

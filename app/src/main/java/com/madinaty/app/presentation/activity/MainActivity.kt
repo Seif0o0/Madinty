@@ -34,4 +34,8 @@ class MainActivity : BaseActivity() {
         binding.bottomNav.visibility = if (hide) View.GONE else View.VISIBLE
     }
 
+    fun navigateTo(destinationId:Int) {
+        binding.bottomNav.selectedItemId = destinationId
+    }
+
 }

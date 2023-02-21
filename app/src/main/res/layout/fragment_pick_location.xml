@@ -28,6 +28,8 @@
             android:id="@+id/pick_btn"
             android:layout_width="0dp"
             android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_30sdp"
             android:fontFamily="@font/tajwal_regular"
             android:insetLeft="0dp"
@@ -38,15 +40,35 @@
             android:textAllCaps="false"
             android:textColor="@color/language_screen_main_text_color"
             android:textSize="@dimen/_12ssp"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
             android:theme="@style/Theme.MaterialComponents"
             app:backgroundTint="@color/language_screen_main_buttons_color"
             app:cornerRadius="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/current_location_btn"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/current_location_btn"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:theme="@style/Theme.MaterialComponents"
+            app:backgroundTint="@color/language_screen_main_buttons_color"
+            app:cornerRadius="@dimen/_4sdp"
+            app:icon="@drawable/current_location_icon"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/intro_screen_sub_buttons_color"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_goneMarginTop="@dimen/_20sdp" />
+            app:layout_constraintStart_toEndOf="@id/pick_btn" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"

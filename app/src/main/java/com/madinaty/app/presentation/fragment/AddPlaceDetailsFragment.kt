@@ -3,16 +3,13 @@ package com.madinaty.app.presentation.fragment
 import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.madinaty.app.databinding.FragmentAddPlaceDetailsBinding
@@ -68,7 +65,7 @@ class AddPlaceDetailsFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             fragmentTransaction.addToBackStack(null)
             requireActivity().supportFragmentManager.setFragmentResultListener(
                 requestKey, viewLifecycleOwner
-            ) { requestKey, bundle ->
+            ) { _, bundle ->
                 val region = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     bundle.getParcelable("region", Region::class.java)
                 } else {
@@ -152,9 +149,9 @@ class AddPlaceDetailsFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
         }
         TimePickerDialog(
             requireContext(),
-            { view, hourOfDay, minute ->
+            { _, hourOfDay1, minute1 ->
                 val endTime =
-                    "${if (hourOfDay < 10) "0$hourOfDay" else hourOfDay}:${if (minute < 10) "0$minute" else minute}"
+                    "${if (hourOfDay1 < 10) "0$hourOfDay1" else hourOfDay1}:${if (minute1 < 10) "0$minute1" else minute1}"
                 binding.workingHoursEdittext.setText("$startTime$endTime")
                 viewModel.workingHoursState.value = "$startTime$endTime"
                 if (binding.workingHoursError.visibility == View.VISIBLE)

@@ -122,6 +122,9 @@
         <argument
             android:name="myPlace"
             app:argType="com.madinaty.app.domain.model.MyPlace" />
+        <action
+            android:id="@+id/action_myPlaceDetailsFragment_to_updatePlaceDepartmentFragment"
+            app:destination="@id/updatePlaceDepartmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/pickLocationFragment"
@@ -130,5 +133,60 @@
         <argument
             android:name="latLng"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePlaceDepartmentFragment"
+        android:name="com.madinaty.app.presentation.fragment.UpdatePlaceDepartmentFragment"
+        android:label="UpdatePlaceDepartmentFragment" >
+        <action
+            android:id="@+id/action_updatePlaceDepartmentFragment_to_updatePlaceDepartmentChildFragment"
+            app:destination="@id/updatePlaceDepartmentChildFragment" />
+        <argument
+            android:name="myPlaceInfo"
+            app:argType="com.madinaty.app.domain.model.MyPlace" />
+        <action
+            android:id="@+id/action_updatePlaceDepartmentFragment_to_updatePlaceDetailsFragment"
+            app:destination="@id/updatePlaceDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePlaceDepartmentChildFragment"
+        android:name="com.madinaty.app.presentation.fragment.UpdatePlaceDepartmentChildFragment"
+        android:label="UpdatePlaceDepartmentChildFragment" >
+        <argument
+            android:name="department"
+            app:argType="com.madinaty.app.domain.model.Department" />
+        <action
+            android:id="@+id/action_updatePlaceDepartmentChildFragment_to_updatePlaceDetailsFragment"
+            app:destination="@id/updatePlaceDetailsFragment" />
+        <action
+            android:id="@+id/action_updatePlaceDepartmentChildFragment_self"
+            app:destination="@id/updatePlaceDepartmentChildFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePlaceDetailsFragment"
+        android:name="com.madinaty.app.presentation.fragment.UpdatePlaceDetailsFragment"
+        android:label="UpdatePlaceDetailsFragment" >
+        <argument
+            android:name="departmentId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_updatePlaceDetailsFragment_to_pickLocationFragment"
+            app:destination="@id/pickLocationFragment" />
+        <action
+            android:id="@+id/action_updatePlaceDetailsFragment_to_updatePlacePhotosFragment"
+            app:destination="@id/updatePlacePhotosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePlacePhotosFragment"
+        android:name="com.madinaty.app.presentation.fragment.UpdatePlacePhotosFragment"
+        android:label="UpdatePlacePhotosFragment" >
+        <argument
+            android:name="departmentId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_updatePlacePhotosFragment_to_myPlacesFragment"
+            app:destination="@id/myPlacesFragment"
+            app:popUpTo="@id/myPlacesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

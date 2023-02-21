@@ -69,6 +69,18 @@ abstract class RepositoriesModule {
 
     @Binds
     @ViewModelScoped
+    abstract fun provideSendCodeRepository(repoImpl: SendCodeRepositoryImpl): SendCodeRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideOtpVerificationRepository(repoImpl: OTPVerificationRepositoryImpl): OTPVerificationRepository
+
+    @Binds
+    @ViewModelScoped
+    abstract fun provideUpdatePlaceRepository(repoImpl: UpdatePlaceRepositoryImpl): UpdatePlaceRepository
+
+    @Binds
+    @ViewModelScoped
     abstract fun provideDataStoreRepository(repoImpl: DataStoreRepositoryImpl): DataStoreRepository
 
 }

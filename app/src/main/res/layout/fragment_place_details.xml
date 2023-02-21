@@ -133,7 +133,7 @@
                 app:layout_constraintEnd_toStartOf="@id/whats"
                 app:layout_constraintStart_toEndOf="@id/communication_accounts"
                 app:layout_constraintTop_toTopOf="@id/communication_accounts"
-                app:reference="@{place.whatsAppNumber}" />
+                app:reference="@{place.phoneNumber}" />
 
             <ImageView
                 android:id="@+id/whats"

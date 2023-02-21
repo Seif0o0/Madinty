@@ -10,7 +10,7 @@ fun UserDto.toUser() = User(
     username = username,
     firstName = firstName,
     lastName = lastName,
-    email = email,
+    email = email ?: "",
     phoneNumber = phoneNumber,
     gender = if (gender == null) {
         Constants.MALE_VALUE

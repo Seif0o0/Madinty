@@ -15,6 +15,7 @@ data class FavouriteDto(
     @Json(name = "work_to") val endTime: String,
     val description: String,
     @Json(name = "facebook_url") val facebookUrl: String?,
+    @Json(name="mobile") val phoneNumber:String?,
     @Json(name = "whats_number") val whatsAppNumber: String?,
     @Json(name = "user_id") val userId: String,
     @Json(name = "region_id") val regionId: String,

@@ -7,6 +7,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.dagger.hilt.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+//    id 'com.google.gms.google-services'
 }
 
 android {
@@ -14,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.madinaty.app"
-        minSdk 21
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -109,8 +110,8 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
-    // loader
-//    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    // OTP
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx'
 
     // dialogs
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
@@ -120,11 +121,10 @@ dependencies {
 
     // google map and location
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'//don't upgrade to the latest version because it won't work
 
-//    implementation 'com.github.BirjuVachhani:locus-android:4.0.1'
-    // Autocomplete (location search)
-    implementation 'com.google.android.libraries.places:places:2.7.0'
+    // Fetch user location
+    implementation 'com.github.BirjuVachhani:locus-android:4.1.0'
 
     // viewPager indicator
     implementation 'com.tbuonomo:dotsindicator:4.2'
@@ -146,8 +146,9 @@ dependencies {
     // GoogleLogin
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
+
 }
 
-secrets{
+secrets {
     defaultPropertiesFileName 'local.properties'
 }

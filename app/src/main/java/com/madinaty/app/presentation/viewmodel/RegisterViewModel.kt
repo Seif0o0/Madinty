@@ -2,11 +2,14 @@ package com.madinaty.app.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.madinaty.app.R
 import com.madinaty.app.data.mapper.toUser
 import com.madinaty.app.data.response.PhoneLoginInfoResponse
+import com.madinaty.app.data.response.RegisterInfoResponse
+import com.madinaty.app.domain.model.User
 import com.madinaty.app.domain.repository.RegisterRepository
 import com.madinaty.app.kot_pref.UserInfo
 import com.madinaty.app.utils.Constants
@@ -22,7 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val application: Application,
-    private val repo: RegisterRepository
+    private val repo: RegisterRepository,
+    private val state: SavedStateHandle
 ) : ViewModel() {
     private val _loadingState = MutableStateFlow(false)
     val loadingState: StateFlow<Boolean> get() = _loadingState
@@ -72,31 +76,19 @@ class RegisterViewModel @Inject constructor(
 
     fun onRegisterBtnClicked() {
         var pass = true
-        if (!validateUsername(usernameState.value!!))
-            pass = false
-        if (!validateFirstName(firstNameState.value!!))
-            pass = false
-        if (!validateLastName(lastNameState.value!!))
-            pass = false
-        if (!validateEmail(emailState.value!!))
-            pass = false
-        if (!validateMobile(mobileState.value!!))
-            pass = false
-        if (!validateDob(dobState.value!!))
-            pass = false
-        if (!validatePassword(passwordState.value!!))
-            pass = false
-        if (!validateConfirmPassword(confirmPasswordState.value!!))
-            pass = false
+        if (!validateFirstName(firstNameState.value!!)) pass = false
+        if (!validateLastName(lastNameState.value!!)) pass = false
+        if (!validateEmail(emailState.value!!)) pass = false
+        if (!validateDob(dobState.value!!)) pass = false
+        if (!validatePassword(passwordState.value!!)) pass = false
+        if (!validateConfirmPassword(confirmPasswordState.value!!)) pass = false
 
-        if (pass)
-            startRegister(true)
+        if (pass) startRegister(true)
     }
 
     fun registerUser() {
         viewModelScope.launch {
             val map = mutableMapOf<String, String>()
-            map["username"] = usernameState.value!!
             map["first_name"] = firstNameState.value!!
             map["last_name"] = lastNameState.value!!
             map["email"] = emailState.value!!
@@ -105,7 +97,7 @@ class RegisterViewModel @Inject constructor(
                 if (genderState.value!!) Constants.EDIT_MALE_VALUE else Constants.EDIT_FEMALE_VALUE
             map["dob"] = dobState.value!!
             map["password"] = passwordState.value!!
-            map["password_confirmation"] = confirmPasswordState.value!!
+            map["user_id"] = state.get<String>("userId")!!
 
             repo.register(map).collectLatest { result ->
                 startRegister(false)
@@ -128,7 +120,7 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    private fun saveUser(data: PhoneLoginInfoResponse) {
+    private fun saveUser(data: RegisterInfoResponse) {
         val user = data.user.toUser()
         val token = data.token
 
@@ -153,11 +145,9 @@ class RegisterViewModel @Inject constructor(
         false
     } else {
         if (username.length < 3) {
-            usernameErrorState.value =
-                application.getString(R.string.username_length_error_message)
+            usernameErrorState.value = application.getString(R.string.username_length_error_message)
             false
-        } else
-            true
+        } else true
     }
 
     private fun validateFirstName(firstName: String) = if (firstName.isEmpty()) {
@@ -168,8 +158,7 @@ class RegisterViewModel @Inject constructor(
             firstNameErrorState.value =
                 application.getString(R.string.first_name_length_error_message)
             false
-        } else
-            true
+        } else true
     }
 
     private fun validateLastName(lastName: String) = if (lastName.isEmpty()) {
@@ -180,20 +169,16 @@ class RegisterViewModel @Inject constructor(
             lastNameErrorState.value =
                 application.getString(R.string.last_name_length_error_message)
             false
-        } else
-            true
+        } else true
     }
 
     private fun validateEmail(email: String) = if (email.isEmpty()) {
-        emailErrorState.value =
-            application.getString(R.string.empty_field_error_message)
+        emailErrorState.value = application.getString(R.string.empty_field_error_message)
         false
     } else {
-        if (validateEmailFormat(email))
-            true
+        if (validateEmailFormat(email)) true
         else {
-            emailErrorState.value =
-                application.getString(R.string.email_validation_error_message)
+            emailErrorState.value = application.getString(R.string.email_validation_error_message)
             false
         }
     }
@@ -221,24 +206,20 @@ class RegisterViewModel @Inject constructor(
         false
     } else {
         if (password.length < 6) {
-            passwordErrorState.value =
-                application.getString(R.string.password_length_error_message)
+            passwordErrorState.value = application.getString(R.string.password_length_error_message)
             false
-        } else
-            true
+        } else true
     }
 
     private fun validateConfirmPassword(confirmPassword: String) = if (confirmPassword.isEmpty()) {
-        confirmPasswordErrorState.value =
-            application.getString(R.string.empty_field_error_message)
+        confirmPasswordErrorState.value = application.getString(R.string.empty_field_error_message)
         false
     } else {
         if (confirmPassword != passwordState.value!!) {
             confirmPasswordErrorState.value =
                 application.getString(R.string.confirmation_password_error_message)
             false
-        } else
-            true
+        } else true
     }
 
 }

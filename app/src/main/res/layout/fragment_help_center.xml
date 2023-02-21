@@ -121,7 +121,6 @@
                     android:fontFamily="@font/tajwal_regular"
                     android:gravity="start"
                     android:hint="@string/message_body_hint"
-                    android:inputType="text"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingTop="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_8sdp"

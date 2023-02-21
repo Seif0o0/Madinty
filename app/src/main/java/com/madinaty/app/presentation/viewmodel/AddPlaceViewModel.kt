@@ -114,12 +114,25 @@ class AddPlaceViewModel @Inject constructor(
         if (phoneNumberState.value!!.isEmpty()) {
             phoneNumberErrorState.value = application.getString(R.string.empty_field_error_message)
             pass = false
+        } else {
+            if (phoneNumberState.value!!.length < 11) {
+                phoneNumberErrorState.value =
+                    application.getString(R.string.invalid_mobile_error_message)
+                pass = false
+            }
         }
 
         if (whatsAppState.value!!.isEmpty()) {
             whatsAppErrorState.value = application.getString(R.string.empty_field_error_message)
             pass = false
+        } else {
+            if (whatsAppState.value!!.length < 11) {
+                whatsAppErrorState.value =
+                    application.getString(R.string.invalid_mobile_error_message)
+                pass = false
+            }
         }
+
         if (emailState.value!!.isEmpty()) {
             emailErrorState.value = application.getString(R.string.empty_field_error_message)
             pass = false
@@ -175,6 +188,7 @@ class AddPlaceViewModel @Inject constructor(
         map["region_id"] = createPartFromString(region!!.id)
         map["department_id"] = createPartFromString(departmentId!!)
         map["whats_number"] = createPartFromString(whatsAppState.value!!)
+        map["mobile"] = createPartFromString(phoneNumberState.value!!)
         map["facebook_url"] = createPartFromString(facebookState.value!!)
 
 
@@ -247,8 +261,10 @@ class AddPlaceViewModel @Inject constructor(
                     val uri = activityResult.data?.data!!
                     val values = mutableListOf(uri)
                     images.value.forEach { pickedUriBefore ->
-                        values.add(0, pickedUriBefore)
+                        if (pickedUriBefore.toString() != "header")
+                            values.add(0, pickedUriBefore)
                     }
+                    values.add(0, Uri.parse("header"))
                     images.value = values
                 }
 
@@ -259,16 +275,32 @@ class AddPlaceViewModel @Inject constructor(
                 } else {
                     _errorState.value = ""
                     images.value.forEach { pickedUriBefore ->
-                        uris.add(0, pickedUriBefore)
+                        if (pickedUriBefore.toString() != "header")
+                            uris.add(0, pickedUriBefore)
                     }
+
+                    uris.add(0, Uri.parse("header"))
                     images.value = uris
                 }
-
-            } else {
 
             }
         } else {
 
         }
+    }
+
+    fun deleteAllData() {
+        nameState.value = ""
+        phoneNumberState.value = ""
+        whatsAppState.value = ""
+        emailState.value = ""
+        addressState.value = ""
+        locationState.value = ""
+        workingHoursState.value = ""
+        facebookState.value = ""
+        descriptionState.value = ""
+        region = Region("", "")
+        departmentId = ""
+        images.value = mutableListOf(Uri.parse("header"))
     }
 }

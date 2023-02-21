@@ -15,6 +15,7 @@ data class Place(
     val endTime: String,
     val description: String,
     val facebookUrl: String?,
+    val phoneNumber: String?,
     val whatsAppNumber: String?,
     val userId: String,
     val regionId: String,
@@ -25,5 +26,5 @@ data class Place(
     val isApproved: Boolean,
     val department: Department,
     val region: Region,
-    var isFavourite:Boolean = false
-):Parcelable
+    var isFavourite: Boolean = false
+) : Parcelable

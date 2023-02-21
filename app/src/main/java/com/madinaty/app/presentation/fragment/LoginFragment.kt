@@ -1,5 +1,6 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -168,7 +169,7 @@ class LoginFragment : Fragment() {
 
         binding.register.setOnClickListener {
             findNavController().navigate(
-                LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                LoginFragmentDirections.actionLoginFragmentToSendCodeFragment()
             )
         }
         binding.contactUs.setOnClickListener {
@@ -253,12 +254,15 @@ class LoginFragment : Fragment() {
         dialogBinding.thanksBtn.setOnClickListener {
             dialogBinding.successAnimation.cancelAnimation()
             dialog.dismiss()
-            /* comment till wessam setup otp */
-//                    findNavController().navigate(
-//                        PhoneLoginFragmentDirections.actionPhoneLoginFragmentToVerificationFragment()
-//                    )
-            startActivity(Intent(requireActivity(), MainActivity::class.java))
-            requireActivity().finish()
+            val isUserRequiredToLogin =
+                requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
+            if (isUserRequiredToLogin) {
+                requireActivity().setResult(Activity.RESULT_OK)
+                requireActivity().finish()
+            } else {
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
+            }
         }
     }
 }

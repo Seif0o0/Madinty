@@ -115,6 +115,7 @@ object CustomDialog {
     fun showAddPlaceSuccessDialog(
         dialogBehavior: DialogBehavior = ModalDialog,
         context: Context,
+        successMessage: String,
         onOkBtnClicked: () -> Unit
     ) {
         val dialog = MaterialDialog(context, dialogBehavior).show {
@@ -130,7 +131,7 @@ object CustomDialog {
         }
 
         val binding = AddPlaceSuccessDialogLayoutBinding.bind(dialog.getCustomView())
-
+        binding.message.text = successMessage
         binding.okBtn.setOnClickListener {
             dialog.dismiss()
             onOkBtnClicked()

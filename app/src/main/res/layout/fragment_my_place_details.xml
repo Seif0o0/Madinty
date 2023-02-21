@@ -122,7 +122,7 @@
                 app:layout_constraintEnd_toStartOf="@id/whats"
                 app:layout_constraintStart_toEndOf="@id/communication_accounts"
                 app:layout_constraintTop_toTopOf="@id/communication_accounts"
-                app:reference="@{place.whatsAppNumber}" />
+                app:reference="@{place.phoneNumber}" />
 
             <ImageView
                 android:id="@+id/whats"
@@ -326,14 +326,37 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
                 android:layerType="software"
                 android:src="@drawable/dashed_line"
+                app:layout_constraintEnd_toEndOf="@id/email"
+                app:layout_constraintStart_toStartOf="@id/communication_accounts"
+                app:layout_constraintTop_toBottomOf="@id/working_hours" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_btn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:fontFamily="@font/tajwal_regular"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/update_place"
+                android:textAllCaps="false"
+                android:textColor="@color/language_screen_main_text_color"
+                android:textSize="@dimen/_12ssp"
+                android:theme="@style/Theme.MaterialComponents"
+                app:backgroundTint="@color/language_screen_main_buttons_color"
+                app:cornerRadius="@dimen/_4sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/email"
                 app:layout_constraintStart_toStartOf="@id/communication_accounts"
-                app:layout_constraintTop_toBottomOf="@id/working_hours"
-                app:layout_constraintVertical_bias="0" />
+                app:layout_constraintTop_toBottomOf="@id/dashed_line_3"
+                app:layout_constraintVertical_bias="1"
+                app:layout_goneMarginTop="@dimen/_20sdp"
+                app:my_place_status="@{place.approved}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

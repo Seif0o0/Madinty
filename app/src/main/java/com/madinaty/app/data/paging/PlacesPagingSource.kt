@@ -37,7 +37,7 @@ class PlacesPagingSource @Inject constructor(
 
             val response =
                 service.fetchPlaces(
-                    token = "Bearer ${UserInfo.token}",
+                    token = if (UserInfo.userId.isEmpty()) "" else "Bearer ${UserInfo.token}",
                     map = map
                 )
             if (response.isSuccessful) {

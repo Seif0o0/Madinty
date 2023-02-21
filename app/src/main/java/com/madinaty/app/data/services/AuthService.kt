@@ -22,7 +22,20 @@ interface AuthService {
     @POST("${Constants.AUTH_ROOT}${Constants.REGISTER}")
     suspend fun register(
         @Body map: Map<String, String>,
-    ): Response<PhoneLoginResponse>
+    ): Response<RegisterResponse>
+
+    @POST("${Constants.AUTH_ROOT}${Constants.SEND_CODE}")
+    suspend fun sendCode(
+        @Query("mobile") phoneNumber: String,
+        @Query("test") test: Boolean = false
+    ): Response<CodeVerificationResponse>
+
+    @POST("${Constants.AUTH_ROOT}${Constants.VERIFY_CODE}")
+    suspend fun verifyCode(
+        @Query("code") code: String,
+        @Query("user_id") userId: String,
+        @Query("test") test: Boolean = false
+    ): Response<CodeVerificationResponse>
 
     @POST("${Constants.AUTH_ROOT}${Constants.LOGIN}${Constants.SOCIAL_LOGIN}")
     suspend fun socialLogin(

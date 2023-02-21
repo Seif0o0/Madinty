@@ -1,5 +1,6 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -142,12 +143,16 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         dialogBinding.thanksBtn.setOnClickListener {
             dialogBinding.successAnimation.cancelAnimation()
             dialog.dismiss()
-            /* comment till wessam setup otp */
-//                    findNavController().navigate(
-//                        PhoneLoginFragmentDirections.actionPhoneLoginFragmentToVerificationFragment()
-//                    )
-            startActivity(Intent(requireActivity(), MainActivity::class.java))
-            requireActivity().finish()
+
+            val isUserRequiredToLogin =
+                requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
+            if (isUserRequiredToLogin) {
+                requireActivity().setResult(Activity.RESULT_OK)
+                requireActivity().finish()
+            } else {
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
+            }
         }
     }
 

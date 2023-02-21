@@ -5,6 +5,7 @@ import com.madinaty.app.R
 import com.madinaty.app.data.response.AddPlaceResponse
 import com.madinaty.app.data.response.PhoneLoginInfoResponse
 import com.madinaty.app.data.response.PhoneLoginResponse
+import com.madinaty.app.data.response.RegisterInfoResponse
 import com.madinaty.app.data.services.AuthService
 import com.madinaty.app.domain.repository.RegisterRepository
 import com.madinaty.app.utils.DataState
@@ -19,7 +20,7 @@ class RegisterRepositoryImpl @Inject constructor(
     private val service: AuthService
 ) : RegisterRepository {
 
-    override suspend fun register(map: Map<String, String>): Flow<DataState<PhoneLoginInfoResponse>> {
+    override suspend fun register(map: Map<String, String>): Flow<DataState<RegisterInfoResponse>> {
         return flow {
             try {
                 emit(DataState.Loading())

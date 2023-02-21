@@ -38,6 +38,19 @@ class PhoneLoginRepositoryImpl @Inject constructor(
                 } else {
 
                     when (response.code()) {
+                        403 -> {
+                            val body = response.errorBody()
+                            val adapter =
+                                Moshi.Builder().build().adapter(PhoneLoginResponse::class.java)
+                            val errorParser = adapter.fromJson(body?.string() ?: "")
+                            val errorMessage = errorParser?.message
+                            emit(
+                                DataState.Error(
+                                    message = errorMessage
+                                        ?: application.getString(R.string.server_error_message)
+                                )
+                            )
+                        }
                         404 -> {
                             val body = response.errorBody()
                             val adapter =
@@ -98,9 +111,9 @@ class PhoneLoginRepositoryImpl @Inject constructor(
                 preferences[isVerified] = userInfo.isVerified
             }
             true
-        }catch (e:IOException){
+        } catch (e: IOException) {
             false
-        }catch (e:Exception){
+        } catch (e: Exception) {
             false
         }
 

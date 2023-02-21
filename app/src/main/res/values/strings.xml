@@ -11,6 +11,15 @@
     <string name="client_secret" translatable="false">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</string>
     <!-- Google-Strings -->
 
+    <!-- location library strings -->
+    <string name="locus_location_resolution_title">Location is currently disabled</string>
+    <string name="locus_location_resolution_message">Please enable access to device location to get better experience</string>
+    <string name="enable">Enable</string>
+    <string name="cancel">Cancel</string>
+    <!--    -->
+
+
+<!--    <string name="map_api_key" translatable="false">AIzaSyDQ1fpOpN0PyyVtguEFEAbyKdL8Y3ZXG_8</string>-->
 
     <string name="pick_language_header">Pick language</string>
     <string name="pick_language_title">Please pick application language</string>
@@ -71,7 +80,7 @@
     <string name="favourites_header">Favourites</string>
     <string name="remove_favourites_warning_message">Are you sure you want to remove all favourites?</string>
     <string name="yes">Yes</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel_key">Cancel</string>
     <string name="logout_warning_message">Are you sure you want to logout?</string>
     <string name="back">Back</string>
     <string name="add_place_details_title">Add place</string>
@@ -133,7 +142,7 @@
     <string name="underline_confirm"><u>Confirm</u></string>
     <string name="save_changes">Save changes</string>
     <string name="confirm_phone_header">Confirm phone number</string>
-    <string name="confirm_phone_message">Enter 5 digits code that was sent to your phone number which ends with 560</string>
+    <string name="confirm_phone_message">Enter code that was sent to your phone number</string>
     <string name="code_hint">"     "</string>
     <string name="resend_code_label">Didn\'t receive it?</string>
     <string name="underline_resend_code">Resend</string>
@@ -189,6 +198,15 @@
     <string name="username">Username</string>
     <string name="register_label">Sign up</string>
     <string name="search_hint">Search....</string>
+    <string name="invalid_mobile_error_message">Invalid phone number format</string>
+    <string name="update_place">Update place</string>
+    <string name="your_selected_category_is">Your selected category: %1$s</string>
+    <string name="skip">Skip</string>
+    <string name="update_place_details_title">Update place</string>
+    <string name="update_place_photos">Update place photos</string>
+    <string name="add_place_success_message">A request to add a place has been created successfully and is awaiting review</string>
+    <string name="update_place_success_message">Your place has been updated successfully</string>
+    <string name="login_required_message">Please login first</string>
 
 
     <string-array name="short_months" translatable="false">

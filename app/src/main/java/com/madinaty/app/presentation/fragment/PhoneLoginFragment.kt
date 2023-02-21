@@ -1,5 +1,6 @@
 package com.madinaty.app.presentation.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -105,12 +106,16 @@ class PhoneLoginFragment : Fragment() {
         dialogBinding.thanksBtn.setOnClickListener {
             dialogBinding.successAnimation.cancelAnimation()
             dialog.dismiss()
-            /* comment till wessam setup otp */
-//                    findNavController().navigate(
-//                        PhoneLoginFragmentDirections.actionPhoneLoginFragmentToVerificationFragment()
-//                    )
-            startActivity(Intent(requireActivity(), MainActivity::class.java))
-            requireActivity().finish()
+            val isUserRequiredToLogin =
+                requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
+            if (isUserRequiredToLogin) {
+                requireActivity().setResult(Activity.RESULT_OK)
+                requireActivity().finish()
+            } else {
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
+            }
+
         }
     }
 

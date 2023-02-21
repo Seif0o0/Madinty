@@ -57,6 +57,8 @@ class HelpCenterFragment : Fragment(R.layout.fragment_help_center) {
                         successMessage = getString(R.string.send_message_successful_message)
                     )
                     viewModel.sendMessageState(false)
+                    viewModel.subjectState.value = ""
+                    viewModel.messageState.value = ""
                 }
             }
         }

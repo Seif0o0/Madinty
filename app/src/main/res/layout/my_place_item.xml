@@ -54,28 +54,22 @@
                 android:textColor="@color/places_title_text_color"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toTopOf="@id/location"
-                app:layout_constraintEnd_toStartOf="@id/paid"
+                app:layout_constraintEnd_toStartOf="@id/status_icon"
                 app:layout_constraintStart_toEndOf="@id/image"
                 app:layout_constraintTop_toTopOf="@id/image"
                 app:layout_constraintVertical_chainStyle="spread"
                 tools:text="Place name" />
 
-            <TextView
-                android:id="@+id/paid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/status_icon"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_4sdp"
-                android:background="@drawable/yellow_rounded_corner_rectangle"
-                android:fontFamily="@font/tajwal_regular"
-                android:paddingStart="@dimen/_6sdp"
-                android:paddingEnd="@dimen/_6sdp"
-                android:text="@string/paid"
-                android:textColor="@color/places_title_text_color"
-                android:textSize="@dimen/_8ssp"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/name" />
+                app:layout_constraintTop_toTopOf="@id/name"
+                app:my_place_status="@{myPlace.approved}"
+                tools:src="@drawable/pending_icon" />
 
             <ImageView
                 android:id="@+id/location_icon"

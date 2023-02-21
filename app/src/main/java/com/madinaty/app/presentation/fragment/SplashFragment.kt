@@ -11,13 +11,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.transition.doOnEnd
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.madinaty.app.presentation.activity.MainActivity
 import com.madinaty.app.R
-import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.databinding.FragmentSplashBinding
 import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.AuthActivity
+import com.madinaty.app.presentation.activity.MainActivity
 
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
@@ -36,6 +35,7 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.post {
+
             val constraintSet = ConstraintSet()
             constraintSet.clone(binding.rootView)
             constraintSet.setVerticalBias(R.id.splash_logo, 0.2f)
@@ -47,13 +47,8 @@ class SplashFragment : Fragment() {
                 if (UserInfo.isFirstTime) {
                     findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLanguageFragment())
                 } else {
-                    if (UserInfo.userId.isNotEmpty()) {/* logged in user */
-                        requireActivity().finish()
-                        startActivity(Intent(requireContext(), MainActivity::class.java))
-                    } else {
-                        requireActivity().finish()
-                        startActivity(Intent(requireContext(), AuthActivity::class.java))
-                    }
+                    requireActivity().finish()
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
                 }
             }
 
