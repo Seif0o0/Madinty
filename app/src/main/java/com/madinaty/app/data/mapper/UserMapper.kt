@@ -18,7 +18,6 @@ fun UserDto.toUser() = User(
         if (gender == Constants.EDIT_MALE_VALUE) Constants.MALE_VALUE else if (gender == Constants.EDIT_FEMALE_VALUE) Constants.FEMALE_VALUE else gender
     },
     dateOfBirth = dateOfBirth,
-    city = city,
     isApproved = isApproved == 1,
     isVerified = isVerified == 1
 )

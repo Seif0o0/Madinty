@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.madinaty.app.domain.model.Favourite
 import com.madinaty.app.domain.repository.FavouritesRepository
+import com.madinaty.app.kot_pref.UserInfo
 import com.madinaty.app.utils.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

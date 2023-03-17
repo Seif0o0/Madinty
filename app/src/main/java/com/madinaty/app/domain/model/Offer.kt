@@ -7,5 +7,5 @@ data class Offer(
     val dimensions: String,
     val departmentId: String,
     val viewsNumber: Int,
-    val image: Attachment
+    val images: List<Attachment>
 )

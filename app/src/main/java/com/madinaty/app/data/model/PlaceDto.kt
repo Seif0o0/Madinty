@@ -27,5 +27,5 @@ class PlaceDto(
     @Json(name = "is_approved") val isApproved: Int,/* 1 == true */
     val department: DepartmentDto,
     val region: RegionDto,
-    @Json(name="isFav") val isFavourite:Boolean = false
+    @Json(name="isFav") val isFavourite:Boolean?
 )

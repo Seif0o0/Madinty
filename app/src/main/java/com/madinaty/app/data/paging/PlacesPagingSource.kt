@@ -34,6 +34,8 @@ class PlacesPagingSource @Inject constructor(
             map["page"] = currentPage.toString()
             departmentId?.let { map["department_id"] = it }
             query?.let { map["search"] = it }
+            if (UserInfo.regionId.isNotEmpty())
+                map["region_id"] = UserInfo.regionId
 
             val response =
                 service.fetchPlaces(

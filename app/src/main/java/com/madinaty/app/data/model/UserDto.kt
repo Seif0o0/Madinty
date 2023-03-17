@@ -15,7 +15,6 @@ data class UserDto(
     @Json(name = "mobile") val phoneNumber: String,
     val gender: String? ,
     @Json(name = "dob") val dateOfBirth: String,
-    val city: String?,
     @Json(name = "is_approved") val isApproved: Int,/* 0 false */
     @Json(name = "is_verified") val isVerified: Int
 )

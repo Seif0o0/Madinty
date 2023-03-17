@@ -110,6 +110,4 @@ class OtpVerificationFragment : Fragment() {
         }
         return binding.root
     }
-
-
 }

@@ -59,6 +59,17 @@ class LoginFragment : Fragment() {
         binding.commonViewModel = commonInfoViewModel
         binding.lifecycleOwner = requireActivity()
 
+        val isUserRequiredToLogin =
+            requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
+
+        binding.loginAsGuest.setOnClickListener {
+            if (isUserRequiredToLogin) {
+                requireActivity().finish()
+            } else {
+                requireActivity().finish()
+                startActivity(Intent(requireContext(), MainActivity::class.java))
+            }
+        }
         /* fb-login */
         binding.facebookBackground.setOnClickListener {
             LoginManager.getInstance()
@@ -155,8 +166,8 @@ class LoginFragment : Fragment() {
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id))
             .requestServerAuthCode(getString(R.string.client_id))
-            .requestEmail()
-            .build()
+            .requestProfile()
+            .requestEmail().build()
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
     }
 
@@ -206,6 +217,7 @@ class LoginFragment : Fragment() {
             intent.data = Uri.parse("tel:${binding.phoneNumber.text}")
             startActivity(intent)
         }
+
         binding.phoneBackground.setOnClickListener {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToPhoneLoginFragment()
@@ -217,20 +229,17 @@ class LoginFragment : Fragment() {
         if (viewModel.provider == "facebook") {
             val accessToken = AccessToken.getCurrentAccessToken()
             accessToken?.let {
-                GraphRequest(
-                    AccessToken.getCurrentAccessToken(),
+                GraphRequest(AccessToken.getCurrentAccessToken(),
                     "/me/permissions/",
                     null,
                     HttpMethod.DELETE,
                     {
                         AccessToken.setCurrentAccessToken(null)
                         LoginManager.getInstance().logOut()
-                    }
-                ).executeAsync()
+                    }).executeAsync()
             }
         } else {
-            if (::googleSignInClient.isInitialized)
-                googleSignInClient.signOut()
+            if (::googleSignInClient.isInitialized) googleSignInClient.signOut()
         }
     }
 
@@ -254,15 +263,22 @@ class LoginFragment : Fragment() {
         dialogBinding.thanksBtn.setOnClickListener {
             dialogBinding.successAnimation.cancelAnimation()
             dialog.dismiss()
-            val isUserRequiredToLogin =
-                requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
-            if (isUserRequiredToLogin) {
-                requireActivity().setResult(Activity.RESULT_OK)
-                requireActivity().finish()
-            } else {
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
-                requireActivity().finish()
+            if(viewModel.phoneIsEmpty){
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToCompleteSocialLoginFragment(userId = viewModel.userId)
+                )
+            }else{
+                val isUserRequiredToLogin =
+                    requireActivity().intent?.extras?.getBoolean("requiredLogin") ?: false
+                if (isUserRequiredToLogin) {
+                    requireActivity().setResult(Activity.RESULT_OK)
+                    requireActivity().finish()
+                } else {
+                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                    requireActivity().finish()
+                }
             }
+
         }
     }
 }

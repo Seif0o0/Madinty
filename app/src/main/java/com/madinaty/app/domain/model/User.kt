@@ -13,7 +13,6 @@ data class User(
     val phoneNumber: String,
     val gender: String,
     val dateOfBirth: String,
-    val city: String?,
     val isApproved: Boolean,
     val isVerified: Boolean
 ) : Parcelable

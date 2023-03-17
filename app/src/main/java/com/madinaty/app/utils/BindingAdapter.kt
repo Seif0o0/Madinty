@@ -33,7 +33,6 @@ fun logUserOut() {
     UserInfo.firstName = ""
     UserInfo.lastName = ""
     UserInfo.email = ""
-    UserInfo.city = ""
     UserInfo.phoneNumber = ""
     UserInfo.gender = ""
     UserInfo.dateOfBirth = ""
@@ -48,6 +47,17 @@ fun ImageView.loadImage(url: String) {
         .placeholder(R.mipmap.splash_logo)
         .error(R.mipmap.splash_logo)
         .into(this)
+}
+
+@BindingAdapter("attachment")
+fun ImageView.loadImage(attachment: Attachment?) {
+    attachment?.let {
+        Glide.with(this)
+            .load(it.url)
+            .placeholder(R.mipmap.splash_logo)
+            .error(R.mipmap.splash_logo)
+            .into(this)
+    }
 }
 
 

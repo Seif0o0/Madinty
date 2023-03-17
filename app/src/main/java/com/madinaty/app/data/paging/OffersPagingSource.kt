@@ -6,7 +6,6 @@ import androidx.paging.PagingState
 import com.madinaty.app.R
 import com.madinaty.app.data.mapper.toOffer
 import com.madinaty.app.data.services.OffersService
-import com.madinaty.app.domain.model.Department
 import com.madinaty.app.domain.model.Offer
 import com.madinaty.app.kot_pref.UserInfo
 import java.io.IOException

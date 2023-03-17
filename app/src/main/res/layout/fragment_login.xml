@@ -223,6 +223,20 @@
                     app:layout_constraintStart_toStartOf="@id/google_background"
                     app:layout_constraintTop_toBottomOf="@id/phone_background" />
 
+                <TextView
+                    android:id="@+id/login_as_guest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20ssp"
+                    android:fontFamily="@font/tajwal_medium"
+                    android:text="@string/login_as_guest"
+                    android:textColor="@color/auth_screens_sub_text_color"
+                    android:textSize="@dimen/_13ssp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@id/google_background"
+                    app:layout_constraintStart_toStartOf="@id/google_background"
+                    app:layout_constraintTop_toBottomOf="@id/register" />
+
 
                 <TextView
                     android:id="@+id/terms_conditions_title"
@@ -236,7 +250,7 @@
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintEnd_toEndOf="@id/phone_background"
                     app:layout_constraintStart_toStartOf="@id/phone_background"
-                    app:layout_constraintTop_toBottomOf="@id/register" />
+                    app:layout_constraintTop_toBottomOf="@id/login_as_guest" />
 
                 <TextView
                     android:id="@+id/terms_conditions"

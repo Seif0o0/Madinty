@@ -193,4 +193,5 @@
     <string name="add_place_success_message">تم انشاء طلب اضافة مكان بنجاح وفي انتظار المراجعة</string>
     <string name="update_place_success_message">تم تعديل مكانك بنجاح</string>
     <string name="login_required_message">الرجاء تسجيل الدخول اولاً</string>
+    <string name="complete_your_info_title">أكمل بياناتك للاستمرار</string>
 </resources>

@@ -21,7 +21,7 @@ class PickCityFragment : Fragment() {
     ): View {
         binding = FragmentPickCityBinding.inflate(layoutInflater, container, false)
 
-        binding.cityEdittext.setText(UserInfo.city)
+        binding.cityEdittext.setText(UserInfo.region)
 
         binding.cityEdittext.setOnClickListener {
             val regionsDialog = RegionsDialogFragment.newInstance(requestKey)
@@ -33,7 +33,6 @@ class PickCityFragment : Fragment() {
             requireActivity().supportFragmentManager.setFragmentResultListener(
                 requestKey, viewLifecycleOwner
             ) { requestKey, bundle ->
-
                 val region = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     bundle.getParcelable("region", Region::class.java)
                 } else {
@@ -41,8 +40,9 @@ class PickCityFragment : Fragment() {
                 }
 
                 if (region != null) {
-                    UserInfo.city = region.name
-                    binding.cityEdittext.setText(UserInfo.city)
+                    UserInfo.region = region.name
+                    UserInfo.regionId = region.id
+                    binding.cityEdittext.setText(UserInfo.region)
                 }
             }
             regionsDialog.show(fragmentTransaction, "RegionsDialog")

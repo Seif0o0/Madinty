@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@mipmap/intro_2"
-            app:image_url="@{offer.image.url}" />
+            android:src="@mipmap/splash_logo"
+            app:attachment="@{offer.images[0]}" />
     </androidx.cardview.widget.CardView>
 </layout>

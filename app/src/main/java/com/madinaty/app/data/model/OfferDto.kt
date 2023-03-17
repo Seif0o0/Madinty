@@ -9,7 +9,6 @@ data class OfferDto(
     val name: String,
     val dimensions: String,
     @Json(name = "department_id") val departmentId: String,
-    @Json(name = "attachment_id") val attachmentId: String,
     @Json(name = "views_number") val viewsNumber: Int,
-    @Json(name = "attachment") val image: AttachmentDto
+    @Json(name = "attachments") val images: List<AttachmentDto>
 )

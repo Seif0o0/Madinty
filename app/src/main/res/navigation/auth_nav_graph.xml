@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_loginFragment_to_sendCodeFragment"
             app:destination="@id/sendCodeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_completeSocialLoginFragment"
+            app:destination="@id/completeSocialLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/phoneLoginFragment"
@@ -48,5 +51,13 @@
         <action
             android:id="@+id/action_sendCodeFragment_to_verificationFragment"
             app:destination="@id/verificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeSocialLoginFragment"
+        android:name="com.madinaty.app.presentation.fragment.CompleteSocialLoginFragment"
+        android:label="CompleteSocialLoginFragment" >
+        <argument
+            android:name="userId"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -24,7 +24,7 @@ interface PlacesService {
     ): Response<PlacesResponse>
 
     @Multipart
-    @POST(Constants.ADMIN_ROOT.plus(Constants.ADD_PLACE))
+    @POST(Constants.AUTH_ROOT.plus(Constants.ADD_PLACE))
     suspend fun createPlace(
         @Header("Authorization") token: String,
         @PartMap map: MutableMap<String, RequestBody>,
@@ -33,7 +33,7 @@ interface PlacesService {
 
 
     @Multipart
-    @POST("${Constants.ADMIN_ROOT}${Constants.ADD_PLACE}/{id}")
+    @POST("${Constants.AUTH_ROOT}${Constants.ADD_PLACE}/{id}")
     suspend fun updatePlace(
         @Header("Authorization") token: String,
         @Path("id") id: String,

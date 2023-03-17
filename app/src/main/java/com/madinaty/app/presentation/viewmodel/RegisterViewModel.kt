@@ -31,7 +31,6 @@ class RegisterViewModel @Inject constructor(
     private val _loadingState = MutableStateFlow(false)
     val loadingState: StateFlow<Boolean> get() = _loadingState
 
-    /* check if login request is done successfully */
     private val _registerState = MutableStateFlow(false)
     val registerState: StateFlow<Boolean> get() = _registerState
 
@@ -41,9 +40,6 @@ class RegisterViewModel @Inject constructor(
 
     private val _errorState = MutableStateFlow("")
     val errorState: StateFlow<String> get() = _errorState
-
-    val usernameState = MutableLiveData("")
-    val usernameErrorState = MutableLiveData("")
 
     val firstNameState = MutableLiveData("")
     val firstNameErrorState = MutableLiveData("")
@@ -130,7 +126,6 @@ class RegisterViewModel @Inject constructor(
         UserInfo.firstName = user.firstName
         UserInfo.lastName = user.lastName
         UserInfo.email = user.email
-        UserInfo.city = user.city ?: ""
         UserInfo.phoneNumber = user.phoneNumber
         UserInfo.gender = user.gender
         UserInfo.dateOfBirth = user.dateOfBirth
@@ -140,15 +135,6 @@ class RegisterViewModel @Inject constructor(
         registerState(true)
     }
 
-    private fun validateUsername(username: String) = if (username.isEmpty()) {
-        usernameErrorState.value = application.getString(R.string.empty_field_error_message)
-        false
-    } else {
-        if (username.length < 3) {
-            usernameErrorState.value = application.getString(R.string.username_length_error_message)
-            false
-        } else true
-    }
 
     private fun validateFirstName(firstName: String) = if (firstName.isEmpty()) {
         firstNameErrorState.value = application.getString(R.string.empty_field_error_message)
@@ -190,11 +176,6 @@ class RegisterViewModel @Inject constructor(
 
         return pattern.matcher(email).matches()
     }
-
-    private fun validateMobile(mobile: String) = if (mobile.isEmpty()) {
-        mobileErrorState.value = application.getString(R.string.empty_field_error_message)
-        false
-    } else true
 
     private fun validateDob(dob: String) = if (dob.isEmpty()) {
         dobErrorState.value = application.getString(R.string.empty_field_error_message)

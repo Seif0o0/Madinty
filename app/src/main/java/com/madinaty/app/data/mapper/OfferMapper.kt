@@ -17,5 +17,5 @@ fun OfferDto.toOffer() = Offer(
     dimensions = dimensions,
     departmentId = departmentId,
     viewsNumber = viewsNumber,
-    image = image.toAttachment(),
+    images = images.map { it.toAttachment() },
 )

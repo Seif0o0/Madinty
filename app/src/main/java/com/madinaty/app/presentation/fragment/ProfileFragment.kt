@@ -103,7 +103,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     phoneNumber = UserInfo.phoneNumber,
                     gender = UserInfo.gender,
                     dateOfBirth = UserInfo.dateOfBirth,
-                    city = UserInfo.city,
                     isApproved = UserInfo.isApproved,
                     isVerified = UserInfo.isVerified
                 )

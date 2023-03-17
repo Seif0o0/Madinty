@@ -355,8 +355,7 @@
                 app:layout_constraintStart_toStartOf="@id/communication_accounts"
                 app:layout_constraintTop_toBottomOf="@id/dashed_line_3"
                 app:layout_constraintVertical_bias="1"
-                app:layout_goneMarginTop="@dimen/_20sdp"
-                app:my_place_status="@{place.approved}" />
+                app:layout_goneMarginTop="@dimen/_20sdp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

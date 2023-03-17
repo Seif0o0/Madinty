@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.madinaty.app.data.mapper.toUser
 import com.madinaty.app.data.response.PhoneLoginInfoResponse
+import com.madinaty.app.domain.model.User
 import com.madinaty.app.domain.repository.SocialLoginRepository
 import com.madinaty.app.kot_pref.UserInfo
 import com.madinaty.app.utils.DataState
@@ -43,6 +44,8 @@ class SocialLoginViewModel @Inject constructor(
 
     var provider: String? = null
     var accessToken: String? = null
+    var phoneIsEmpty = false
+    var userId = ""
     fun socialLogin() {
         viewModelScope.launch {
             repo.socialLogin(provider!!, accessToken!!).collectLatest { result ->
@@ -55,7 +58,17 @@ class SocialLoginViewModel @Inject constructor(
                     is DataState.Success -> {
                         _loadingState.emit(false)
                         _errorState.emit("")
-                        saveUser(result.data!!)
+                        val data = result.data!!
+                        val user = data.user.toUser()
+                        if (user.phoneNumber.isEmpty() || user.phoneNumber == "0123456789") {
+                            phoneIsEmpty = true
+                            userId = user.id
+                            UserInfo.token = data.token
+                        } else {
+                            phoneIsEmpty = false
+                            saveUser(data)
+                        }
+                        loginState(true)
                     }
                     is DataState.Error -> {
                         _loadingState.emit(false)
@@ -76,14 +89,12 @@ class SocialLoginViewModel @Inject constructor(
         UserInfo.firstName = user.firstName
         UserInfo.lastName = user.lastName
         UserInfo.email = user.email
-        UserInfo.city = user.city ?: ""
         UserInfo.phoneNumber = user.phoneNumber
         UserInfo.gender = user.gender
         UserInfo.dateOfBirth = user.dateOfBirth
         UserInfo.isApproved = user.isApproved
         UserInfo.isVerified = user.isVerified
         UserInfo.loginType = if (provider == "facebook") 1 else 2
-        loginState(true)
 
     }
 }

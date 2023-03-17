@@ -103,7 +103,6 @@ class PhoneLoginRepositoryImpl @Inject constructor(
                 preferences[firstName] = userInfo.firstName
                 preferences[lastName] = userInfo.lastName
                 preferences[email] = userInfo.email
-                preferences[city] = userInfo.city ?: ""
                 preferences[phoneNumber] = userInfo.phoneNumber
                 preferences[gender] = userInfo.gender
                 preferences[dateOfBirth] = userInfo.dateOfBirth

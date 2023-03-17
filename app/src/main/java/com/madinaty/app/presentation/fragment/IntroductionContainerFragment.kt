@@ -14,6 +14,7 @@ import com.madinaty.app.presentation.activity.AuthActivity
 import com.madinaty.app.presentation.adapter.IntroductionAdapter
 import com.madinaty.app.databinding.FragmentIntroductionContainerBinding
 import com.madinaty.app.kot_pref.UserInfo
+import com.madinaty.app.presentation.activity.MainActivity
 
 class IntroductionContainerFragment : Fragment() {
     private lateinit var switchBtn: ViewPager2.OnPageChangeCallback
@@ -51,7 +52,7 @@ class IntroductionContainerFragment : Fragment() {
                     2 -> {
                         binding.prevBtn.visibility = View.VISIBLE
                         binding.nextBtn.text = getString(R.string.login)
-                        binding.prevBtn.text = getString(R.string.previous)
+                        binding.prevBtn.text = getString(R.string.login_as_guest)
 
                     }
                 }
@@ -78,11 +79,19 @@ class IntroductionContainerFragment : Fragment() {
                 // go to login screen
                 UserInfo.isFirstTime = false
                 startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                requireActivity().finish()
             }
         }
 
         binding.prevBtn.setOnClickListener {
-            binding.viewPager.currentItem--
+            if (binding.viewPager.currentItem == 2) {
+                UserInfo.isFirstTime = false
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
+            } else {
+                binding.viewPager.currentItem--
+            }
+
         }
 
 

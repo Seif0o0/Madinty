@@ -102,7 +102,6 @@ class PhoneLoginViewModel @Inject constructor(
         UserInfo.firstName = user.firstName
         UserInfo.lastName = user.lastName
         UserInfo.email = user.email
-        UserInfo.city = user.city ?: ""
         UserInfo.phoneNumber = user.phoneNumber
         UserInfo.gender = user.gender
         UserInfo.dateOfBirth = user.dateOfBirth

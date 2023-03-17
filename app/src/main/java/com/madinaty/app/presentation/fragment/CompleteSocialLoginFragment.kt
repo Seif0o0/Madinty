@@ -19,27 +19,28 @@ import com.afollestad.materialdialogs.ModalDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.madinaty.app.R
-import com.madinaty.app.databinding.FragmentRegisterBinding
+import com.madinaty.app.databinding.FragmentCompleteSocialLoginBinding
 import com.madinaty.app.databinding.LoginSuccessDialogLayoutBinding
 import com.madinaty.app.presentation.activity.MainActivity
-import com.madinaty.app.presentation.viewmodel.RegisterViewModel
+import com.madinaty.app.presentation.viewmodel.CompleteSocialLoginViewModel
 import com.madinaty.app.utils.CustomDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import java.util.Calendar
+import java.util.*
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
-    private val viewModel: RegisterViewModel by viewModels()
-    private lateinit var binding: FragmentRegisterBinding
+class CompleteSocialLoginFragment : Fragment(), DatePickerDialog.OnDateSetListener {
+    private val viewModel: CompleteSocialLoginViewModel by viewModels()
+    private lateinit var binding: FragmentCompleteSocialLoginBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCompleteSocialLoginBinding.inflate(layoutInflater, container, false)
         binding.viewModel = viewModel
-        binding.lifecycleOwner = requireActivity()
+        binding.lifecycleOwner = viewLifecycleOwner
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
@@ -86,6 +87,7 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 }
             }
         }
+
         return binding.root
     }
 
@@ -123,7 +125,6 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         viewModel.dobErrorState.value = ""
     }
 
-
     private fun showSuccessDialog(
         dialogBehavior: DialogBehavior = ModalDialog,
     ) {
@@ -156,6 +157,4 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
         }
     }
-
-
 }

@@ -47,6 +47,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
         binding.lifecycleOwner = requireActivity()
 
         if (UserInfo.userId.isEmpty()) {
+            binding.whiteView.visibility = View.VISIBLE
             val loginLauncher =
                 registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                     if (it.resultCode == Activity.RESULT_OK) {
@@ -69,6 +70,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     }
 
     private fun initViews() {
+        binding.whiteView.visibility = View.GONE
         favouritesAdapter = FavouritesAdapter(clickListener = ListItemClickListener {
             setFragmentResultListener("changeFavourite") { _, bundle ->
                 if (bundle.getBoolean("updated")) {

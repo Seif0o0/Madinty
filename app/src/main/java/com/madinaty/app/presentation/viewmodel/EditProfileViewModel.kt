@@ -91,7 +91,6 @@ class EditProfileViewModel @Inject constructor(
                 phoneNumber = userInfo.phoneNumber,
                 gender = if (genderState.value!!) Constants.MALE_VALUE else Constants.FEMALE_VALUE,
                 dateOfBirth = dob,
-                city = userInfo.city,
                 isApproved = userInfo.isApproved,
                 isVerified = userInfo.isVerified
             )
@@ -163,7 +162,6 @@ class EditProfileViewModel @Inject constructor(
         userInfo = user.copy()
         UserInfo.firstName = user.firstName
         UserInfo.lastName = user.lastName
-        UserInfo.city = user.city ?: ""
         UserInfo.gender = user.gender
         UserInfo.dateOfBirth = user.dateOfBirth
         updateInfoState(true)

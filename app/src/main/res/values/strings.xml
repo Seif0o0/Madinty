@@ -207,6 +207,7 @@
     <string name="add_place_success_message">A request to add a place has been created successfully and is awaiting review</string>
     <string name="update_place_success_message">Your place has been updated successfully</string>
     <string name="login_required_message">Please login first</string>
+    <string name="complete_your_info_title">Complete your information to continue</string>
 
 
     <string-array name="short_months" translatable="false">

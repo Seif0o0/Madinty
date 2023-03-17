@@ -56,11 +56,11 @@ class HomeFragment : Fragment() {
         binding.errorMessage = ""
         binding.retryListener = null
         binding.viewModel = pinOffersViewModel
-        if (UserInfo.city.isEmpty() || UserInfo.city == "TODO::CITY".lowercase()) {//TODO dont forget to remove || condition
+        if (UserInfo.region.isEmpty()) {
             binding.regionValue = getString(R.string.no_selected_region)
             binding.changeText.text = getString(R.string.select)
         } else {
-            binding.regionValue = UserInfo.city
+            binding.regionValue = UserInfo.region
             binding.changeText.text = getString(R.string.change)
         }
 
@@ -102,6 +102,7 @@ class HomeFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = false
+            pinOffersViewModel.getOffers()
             departmentsAdapter.refresh()
         }
 
@@ -163,13 +164,11 @@ class HomeFragment : Fragment() {
         destination: NavDirections,
     ) {
         if (UserInfo.userId.isEmpty()) {
-            launcher.launch(
-                Intent(
-                    requireContext(),
-                    AuthActivity::class.java
-                ).apply {
-                    putExtra("requiredLogin", true)
-                })
+            launcher.launch(Intent(
+                requireContext(), AuthActivity::class.java
+            ).apply {
+                putExtra("requiredLogin", true)
+            })
         } else {
             findNavController().navigate(destination)
         }
