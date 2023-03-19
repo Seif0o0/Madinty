@@ -70,7 +70,6 @@ class CompleteSocialLoginViewModel @Inject constructor(
             map["gender"] =
                 if (genderState.value!!) Constants.EDIT_MALE_VALUE else Constants.EDIT_FEMALE_VALUE
             map["dob"] = dobState.value!!
-            map["user_id"] = state.get<String>("userId")!!
 
             repo.updateProfileInfo(map).collectLatest { result ->
                 startRegister(false)
