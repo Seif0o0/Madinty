@@ -3,6 +3,7 @@ package com.madinaty.app.utils
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
+import androidx.appcompat.app.AppCompatDelegate
 import com.chibatching.kotpref.Kotpref
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
@@ -17,6 +18,7 @@ import java.util.*
 @HiltAndroidApp
 class MadintyApplication : Application() {
     override fun onCreate() {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate()
         Kotpref.init(this)
 
